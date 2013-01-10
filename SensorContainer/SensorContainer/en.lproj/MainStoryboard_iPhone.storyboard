@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="12">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
+    </dependencies>
+    <scenes>
+        <!--Data View Controller-->
+        <scene sceneID="8">
+            <objects>
+                <viewController storyboardIdentifier="SCDataViewController" id="5" customClass="SCDataViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDK-sa-vY8">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="QRCode sensor">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="qrcodeSensorBtnTouched:" destination="5" eventType="touchUpInside" id="zBf-UF-yvR"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REH-yj-dRO">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="Photo sensor">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="photoSensorBtnTouched:" destination="5" eventType="touchUpInside" id="TS4-rq-14x"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WKp-gJ-U8w">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="159" id="sWc-w8-4vh"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Es0-iT-Jbf">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="67" id="4ou-1k-sau"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="WKp-gJ-U8w" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="ADT-Tz-JU2"/>
+                                    <constraint firstItem="REH-yj-dRO" firstAttribute="top" secondItem="9" secondAttribute="top" constant="81" id="CGx-eM-5EQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="WKp-gJ-U8w" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ljs-ma-oaZ"/>
+                                    <constraint firstItem="WKp-gJ-U8w" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="MPt-Hb-Acg"/>
+                                    <constraint firstAttribute="trailing" secondItem="Es0-iT-Jbf" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="aHh-ZF-cD5"/>
+                                    <constraint firstItem="REH-yj-dRO" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="dzU-7W-is8"/>
+                                    <constraint firstItem="gDK-sa-vY8" firstAttribute="top" secondItem="9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="hMo-BC-hct"/>
+                                    <constraint firstItem="WKp-gJ-U8w" firstAttribute="top" secondItem="Es0-iT-Jbf" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="nsx-oM-P8Z"/>
+                                    <constraint firstItem="gDK-sa-vY8" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qNS-t5-Yja"/>
+                                    <constraint firstItem="Es0-iT-Jbf" firstAttribute="leading" secondItem="9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="tPJ-Yq-Vmx"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="10">
+                                <fontDescription key="fontDescription" type="system" size="system"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.97826086960000003" green="0.91848131079999995" blue="0.73914263440000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="10" firstAttribute="top" secondItem="6" secondAttribute="top" constant="8" id="I07-rm-VFW"/>
+                            <constraint firstItem="10" firstAttribute="leading" secondItem="9" secondAttribute="leading" type="default" id="aK4-XX-w0a"/>
+                            <constraint firstAttribute="trailing" secondItem="10" secondAttribute="trailing" constant="8" type="user" id="e6E-Yf-T9W"/>
+                            <constraint firstAttribute="bottom" secondItem="9" secondAttribute="bottom" constant="8" id="gMY-L7-vVs"/>
+                            <constraint firstItem="10" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="8" type="user" id="l5K-zv-Glu"/>
+                            <constraint firstItem="9" firstAttribute="top" secondItem="10" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="y0d-Yn-SIr"/>
+                            <constraint firstItem="10" firstAttribute="trailing" secondItem="9" secondAttribute="trailing" type="default" id="zt2-xa-dOc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataLabel" destination="10" id="11"/>
+                        <outlet property="imageView" destination="WKp-gJ-U8w" id="hqd-5F-bsB"/>
+                        <outlet property="textLabel" destination="Es0-iT-Jbf" id="LbL-GW-Uwq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="772" y="476"/>
+        </scene>
+        <!--Root View Controller-->
+        <scene sceneID="15">
+            <objects>
+                <viewController id="12" customClass="SCRootViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="13">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.60000002379999995" green="0.40000000600000002" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="360" y="476"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SCDataViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SCDataViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="SCRootViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SCRootViewController.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

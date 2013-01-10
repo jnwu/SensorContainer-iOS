@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
+		6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
+		6BC36D38169EB51B00C0DBAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */; };
+		6BC36D3E169EB51B00C0DBAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */; };
+		6BC36D40169EB51B00C0DBAB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D3F169EB51B00C0DBAB /* main.mm */; };
+		6BC36D44169EB51B00C0DBAB /* SCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */; };
+		6BC36D46169EB51B00C0DBAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D45169EB51B00C0DBAB /* Default.png */; };
+		6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D47169EB51B00C0DBAB /* Default@2x.png */; };
+		6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */; };
+		6BC36D4D169EB51B00C0DBAB /* SCRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */; };
+		6BC36D50169EB51B00C0DBAB /* SCDataViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */; };
+		6BC36D53169EB51B00C0DBAB /* SCModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D52169EB51B00C0DBAB /* SCModelController.m */; };
+		6BC36D56169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */; };
+		6BC36D59169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */; };
+		6BC36D6A169EB88B00C0DBAB /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D67169EB88B00C0DBAB /* STError.m */; };
+		6BC36D6B169EB88B00C0DBAB /* STSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D69169EB88B00C0DBAB /* STSensor.m */; };
+		6BC36D6F169EB8CA00C0DBAB /* STCSensorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */; };
+		6BC36D73169EB90400C0DBAB /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */; };
+		6BC36D79169EB92B00C0DBAB /* STCSensorCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */; };
+		6BC36D7A169EB92B00C0DBAB /* STCSensorCallParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */; };
+		6BC36D81169EB9B000C0DBAB /* PhotoSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */; };
+		6BC36D86169EB9F900C0DBAB /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */; };
+		6BC36D95169EBB8900C0DBAB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */; };
+		6BC36D97169EBB9000C0DBAB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */; };
+		6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */; };
+		6BC36D9B169EBBA700C0DBAB /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D9A169EBBA700C0DBAB /* libiconv.dylib */; };
+		6BC36D9D169EBBB400C0DBAB /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D9C169EBBB400C0DBAB /* CoreVideo.framework */; };
+		6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */; };
+		6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */; };
+		6BC36DA3169EBBE700C0DBAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */; };
+		6BC36DA6169EBEE100C0DBAB /* STSensorConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6BC36D8F169EBB6300C0DBAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D2AAC07E0554694100DB518D;
+			remoteInfo = ZXingWidget;
+		};
+		6BC36D91169EBB6300C0DBAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1D60398D13DF7CAD006F4B51;
+			remoteInfo = ZXingTests;
+		};
+		6BC36D93169EBB7B00C0DBAB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
+			remoteInfo = ZXingWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensorContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC36D33169EB51B00C0DBAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6BC36D35169EB51B00C0DBAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6BC36D3B169EB51B00C0DBAB /* SensorContainer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensorContainer-Info.plist"; sourceTree = "<group>"; };
+		6BC36D3D169EB51B00C0DBAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6BC36D3F169EB51B00C0DBAB /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		6BC36D41169EB51B00C0DBAB /* SensorContainer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensorContainer-Prefix.pch"; sourceTree = "<group>"; };
+		6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCAppDelegate.h; sourceTree = "<group>"; };
+		6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCAppDelegate.m; sourceTree = "<group>"; };
+		6BC36D45169EB51B00C0DBAB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		6BC36D47169EB51B00C0DBAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCRootViewController.h; sourceTree = "<group>"; };
+		6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCRootViewController.m; sourceTree = "<group>"; };
+		6BC36D4E169EB51B00C0DBAB /* SCDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCDataViewController.h; sourceTree = "<group>"; };
+		6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCDataViewController.mm; sourceTree = "<group>"; };
+		6BC36D51169EB51B00C0DBAB /* SCModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCModelController.h; sourceTree = "<group>"; };
+		6BC36D52169EB51B00C0DBAB /* SCModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCModelController.m; sourceTree = "<group>"; };
+		6BC36D55169EB51C00C0DBAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		6BC36D58169EB51C00C0DBAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		6BC36D66169EB88B00C0DBAB /* STError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STError.h; path = sensors/lib/abstractSensors/STError.h; sourceTree = "<group>"; };
+		6BC36D67169EB88B00C0DBAB /* STError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STError.m; path = sensors/lib/abstractSensors/STError.m; sourceTree = "<group>"; };
+		6BC36D68169EB88B00C0DBAB /* STSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STSensor.h; path = sensors/lib/abstractSensors/STSensor.h; sourceTree = "<group>"; };
+		6BC36D69169EB88B00C0DBAB /* STSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STSensor.m; path = sensors/lib/abstractSensors/STSensor.m; sourceTree = "<group>"; };
+		6BC36D6D169EB8CA00C0DBAB /* STCSensorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorConfig.h; path = sensors/lib/config/STCSensorConfig.h; sourceTree = "<group>"; };
+		6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorConfig.m; path = sensors/lib/config/STCSensorConfig.m; sourceTree = "<group>"; };
+		6BC36D71169EB90400C0DBAB /* STCSensorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorFactory.h; path = sensors/lib/factory/STCSensorFactory.h; sourceTree = "<group>"; };
+		6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorFactory.m; path = sensors/lib/factory/STCSensorFactory.m; sourceTree = "<group>"; };
+		6BC36D75169EB92B00C0DBAB /* STCSensorCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorCallModel.h; path = sensors/lib/parser/STCSensorCallModel.h; sourceTree = "<group>"; };
+		6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorCallModel.m; path = sensors/lib/parser/STCSensorCallModel.m; sourceTree = "<group>"; };
+		6BC36D77169EB92B00C0DBAB /* STCSensorCallParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorCallParser.h; path = sensors/lib/parser/STCSensorCallParser.h; sourceTree = "<group>"; };
+		6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorCallParser.m; path = sensors/lib/parser/STCSensorCallParser.m; sourceTree = "<group>"; };
+		6BC36D7F169EB9B000C0DBAB /* PhotoSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoSensor.h; path = sensors/sensors/Photo/PhotoSensor.h; sourceTree = "<group>"; };
+		6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoSensor.m; path = sensors/sensors/Photo/PhotoSensor.m; sourceTree = "<group>"; };
+		6BC36D84169EB9F900C0DBAB /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeSensor.h; path = sensors/sensors/QRCode/QRCodeSensor.h; sourceTree = "<group>"; };
+		6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QRCodeSensor.mm; path = sensors/sensors/QRCode/QRCodeSensor.mm; sourceTree = "<group>"; };
+		6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
+		6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		6BC36D9A169EBBA700C0DBAB /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		6BC36D9C169EBBB400C0DBAB /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
+		6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = STSensorConfig.plist; path = config/STSensorConfig.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6BC36D2C169EB51B00C0DBAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */,
+				6BC36DA3169EBBE700C0DBAB /* AddressBookUI.framework in Frameworks */,
+				6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */,
+				6BC36D9D169EBBB400C0DBAB /* CoreVideo.framework in Frameworks */,
+				6BC36D9B169EBBA700C0DBAB /* libiconv.dylib in Frameworks */,
+				6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */,
+				6BC36D97169EBB9000C0DBAB /* AVFoundation.framework in Frameworks */,
+				6BC36D95169EBB8900C0DBAB /* libZXingWidget.a in Frameworks */,
+				6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */,
+				6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */,
+				6BC36D38169EB51B00C0DBAB /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6BC36D24169EB51B00C0DBAB = {
+			isa = PBXGroup;
+			children = (
+				6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */,
+				6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */,
+				6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */,
+				6BC36D9C169EBBB400C0DBAB /* CoreVideo.framework */,
+				6BC36D9A169EBBA700C0DBAB /* libiconv.dylib */,
+				6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */,
+				6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */,
+				6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */,
+				6BC36D39169EB51B00C0DBAB /* SensorContainer */,
+				6BC36D32169EB51B00C0DBAB /* Frameworks */,
+				6BC36D30169EB51B00C0DBAB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6BC36D30169EB51B00C0DBAB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D33169EB51B00C0DBAB /* UIKit.framework */,
+				6BC36D35169EB51B00C0DBAB /* Foundation.framework */,
+				6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6BC36D39169EB51B00C0DBAB /* SensorContainer */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36DA4169EBEBA00C0DBAB /* Config */,
+				6BC36D7C169EB95900C0DBAB /* sensors */,
+				6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */,
+				6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */,
+				6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */,
+				6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */,
+				6BC36D4E169EB51B00C0DBAB /* SCDataViewController.h */,
+				6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */,
+				6BC36D51169EB51B00C0DBAB /* SCModelController.h */,
+				6BC36D52169EB51B00C0DBAB /* SCModelController.m */,
+				6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */,
+				6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */,
+				6BC36D3A169EB51B00C0DBAB /* Supporting Files */,
+			);
+			path = SensorContainer;
+			sourceTree = "<group>";
+		};
+		6BC36D3A169EB51B00C0DBAB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D3B169EB51B00C0DBAB /* SensorContainer-Info.plist */,
+				6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */,
+				6BC36D3F169EB51B00C0DBAB /* main.mm */,
+				6BC36D41169EB51B00C0DBAB /* SensorContainer-Prefix.pch */,
+				6BC36D45169EB51B00C0DBAB /* Default.png */,
+				6BC36D47169EB51B00C0DBAB /* Default@2x.png */,
+				6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6BC36D6C169EB89D00C0DBAB /* abstract sensor */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D66169EB88B00C0DBAB /* STError.h */,
+				6BC36D67169EB88B00C0DBAB /* STError.m */,
+				6BC36D68169EB88B00C0DBAB /* STSensor.h */,
+				6BC36D69169EB88B00C0DBAB /* STSensor.m */,
+			);
+			name = "abstract sensor";
+			sourceTree = "<group>";
+		};
+		6BC36D70169EB8D100C0DBAB /* config */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D6D169EB8CA00C0DBAB /* STCSensorConfig.h */,
+				6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */,
+			);
+			name = config;
+			sourceTree = "<group>";
+		};
+		6BC36D74169EB90900C0DBAB /* factory */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D71169EB90400C0DBAB /* STCSensorFactory.h */,
+				6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */,
+			);
+			name = factory;
+			sourceTree = "<group>";
+		};
+		6BC36D7B169EB93200C0DBAB /* parser */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D75169EB92B00C0DBAB /* STCSensorCallModel.h */,
+				6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */,
+				6BC36D77169EB92B00C0DBAB /* STCSensorCallParser.h */,
+				6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */,
+			);
+			name = parser;
+			sourceTree = "<group>";
+		};
+		6BC36D7C169EB95900C0DBAB /* sensors */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D7E169EB98400C0DBAB /* sensors */,
+				6BC36D7D169EB96300C0DBAB /* lib */,
+			);
+			name = sensors;
+			sourceTree = "<group>";
+		};
+		6BC36D7D169EB96300C0DBAB /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D7B169EB93200C0DBAB /* parser */,
+				6BC36D74169EB90900C0DBAB /* factory */,
+				6BC36D70169EB8D100C0DBAB /* config */,
+				6BC36D6C169EB89D00C0DBAB /* abstract sensor */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
+		6BC36D7E169EB98400C0DBAB /* sensors */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D83169EB9DF00C0DBAB /* QRCode */,
+				6BC36D82169EB9C000C0DBAB /* Photo */,
+			);
+			name = sensors;
+			sourceTree = "<group>";
+		};
+		6BC36D82169EB9C000C0DBAB /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D7F169EB9B000C0DBAB /* PhotoSensor.h */,
+				6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */,
+			);
+			name = Photo;
+			sourceTree = "<group>";
+		};
+		6BC36D83169EB9DF00C0DBAB /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D84169EB9F900C0DBAB /* QRCodeSensor.h */,
+				6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */,
+			);
+			name = QRCode;
+			sourceTree = "<group>";
+		};
+		6BC36D88169EBB6300C0DBAB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */,
+				6BC36D92169EBB6300C0DBAB /* ZXingTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6BC36DA4169EBEBA00C0DBAB /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */,
+			);
+			name = Config;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6BC36D2E169EB51B00C0DBAB /* SensorContainer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6BC36D5C169EB51C00C0DBAB /* Build configuration list for PBXNativeTarget "SensorContainer" */;
+			buildPhases = (
+				6BC36D2B169EB51B00C0DBAB /* Sources */,
+				6BC36D2C169EB51B00C0DBAB /* Frameworks */,
+				6BC36D2D169EB51B00C0DBAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */,
+			);
+			name = SensorContainer;
+			productName = SensorContainer;
+			productReference = 6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6BC36D26169EB51B00C0DBAB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SC;
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Daniel Yuen";
+			};
+			buildConfigurationList = 6BC36D29169EB51B00C0DBAB /* Build configuration list for PBXProject "SensorContainer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6BC36D24169EB51B00C0DBAB;
+			productRefGroup = 6BC36D30169EB51B00C0DBAB /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 6BC36D88169EBB6300C0DBAB /* Products */;
+					ProjectRef = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				6BC36D2E169EB51B00C0DBAB /* SensorContainer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libZXingWidget.a;
+			remoteRef = 6BC36D8F169EBB6300C0DBAB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		6BC36D92169EBB6300C0DBAB /* ZXingTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ZXingTests.octest;
+			remoteRef = 6BC36D91169EBB6300C0DBAB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6BC36D2D169EB51B00C0DBAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC36D3E169EB51B00C0DBAB /* InfoPlist.strings in Resources */,
+				6BC36D46169EB51B00C0DBAB /* Default.png in Resources */,
+				6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */,
+				6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */,
+				6BC36D56169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard in Resources */,
+				6BC36D59169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard in Resources */,
+				6BC36DA6169EBEE100C0DBAB /* STSensorConfig.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6BC36D2B169EB51B00C0DBAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BC36D40169EB51B00C0DBAB /* main.mm in Sources */,
+				6BC36D44169EB51B00C0DBAB /* SCAppDelegate.m in Sources */,
+				6BC36D4D169EB51B00C0DBAB /* SCRootViewController.m in Sources */,
+				6BC36D50169EB51B00C0DBAB /* SCDataViewController.mm in Sources */,
+				6BC36D53169EB51B00C0DBAB /* SCModelController.m in Sources */,
+				6BC36D6A169EB88B00C0DBAB /* STError.m in Sources */,
+				6BC36D6B169EB88B00C0DBAB /* STSensor.m in Sources */,
+				6BC36D6F169EB8CA00C0DBAB /* STCSensorConfig.m in Sources */,
+				6BC36D73169EB90400C0DBAB /* STCSensorFactory.m in Sources */,
+				6BC36D79169EB92B00C0DBAB /* STCSensorCallModel.m in Sources */,
+				6BC36D7A169EB92B00C0DBAB /* STCSensorCallParser.m in Sources */,
+				6BC36D81169EB9B000C0DBAB /* PhotoSensor.m in Sources */,
+				6BC36D86169EB9F900C0DBAB /* QRCodeSensor.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZXingWidget;
+			targetProxy = 6BC36D93169EBB7B00C0DBAB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6BC36D3D169EB51B00C0DBAB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6BC36D55169EB51C00C0DBAB /* en */,
+			);
+			name = MainStoryboard_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6BC36D58169EB51C00C0DBAB /* en */,
+			);
+			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6BC36D5A169EB51C00C0DBAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6BC36D5B169EB51C00C0DBAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6BC36D5D169EB51C00C0DBAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"zxing/iphone/ZXingWidget/Classes/**",
+					zxing/cpp/core/src/,
+				);
+				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6BC36D5E169EB51C00C0DBAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"zxing/iphone/ZXingWidget/Classes/**",
+					zxing/cpp/core/src/,
+				);
+				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6BC36D29169EB51B00C0DBAB /* Build configuration list for PBXProject "SensorContainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BC36D5A169EB51C00C0DBAB /* Debug */,
+				6BC36D5B169EB51C00C0DBAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6BC36D5C169EB51C00C0DBAB /* Build configuration list for PBXNativeTarget "SensorContainer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6BC36D5D169EB51C00C0DBAB /* Debug */,
+				6BC36D5E169EB51C00C0DBAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6BC36D26169EB51B00C0DBAB /* Project object */;
+}

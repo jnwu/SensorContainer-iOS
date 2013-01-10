@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>sensorCallPrefix</key>
+	<string>http://bridge.sensetecnic.com/</string>
+	<key>sensors</key>
+	<array>
+		<dict>
+			<key>class</key>
+			<string>QRCodeSensor</string>
+			<key>name</key>
+			<string>qrcode</string>
+		</dict>
+		<dict>
+			<key>class</key>
+			<string>PhotoSensor</string>
+			<key>name</key>
+			<string>camera</string>
+		</dict>
+		<dict>
+			<key>class</key>
+			<string>PhotoSensor</string>
+			<key>name</key>
+			<string>gallery</string>
+		</dict>
+	</array>
+</dict>
+</plist>
