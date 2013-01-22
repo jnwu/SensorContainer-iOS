@@ -6,18 +6,15 @@
 //  Copyright (c) 2013 Jack Wu. All rights reserved.
 //
 
+#import "SCAppDelegate.h"
 #import "GHMenuCell.h"
 #import "GHMenuViewController.h"
-//#import "GHSidebarSearchViewController.h"
-//#import "GHSidebarSearchViewControllerDelegate.h"
-#import "SCAppDelegate.h"
 #import "SCRootViewController.h"
 
 
 #pragma mark -
 #pragma mark Private Interface
-@interface SCAppDelegate () /*<GHSidebarSearchViewControllerDelegate>*/
-//@property (nonatomic, strong) GHSidebarSearchViewController *searchController;
+@interface SCAppDelegate () 
 @property (nonatomic, strong) GHMenuViewController *menuController;
 @end
 
@@ -35,13 +32,6 @@
 	UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
 	self.revealController = [[GHRevealViewController alloc] initWithNibName:nil bundle:nil];
 	self.revealController.view.backgroundColor = bgColor;
-	
-/*
-	RevealBlock revealBlock = ^(){
-		[self.revealController toggleSidebar:!self.revealController.sidebarShowing
-									duration:kGHRevealSidebarDefaultAnimationDuration];
-	};
-*/
     
 	NSArray *headers = @[
     [NSNull null],
@@ -88,31 +78,7 @@
 	}];
 
 	
-    [self.revealController.view addGestureRecognizer:panGesture];
-    
-	//self.searchController = [[GHSidebarSearchViewController alloc] initWithSidebarViewController:self.revealController];
-/*
-	self.searchController.view.backgroundColor = [UIColor clearColor];
-    self.searchController.searchDelegate = self;
-	self.searchController.searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	self.searchController.searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
-	self.searchController.searchBar.backgroundImage = [UIImage imageNamed:@"searchBarBG.png"];
-	self.searchController.searchBar.placeholder = NSLocalizedString(@"Search", @"");
-	self.searchController.searchBar.tintColor = [UIColor colorWithRed:(58.0f/255.0f) green:(67.0f/255.0f) blue:(104.0f/255.0f) alpha:1.0f];
-	for (UIView *subview in self.searchController.searchBar.subviews) {
-		if ([subview isKindOfClass:[UITextField class]]) {
-			UITextField *searchTextField = (UITextField *) subview;
-			searchTextField.textColor = [UIColor colorWithRed:(154.0f/255.0f) green:(162.0f/255.0f) blue:(176.0f/255.0f) alpha:1.0f];
-		}
-	}
-	[self.searchController.searchBar setSearchFieldBackgroundImage:[[UIImage imageNamed:@"searchTextBG.png"]
-                                                                    resizableImageWithCapInsets:UIEdgeInsetsMake(16.0f, 17.0f, 16.0f, 17.0f)]
-														  forState:UIControlStateNormal];
-	[self.searchController.searchBar setImage:[UIImage imageNamed:@"searchBarIcon.png"]
-							 forSearchBarIcon:UISearchBarIconSearch
-										state:UIControlStateNormal];
-*/
-	
+    [self.revealController.view addGestureRecognizer:panGesture];	
 	self.menuController = [[GHMenuViewController alloc] initWithSidebarViewController:self.revealController
 																		withSearchBar:nil
 																		  withHeaders:headers
@@ -126,27 +92,5 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
-
-/*
-#pragma mark GHSidebarSearchViewControllerDelegate
-- (void)searchResultsForText:(NSString *)text withScope:(NSString *)scope callback:(SearchResultsBlock)callback {
-	callback(@[@"Foo", @"Bar", @"Baz"]);
-}
-
-- (void)searchResult:(id)result selectedAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"Selected Search Result - result: %@ indexPath: %@", result, indexPath);
-}
-
-- (UITableViewCell *)searchResultCellForEntry:(id)entry atIndexPath:(NSIndexPath *)indexPath inTableView:(UITableView *)tableView {
-	static NSString* identifier = @"GHSearchMenuCell";
-	GHMenuCell* cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-	if (!cell) {
-		cell = [[GHMenuCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-	}
-	cell.textLabel.text = (NSString *)entry;
-	cell.imageView.image = [UIImage imageNamed:@"user"];
-	return cell;
-}
-*/
 
 @end

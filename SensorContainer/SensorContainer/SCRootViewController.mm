@@ -12,7 +12,7 @@
 #import "CameraSensor.h"
 #import "QRCodeSensor.h"
 
-@interface SCRootViewController () <UIWebViewDelegate, UITextFieldDelegate, CameraSensorDelegate, UIActionSheetDelegate>
+@interface SCRootViewController () <UIWebViewDelegate, UITextFieldDelegate, CameraSensorDelegate>
 @property (strong, nonatomic) UITextField *textField;
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) STSensor *sensor;
@@ -22,44 +22,7 @@
 @implementation SCRootViewController
 
 
-- (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock {
-    if (self = [super initWithNibName:nil bundle:nil]) {
-        
-        /*
-         self.navigationItem.leftBarButtonItem =
-         [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCamera
-         target:self
-         action:@selector(revealSidebar)];
-         */
-        /*
-         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"259-list.png"] style:UIBarButtonItemStylePlain target:self action:@selector(revealSidebar)];
-         
-         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-         target:self
-         action:@selector(showActionSheet)];
-         */
-        
-    }
-	
-    return self;
-}
-
-
-- (void)showActionSheet {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Post to Thing Broker", nil];
-    actionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [actionSheet showInView:self.view];
-    
-}
-
-
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    NSLog(@"clicked: %i", buttonIndex);
-    
-}
-
-#pragma mark SCRootViewController
+#pragma SCRootViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -100,6 +63,7 @@
     [self.view addSubview:self.webView];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
     /*
     NSString * cmd = @"http://bridge.sensetecnic.com/camera";
@@ -114,6 +78,7 @@
      */
 }
 
+#pragma UITextField
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     textField.textColor = [UIColor grayColor];

@@ -9,7 +9,4 @@
 
 
 @interface SCRootViewController : UIViewController
-
-- (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock;
-
 @end

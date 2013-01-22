@@ -8,19 +8,25 @@
 	<array>
 		<dict>
 			<key>class</key>
+			<string>AccelerometerSensor</string>
+			<key>name</key>
+			<string>accelerometer</string>
+		</dict>
+		<dict>
+			<key>class</key>
 			<string>QRCodeSensor</string>
 			<key>name</key>
 			<string>qrcode</string>
 		</dict>
 		<dict>
 			<key>class</key>
-			<string>PhotoSensor</string>
+			<string>CameraSensor</string>
 			<key>name</key>
 			<string>camera</string>
 		</dict>
 		<dict>
 			<key>class</key>
-			<string>PhotoSensor</string>
+			<string>CameraSensor</string>
 			<key>name</key>
 			<string>gallery</string>
 		</dict>
