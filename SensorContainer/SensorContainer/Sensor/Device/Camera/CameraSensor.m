@@ -6,10 +6,15 @@
 //  Copyright (c) 2012 Daniel Yuen. All rights reserved.
 //
 
-#import "PhotoSensor.h"
+#import "CameraSensor.h"
 #import "SCAppDelegate.h"
-@implementation PhotoSensor
-@synthesize picker;
+
+
+@interface CameraSensor ()
+@property (nonatomic,retain) UIImagePickerController *picker;
+@end
+
+@implementation CameraSensor
 
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
@@ -18,7 +23,6 @@
     {
         //init camera controls
         self.picker = [[UIImagePickerController alloc] init];
-//        self.picker.delegate = self;
         
         //set source type:
         if([model.command isEqualToString: @"camera"] &&
@@ -35,9 +39,6 @@
         {
             self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
-
-        
-        NSLog(@"photo sensor!");
     }
     
     return self;
@@ -47,8 +48,10 @@
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
-    SCAppDelegate * appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIViewController * vc = appDelegate.viewController;
+    
+    SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    UIViewController *vc = (UIViewController *) appDelegate.revealController;
     
     //present image picker
     [vc presentViewController:self.picker animated:YES completion: nil];

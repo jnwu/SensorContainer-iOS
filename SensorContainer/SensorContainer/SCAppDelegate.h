@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GHRevealViewController.h"
 
 @interface SCAppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UIViewController * viewController;
+@property (nonatomic, strong) GHRevealViewController *revealController;
 @end

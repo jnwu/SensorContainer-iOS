@@ -15,17 +15,13 @@
 @class STSensorData;
 
 @protocol STSensorDelegate <NSObject>
-
 -(void) STSensor: (STSensor *) sensor withData: (STSensorData *) data;
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error;
 -(void) STSensorCancelled: (STSensor *) sensor;
-
 @end
 
 @interface STSensorData : NSObject
-
 @property (nonatomic, strong) NSDictionary * data;
-
 @end
 
 

@@ -10,6 +10,6 @@
 #import <QRCodeReader.h>
 #import "STSensor.h"
 
-@interface QRCodeSensor : STSensor<ZXingDelegate>
+@interface QRCodeSensor : STSensor <ZXingDelegate>
 
 @end

@@ -27,11 +27,11 @@
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
     SCAppDelegate * appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    UIViewController * vc = appDelegate.viewController;
+    UIViewController * vc = appDelegate.revealController;
     
-      ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
+    ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
     
-      NSMutableSet *readers = [[NSMutableSet alloc ] init];
+    NSMutableSet *readers = [[NSMutableSet alloc ] init];
     
     QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
     [readers addObject:qrcodeReader];

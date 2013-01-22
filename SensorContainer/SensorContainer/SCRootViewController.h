@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 
-@interface SCRootViewController : UIViewController <UIPageViewControllerDelegate>
 
-@property (strong, nonatomic) UIPageViewController *pageViewController;
+@interface SCRootViewController : UIViewController
+
+- (id)initWithTitle:(NSString *)title withRevealBlock:(RevealBlock)revealBlock;
 
 @end

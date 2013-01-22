@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0405084316A78C64005B0308 /* CoreMotion.framework */; };
+		0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B52B16ADFF9700DE73E6 /* CameraSensor.m */; };
+		0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */; };
+		0431B55216ADFF9700DE73E6 /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53F16ADFF9700DE73E6 /* STError.m */; };
+		0431B55316ADFF9700DE73E6 /* STSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54116ADFF9700DE73E6 /* STSensor.m */; };
+		0431B55416ADFF9700DE73E6 /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */; };
+		0431B55516ADFF9700DE73E6 /* STCSensorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54716ADFF9700DE73E6 /* STCSensorConfig.m */; };
+		0431B55616ADFF9700DE73E6 /* STCSensorCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54916ADFF9700DE73E6 /* STCSensorCallModel.m */; };
+		0431B55716ADFF9700DE73E6 /* STCSensorCallParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54B16ADFF9700DE73E6 /* STCSensorCallParser.m */; };
+		0431B55916ADFFB200DE73E6 /* STSensorConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */; };
+		0431B56516AE022400DE73E6 /* GHMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B55D16AE022400DE73E6 /* GHMenuCell.m */; };
+		0431B56616AE022400DE73E6 /* GHMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B55F16AE022400DE73E6 /* GHMenuViewController.m */; };
+		0431B56716AE022400DE73E6 /* GHRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B56116AE022400DE73E6 /* GHRevealViewController.m */; };
+		0431B56A16AE02D600DE73E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431B56916AE02D600DE73E6 /* QuartzCore.framework */; };
+		0431B57116AE0D3600DE73E6 /* 32-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56C16AE0D3600DE73E6 /* 32-iphone.png */; };
+		0431B57216AE0D3600DE73E6 /* searchBarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56D16AE0D3600DE73E6 /* searchBarBG.png */; };
+		0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */; };
+		0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */; };
+		0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B57016AE0D3600DE73E6 /* searchTextBG.png */; };
 		6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
 		6BC36D38169EB51B00C0DBAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */; };
@@ -16,19 +35,7 @@
 		6BC36D46169EB51B00C0DBAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D45169EB51B00C0DBAB /* Default.png */; };
 		6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D47169EB51B00C0DBAB /* Default@2x.png */; };
 		6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */; };
-		6BC36D4D169EB51B00C0DBAB /* SCRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */; };
-		6BC36D50169EB51B00C0DBAB /* SCDataViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */; };
-		6BC36D53169EB51B00C0DBAB /* SCModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D52169EB51B00C0DBAB /* SCModelController.m */; };
-		6BC36D56169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */; };
-		6BC36D59169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */; };
-		6BC36D6A169EB88B00C0DBAB /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D67169EB88B00C0DBAB /* STError.m */; };
-		6BC36D6B169EB88B00C0DBAB /* STSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D69169EB88B00C0DBAB /* STSensor.m */; };
-		6BC36D6F169EB8CA00C0DBAB /* STCSensorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */; };
-		6BC36D73169EB90400C0DBAB /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */; };
-		6BC36D79169EB92B00C0DBAB /* STCSensorCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */; };
-		6BC36D7A169EB92B00C0DBAB /* STCSensorCallParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */; };
-		6BC36D81169EB9B000C0DBAB /* PhotoSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */; };
-		6BC36D86169EB9F900C0DBAB /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */; };
+		6BC36D4D169EB51B00C0DBAB /* SCRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */; };
 		6BC36D95169EBB8900C0DBAB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */; };
 		6BC36D97169EBB9000C0DBAB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */; };
 		6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */; };
@@ -37,7 +44,6 @@
 		6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */; };
 		6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */; };
 		6BC36DA3169EBBE700C0DBAB /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */; };
-		6BC36DA6169EBEE100C0DBAB /* STSensorConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +71,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0405084316A78C64005B0308 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		0431B52A16ADFF9700DE73E6 /* CameraSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSensor.h; sourceTree = "<group>"; };
+		0431B52B16ADFF9700DE73E6 /* CameraSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSensor.m; sourceTree = "<group>"; };
+		0431B53916ADFF9700DE73E6 /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeSensor.h; sourceTree = "<group>"; };
+		0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QRCodeSensor.mm; sourceTree = "<group>"; };
+		0431B53E16ADFF9700DE73E6 /* STError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STError.h; sourceTree = "<group>"; };
+		0431B53F16ADFF9700DE73E6 /* STError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STError.m; sourceTree = "<group>"; };
+		0431B54016ADFF9700DE73E6 /* STSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STSensor.h; sourceTree = "<group>"; };
+		0431B54116ADFF9700DE73E6 /* STSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STSensor.m; sourceTree = "<group>"; };
+		0431B54216ADFF9700DE73E6 /* STCSensorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCSensorFactory.h; sourceTree = "<group>"; };
+		0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCSensorFactory.m; sourceTree = "<group>"; };
+		0431B54616ADFF9700DE73E6 /* STCSensorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCSensorConfig.h; sourceTree = "<group>"; };
+		0431B54716ADFF9700DE73E6 /* STCSensorConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCSensorConfig.m; sourceTree = "<group>"; };
+		0431B54816ADFF9700DE73E6 /* STCSensorCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCSensorCallModel.h; sourceTree = "<group>"; };
+		0431B54916ADFF9700DE73E6 /* STCSensorCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCSensorCallModel.m; sourceTree = "<group>"; };
+		0431B54A16ADFF9700DE73E6 /* STCSensorCallParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCSensorCallParser.h; sourceTree = "<group>"; };
+		0431B54B16ADFF9700DE73E6 /* STCSensorCallParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCSensorCallParser.m; sourceTree = "<group>"; };
+		0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = STSensorConfig.plist; path = Config/STSensorConfig.plist; sourceTree = "<group>"; };
+		0431B55C16AE022400DE73E6 /* GHMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMenuCell.h; sourceTree = "<group>"; };
+		0431B55D16AE022400DE73E6 /* GHMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHMenuCell.m; sourceTree = "<group>"; };
+		0431B55E16AE022400DE73E6 /* GHMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMenuViewController.h; sourceTree = "<group>"; };
+		0431B55F16AE022400DE73E6 /* GHMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHMenuViewController.m; sourceTree = "<group>"; };
+		0431B56016AE022400DE73E6 /* GHRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHRevealViewController.h; sourceTree = "<group>"; };
+		0431B56116AE022400DE73E6 /* GHRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHRevealViewController.m; sourceTree = "<group>"; };
+		0431B56916AE02D600DE73E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		0431B56C16AE0D3600DE73E6 /* 32-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-iphone.png"; sourceTree = "<group>"; };
+		0431B56D16AE0D3600DE73E6 /* searchBarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarBG.png; sourceTree = "<group>"; };
+		0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarIcon.png; sourceTree = "<group>"; };
+		0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarIcon@2x.png"; sourceTree = "<group>"; };
+		0431B57016AE0D3600DE73E6 /* searchTextBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchTextBG.png; sourceTree = "<group>"; };
 		6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensorContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC36D33169EB51B00C0DBAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BC36D35169EB51B00C0DBAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -79,29 +115,7 @@
 		6BC36D47169EB51B00C0DBAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCRootViewController.h; sourceTree = "<group>"; };
-		6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCRootViewController.m; sourceTree = "<group>"; };
-		6BC36D4E169EB51B00C0DBAB /* SCDataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCDataViewController.h; sourceTree = "<group>"; };
-		6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCDataViewController.mm; sourceTree = "<group>"; };
-		6BC36D51169EB51B00C0DBAB /* SCModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCModelController.h; sourceTree = "<group>"; };
-		6BC36D52169EB51B00C0DBAB /* SCModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCModelController.m; sourceTree = "<group>"; };
-		6BC36D55169EB51C00C0DBAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		6BC36D58169EB51C00C0DBAB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		6BC36D66169EB88B00C0DBAB /* STError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STError.h; path = sensors/lib/abstractSensors/STError.h; sourceTree = "<group>"; };
-		6BC36D67169EB88B00C0DBAB /* STError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STError.m; path = sensors/lib/abstractSensors/STError.m; sourceTree = "<group>"; };
-		6BC36D68169EB88B00C0DBAB /* STSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STSensor.h; path = sensors/lib/abstractSensors/STSensor.h; sourceTree = "<group>"; };
-		6BC36D69169EB88B00C0DBAB /* STSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STSensor.m; path = sensors/lib/abstractSensors/STSensor.m; sourceTree = "<group>"; };
-		6BC36D6D169EB8CA00C0DBAB /* STCSensorConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorConfig.h; path = sensors/lib/config/STCSensorConfig.h; sourceTree = "<group>"; };
-		6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorConfig.m; path = sensors/lib/config/STCSensorConfig.m; sourceTree = "<group>"; };
-		6BC36D71169EB90400C0DBAB /* STCSensorFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorFactory.h; path = sensors/lib/factory/STCSensorFactory.h; sourceTree = "<group>"; };
-		6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorFactory.m; path = sensors/lib/factory/STCSensorFactory.m; sourceTree = "<group>"; };
-		6BC36D75169EB92B00C0DBAB /* STCSensorCallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorCallModel.h; path = sensors/lib/parser/STCSensorCallModel.h; sourceTree = "<group>"; };
-		6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorCallModel.m; path = sensors/lib/parser/STCSensorCallModel.m; sourceTree = "<group>"; };
-		6BC36D77169EB92B00C0DBAB /* STCSensorCallParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STCSensorCallParser.h; path = sensors/lib/parser/STCSensorCallParser.h; sourceTree = "<group>"; };
-		6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STCSensorCallParser.m; path = sensors/lib/parser/STCSensorCallParser.m; sourceTree = "<group>"; };
-		6BC36D7F169EB9B000C0DBAB /* PhotoSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoSensor.h; path = sensors/sensors/Photo/PhotoSensor.h; sourceTree = "<group>"; };
-		6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoSensor.m; path = sensors/sensors/Photo/PhotoSensor.m; sourceTree = "<group>"; };
-		6BC36D84169EB9F900C0DBAB /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = QRCodeSensor.h; path = sensors/sensors/QRCode/QRCodeSensor.h; sourceTree = "<group>"; };
-		6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = QRCodeSensor.mm; path = sensors/sensors/QRCode/QRCodeSensor.mm; sourceTree = "<group>"; };
+		6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCRootViewController.mm; sourceTree = "<group>"; };
 		6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -110,7 +124,6 @@
 		6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
-		6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = STSensorConfig.plist; path = config/STSensorConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +131,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0431B56A16AE02D600DE73E6 /* QuartzCore.framework in Frameworks */,
+				0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */,
 				6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */,
 				6BC36DA3169EBBE700C0DBAB /* AddressBookUI.framework in Frameworks */,
 				6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */,
@@ -135,17 +150,134 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0431B52616ADFF9700DE73E6 /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				0431B52716ADFF9700DE73E6 /* Device */,
+				0431B53B16ADFF9700DE73E6 /* Pattern */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
+		0431B52716ADFF9700DE73E6 /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				0431B52816ADFF9700DE73E6 /* Accelerometer */,
+				0431B52916ADFF9700DE73E6 /* Camera */,
+				0431B53816ADFF9700DE73E6 /* QRCode */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		0431B52816ADFF9700DE73E6 /* Accelerometer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Accelerometer;
+			sourceTree = "<group>";
+		};
+		0431B52916ADFF9700DE73E6 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				0431B52A16ADFF9700DE73E6 /* CameraSensor.h */,
+				0431B52B16ADFF9700DE73E6 /* CameraSensor.m */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		0431B53816ADFF9700DE73E6 /* QRCode */ = {
+			isa = PBXGroup;
+			children = (
+				0431B53916ADFF9700DE73E6 /* QRCodeSensor.h */,
+				0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */,
+			);
+			path = QRCode;
+			sourceTree = "<group>";
+		};
+		0431B53B16ADFF9700DE73E6 /* Pattern */ = {
+			isa = PBXGroup;
+			children = (
+				0431B53C16ADFF9700DE73E6 /* Factory */,
+				0431B54416ADFF9700DE73E6 /* Parser */,
+			);
+			path = Pattern;
+			sourceTree = "<group>";
+		};
+		0431B53C16ADFF9700DE73E6 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				0431B53D16ADFF9700DE73E6 /* Abstract */,
+				0431B54216ADFF9700DE73E6 /* STCSensorFactory.h */,
+				0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		0431B53D16ADFF9700DE73E6 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				0431B53E16ADFF9700DE73E6 /* STError.h */,
+				0431B53F16ADFF9700DE73E6 /* STError.m */,
+				0431B54016ADFF9700DE73E6 /* STSensor.h */,
+				0431B54116ADFF9700DE73E6 /* STSensor.m */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
+		0431B54416ADFF9700DE73E6 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				0431B54516ADFF9700DE73E6 /* Config */,
+				0431B54816ADFF9700DE73E6 /* STCSensorCallModel.h */,
+				0431B54916ADFF9700DE73E6 /* STCSensorCallModel.m */,
+				0431B54A16ADFF9700DE73E6 /* STCSensorCallParser.h */,
+				0431B54B16ADFF9700DE73E6 /* STCSensorCallParser.m */,
+			);
+			path = Parser;
+			sourceTree = "<group>";
+		};
+		0431B54516ADFF9700DE73E6 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				0431B54616ADFF9700DE73E6 /* STCSensorConfig.h */,
+				0431B54716ADFF9700DE73E6 /* STCSensorConfig.m */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		0431B55B16AE022400DE73E6 /* GHSideBarNav */ = {
+			isa = PBXGroup;
+			children = (
+				0431B55C16AE022400DE73E6 /* GHMenuCell.h */,
+				0431B55D16AE022400DE73E6 /* GHMenuCell.m */,
+				0431B55E16AE022400DE73E6 /* GHMenuViewController.h */,
+				0431B55F16AE022400DE73E6 /* GHMenuViewController.m */,
+				0431B56016AE022400DE73E6 /* GHRevealViewController.h */,
+				0431B56116AE022400DE73E6 /* GHRevealViewController.m */,
+			);
+			name = GHSideBarNav;
+			path = SensorContainer/GHSideBarNav;
+			sourceTree = "<group>";
+		};
+		0431B56B16AE0D3600DE73E6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0431B56C16AE0D3600DE73E6 /* 32-iphone.png */,
+				0431B56D16AE0D3600DE73E6 /* searchBarBG.png */,
+				0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */,
+				0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */,
+				0431B57016AE0D3600DE73E6 /* searchTextBG.png */,
+			);
+			name = Resources;
+			path = SensorContainer/Resources;
+			sourceTree = "<group>";
+		};
 		6BC36D24169EB51B00C0DBAB = {
 			isa = PBXGroup;
 			children = (
-				6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */,
-				6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */,
-				6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */,
-				6BC36D9C169EBBB400C0DBAB /* CoreVideo.framework */,
-				6BC36D9A169EBBA700C0DBAB /* libiconv.dylib */,
-				6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */,
-				6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */,
 				6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */,
+				0431B56B16AE0D3600DE73E6 /* Resources */,
+				0431B55B16AE022400DE73E6 /* GHSideBarNav */,
 				6BC36D39169EB51B00C0DBAB /* SensorContainer */,
 				6BC36D32169EB51B00C0DBAB /* Frameworks */,
 				6BC36D30169EB51B00C0DBAB /* Products */,
@@ -163,6 +295,15 @@
 		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0431B56916AE02D600DE73E6 /* QuartzCore.framework */,
+				0405084316A78C64005B0308 /* CoreMotion.framework */,
+				6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */,
+				6BC36DA1169EBBE700C0DBAB /* AddressBookUI.framework */,
+				6BC36D9E169EBBBD00C0DBAB /* CoreMedia.framework */,
+				6BC36D9C169EBBB400C0DBAB /* CoreVideo.framework */,
+				6BC36D9A169EBBA700C0DBAB /* libiconv.dylib */,
+				6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */,
+				6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */,
 				6BC36D33169EB51B00C0DBAB /* UIKit.framework */,
 				6BC36D35169EB51B00C0DBAB /* Foundation.framework */,
 				6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */,
@@ -173,18 +314,11 @@
 		6BC36D39169EB51B00C0DBAB /* SensorContainer */ = {
 			isa = PBXGroup;
 			children = (
-				6BC36DA4169EBEBA00C0DBAB /* Config */,
-				6BC36D7C169EB95900C0DBAB /* sensors */,
+				0431B52616ADFF9700DE73E6 /* Sensor */,
 				6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */,
 				6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */,
 				6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */,
-				6BC36D4C169EB51B00C0DBAB /* SCRootViewController.m */,
-				6BC36D4E169EB51B00C0DBAB /* SCDataViewController.h */,
-				6BC36D4F169EB51B00C0DBAB /* SCDataViewController.mm */,
-				6BC36D51169EB51B00C0DBAB /* SCModelController.h */,
-				6BC36D52169EB51B00C0DBAB /* SCModelController.m */,
-				6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */,
-				6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */,
+				6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */,
 				6BC36D3A169EB51B00C0DBAB /* Supporting Files */,
 			);
 			path = SensorContainer;
@@ -193,6 +327,7 @@
 		6BC36D3A169EB51B00C0DBAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */,
 				6BC36D3B169EB51B00C0DBAB /* SensorContainer-Info.plist */,
 				6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */,
 				6BC36D3F169EB51B00C0DBAB /* main.mm */,
@@ -204,93 +339,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		6BC36D6C169EB89D00C0DBAB /* abstract sensor */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D66169EB88B00C0DBAB /* STError.h */,
-				6BC36D67169EB88B00C0DBAB /* STError.m */,
-				6BC36D68169EB88B00C0DBAB /* STSensor.h */,
-				6BC36D69169EB88B00C0DBAB /* STSensor.m */,
-			);
-			name = "abstract sensor";
-			sourceTree = "<group>";
-		};
-		6BC36D70169EB8D100C0DBAB /* config */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D6D169EB8CA00C0DBAB /* STCSensorConfig.h */,
-				6BC36D6E169EB8CA00C0DBAB /* STCSensorConfig.m */,
-			);
-			name = config;
-			sourceTree = "<group>";
-		};
-		6BC36D74169EB90900C0DBAB /* factory */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D71169EB90400C0DBAB /* STCSensorFactory.h */,
-				6BC36D72169EB90400C0DBAB /* STCSensorFactory.m */,
-			);
-			name = factory;
-			sourceTree = "<group>";
-		};
-		6BC36D7B169EB93200C0DBAB /* parser */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D75169EB92B00C0DBAB /* STCSensorCallModel.h */,
-				6BC36D76169EB92B00C0DBAB /* STCSensorCallModel.m */,
-				6BC36D77169EB92B00C0DBAB /* STCSensorCallParser.h */,
-				6BC36D78169EB92B00C0DBAB /* STCSensorCallParser.m */,
-			);
-			name = parser;
-			sourceTree = "<group>";
-		};
-		6BC36D7C169EB95900C0DBAB /* sensors */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D7E169EB98400C0DBAB /* sensors */,
-				6BC36D7D169EB96300C0DBAB /* lib */,
-			);
-			name = sensors;
-			sourceTree = "<group>";
-		};
-		6BC36D7D169EB96300C0DBAB /* lib */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D7B169EB93200C0DBAB /* parser */,
-				6BC36D74169EB90900C0DBAB /* factory */,
-				6BC36D70169EB8D100C0DBAB /* config */,
-				6BC36D6C169EB89D00C0DBAB /* abstract sensor */,
-			);
-			name = lib;
-			sourceTree = "<group>";
-		};
-		6BC36D7E169EB98400C0DBAB /* sensors */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D83169EB9DF00C0DBAB /* QRCode */,
-				6BC36D82169EB9C000C0DBAB /* Photo */,
-			);
-			name = sensors;
-			sourceTree = "<group>";
-		};
-		6BC36D82169EB9C000C0DBAB /* Photo */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D7F169EB9B000C0DBAB /* PhotoSensor.h */,
-				6BC36D80169EB9B000C0DBAB /* PhotoSensor.m */,
-			);
-			name = Photo;
-			sourceTree = "<group>";
-		};
-		6BC36D83169EB9DF00C0DBAB /* QRCode */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36D84169EB9F900C0DBAB /* QRCodeSensor.h */,
-				6BC36D85169EB9F900C0DBAB /* QRCodeSensor.mm */,
-			);
-			name = QRCode;
-			sourceTree = "<group>";
-		};
 		6BC36D88169EBB6300C0DBAB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,14 +346,6 @@
 				6BC36D92169EBB6300C0DBAB /* ZXingTests.octest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		6BC36DA4169EBEBA00C0DBAB /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				6BC36DA5169EBEE100C0DBAB /* STSensorConfig.plist */,
-			);
-			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -388,9 +428,12 @@
 				6BC36D46169EB51B00C0DBAB /* Default.png in Resources */,
 				6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */,
 				6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */,
-				6BC36D56169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard in Resources */,
-				6BC36D59169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard in Resources */,
-				6BC36DA6169EBEE100C0DBAB /* STSensorConfig.plist in Resources */,
+				0431B55916ADFFB200DE73E6 /* STSensorConfig.plist in Resources */,
+				0431B57116AE0D3600DE73E6 /* 32-iphone.png in Resources */,
+				0431B57216AE0D3600DE73E6 /* searchBarBG.png in Resources */,
+				0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */,
+				0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */,
+				0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,17 +446,18 @@
 			files = (
 				6BC36D40169EB51B00C0DBAB /* main.mm in Sources */,
 				6BC36D44169EB51B00C0DBAB /* SCAppDelegate.m in Sources */,
-				6BC36D4D169EB51B00C0DBAB /* SCRootViewController.m in Sources */,
-				6BC36D50169EB51B00C0DBAB /* SCDataViewController.mm in Sources */,
-				6BC36D53169EB51B00C0DBAB /* SCModelController.m in Sources */,
-				6BC36D6A169EB88B00C0DBAB /* STError.m in Sources */,
-				6BC36D6B169EB88B00C0DBAB /* STSensor.m in Sources */,
-				6BC36D6F169EB8CA00C0DBAB /* STCSensorConfig.m in Sources */,
-				6BC36D73169EB90400C0DBAB /* STCSensorFactory.m in Sources */,
-				6BC36D79169EB92B00C0DBAB /* STCSensorCallModel.m in Sources */,
-				6BC36D7A169EB92B00C0DBAB /* STCSensorCallParser.m in Sources */,
-				6BC36D81169EB9B000C0DBAB /* PhotoSensor.m in Sources */,
-				6BC36D86169EB9F900C0DBAB /* QRCodeSensor.mm in Sources */,
+				6BC36D4D169EB51B00C0DBAB /* SCRootViewController.mm in Sources */,
+				0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */,
+				0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */,
+				0431B55216ADFF9700DE73E6 /* STError.m in Sources */,
+				0431B55316ADFF9700DE73E6 /* STSensor.m in Sources */,
+				0431B55416ADFF9700DE73E6 /* STCSensorFactory.m in Sources */,
+				0431B55516ADFF9700DE73E6 /* STCSensorConfig.m in Sources */,
+				0431B55616ADFF9700DE73E6 /* STCSensorCallModel.m in Sources */,
+				0431B55716ADFF9700DE73E6 /* STCSensorCallParser.m in Sources */,
+				0431B56516AE022400DE73E6 /* GHMenuCell.m in Sources */,
+				0431B56616AE022400DE73E6 /* GHMenuViewController.m in Sources */,
+				0431B56716AE022400DE73E6 /* GHRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,22 +478,6 @@
 				6BC36D3D169EB51B00C0DBAB /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		6BC36D54169EB51C00C0DBAB /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6BC36D55169EB51C00C0DBAB /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		6BC36D57169EB51C00C0DBAB /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6BC36D58169EB51C00C0DBAB /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -556,6 +584,7 @@
 				6BC36D5E169EB51C00C0DBAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
