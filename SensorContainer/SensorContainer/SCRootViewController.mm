@@ -12,8 +12,7 @@
 #import "CameraSensor.h"
 #import "QRCodeSensor.h"
 
-@interface SCRootViewController () <UIWebViewDelegate, UITextFieldDelegate, CameraSensorDelegate>
-@property (strong, nonatomic) UITextField *textField;
+@interface SCRootViewController () <UIWebViewDelegate, CameraSensorDelegate>
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) STSensor *sensor;
 @end
@@ -26,29 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    // add text field for web view
-    CGFloat width = self.view.frame.size.width;
-    self.textField = [[UITextField alloc] initWithFrame:
-                      CGRectMake(10,9,width-20,26)];
-    
-    self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.textField.borderStyle = UITextBorderStyleRoundedRect;
-    self.textField.font = [UIFont systemFontOfSize:17];
-    
-    
-    self.textField.placeholder = @"Go to this address";
-    self.textField.textColor = [UIColor blackColor];
-    self.textField.font = [UIFont systemFontOfSize:14.0f];
-    self.textField.borderStyle = UITextBorderStyleRoundedRect;
-    self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    self.textField.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-    
-    [self.textField setDelegate:self];
-    [self.navigationController.navigationBar addSubview:self.textField];
-    
-	self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+    self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
     
     // add web view
@@ -77,18 +54,6 @@
     [self.sensor cancel];
      */
 }
-
-#pragma UITextField
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    textField.textColor = [UIColor grayColor];
-	NSURL *url = [NSURL URLWithString:textField.text];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-	[self.webView loadRequest:requestObj];
-    
-    return NO;
-}
-
 
 #pragma STSensorDelegate
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data

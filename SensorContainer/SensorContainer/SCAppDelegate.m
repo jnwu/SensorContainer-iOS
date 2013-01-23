@@ -34,13 +34,15 @@
 	self.revealController.view.backgroundColor = bgColor;
     
 	NSArray *headers = @[
-    [NSNull null],
-    @"ACTIVITIES",
+    @"APPS",
+    @"SENSORS",
     @"SETTINGS"
 	];
 	NSArray *controllers = @[
     @[
     [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
+    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
+    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]]
     ],
     @[
     [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
@@ -54,7 +56,9 @@
         
 	NSArray *cellInfos = @[
     @[
-    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"Browser", @"")},
+    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"CoffeeHouse", @"")},
+    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"PubCrawl", @"")},
+    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"MallHop", @"")}
     ],
     @[
     @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"Accelerometer", @"")},
@@ -67,17 +71,15 @@
 	];
 	
 	// Add drag feature to each root navigation controller
-    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.revealController
-                                                                                 action:@selector(dragContentView:)];
-    panGesture.cancelsTouchesInView = NO;
 	[controllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
 		[((NSArray *)obj) enumerateObjectsUsingBlock:^(id obj2, NSUInteger idx2, BOOL *stop2){
-			((UINavigationController *)obj2).navigationBar.tintColor = [UIColor colorWithRed:(38.0f/255.0f) green:(44.0f/255.0f) blue:(58.0f/255.0f) alpha:1.0f];
-			[((UINavigationController *)obj2).navigationBar addGestureRecognizer:panGesture];
+			[((UINavigationController *)obj2).navigationBar setHidden:YES];
         }];
 	}];
 
-	
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.revealController
+                                                                                 action:@selector(dragContentView:)];
+    panGesture.cancelsTouchesInView = NO;	
     [self.revealController.view addGestureRecognizer:panGesture];	
 	self.menuController = [[GHMenuViewController alloc] initWithSidebarViewController:self.revealController
 																		withSearchBar:nil
