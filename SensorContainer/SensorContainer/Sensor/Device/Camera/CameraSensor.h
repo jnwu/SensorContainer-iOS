@@ -12,5 +12,5 @@
 
 @end
 
-@interface CameraSensor : STSensor <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface CameraSensor : STSensor
 @end

@@ -1,5 +1,5 @@
 //
-//  AppDelegate.m
+//  SCAppDelegate.m
 //  iOSContainer
 //
 //  Created by Jack Wu on 13-01-13.
@@ -38,17 +38,13 @@
     @"SENSORS",
     @"SETTINGS"
 	];
+    
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]];
+    
 	NSArray *controllers = @[
-    @[
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]]
-    ],
-    @[
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]],
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]]
-    ],
+    @[navigationController, navigationController, navigationController],
+    @[navigationController, navigationController, navigationController],
     @[
     [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]]
     ]
@@ -70,13 +66,14 @@
     ]
 	];
 	
-	// Add drag feature to each root navigation controller
+    // Hide navigation bar
 	[controllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
 		[((NSArray *)obj) enumerateObjectsUsingBlock:^(id obj2, NSUInteger idx2, BOOL *stop2){
 			[((UINavigationController *)obj2).navigationBar setHidden:YES];
         }];
 	}];
 
+    // Add pan gesture to webview
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.revealController
                                                                                  action:@selector(dragContentView:)];
     panGesture.cancelsTouchesInView = NO;	
@@ -87,8 +84,6 @@
 																	  withControllers:controllers
 																		withCellInfos:cellInfos];
 
-    
-    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.rootViewController = self.revealController;
     [self.window makeKeyAndVisible];

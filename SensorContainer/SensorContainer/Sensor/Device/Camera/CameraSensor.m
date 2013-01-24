@@ -10,8 +10,8 @@
 #import "SCAppDelegate.h"
 
 
-@interface CameraSensor ()
-@property (nonatomic,retain) UIImagePickerController *picker;
+@interface CameraSensor ()  <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@property (nonatomic, strong) UIImagePickerController *picker;
 @end
 
 @implementation CameraSensor
@@ -83,19 +83,6 @@
     [self.picker dismissViewControllerAnimated:YES completion:^(){}];
     //notify delegate
     [self.delegate STSensorCancelled: self];
-}
-
-#pragma UINavigationViewController
--(void)navigationController:(UINavigationController *)navigationController
-      didShowViewController:(UIViewController *)viewController
-                   animated:(BOOL)animated
-{
-}
-
--(void)navigationController:(UINavigationController *)navigationController
-     willShowViewController:(UIViewController *)viewController
-                   animated:(BOOL)animated
-{
 }
 
 @end
