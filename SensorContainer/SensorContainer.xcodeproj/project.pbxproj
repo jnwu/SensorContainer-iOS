@@ -26,6 +26,20 @@
 		0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */; };
 		0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */; };
 		0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B57016AE0D3600DE73E6 /* searchTextBG.png */; };
+		044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EF66E16B367F80099A862 /* MBProgressHUD.m */; };
+		044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 044EF67016B371660099A862 /* 37x-Checkmark.png */; };
+		047963DF16B1167800DC4E85 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 047963DE16B1167800DC4E85 /* Icon.png */; };
+		047963E116B1183600DC4E85 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047963E016B1183600DC4E85 /* Icon@2x.png */; };
+		04ADBEC716B5DBFC005C1E11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBEC616B5DBFC005C1E11 /* CFNetwork.framework */; };
+		04ADBEC916B5DC0C005C1E11 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBEC816B5DC0B005C1E11 /* CoreData.framework */; };
+		04ADBECB16B5DC14005C1E11 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBECA16B5DC14005C1E11 /* libxml2.dylib */; };
+		04ADBECD16B5DC1C005C1E11 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */; };
+		04ADBECF16B5DC23005C1E11 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBECE16B5DC23005C1E11 /* Security.framework */; };
+		04ADBED116B5DC2E005C1E11 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */; };
+		04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBEBB16B5DAF9005C1E11 /* libRestKit.a */; };
+		04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ADBED416B5DE2C005C1E11 /* STThing.m */; };
+		04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */; };
+		04F8D41616B0E00B006560CA /* AccelerometerSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D41516B0E00B006560CA /* AccelerometerSensor.m */; };
 		6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
 		6BC36D38169EB51B00C0DBAB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */; };
@@ -35,7 +49,6 @@
 		6BC36D46169EB51B00C0DBAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D45169EB51B00C0DBAB /* Default.png */; };
 		6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D47169EB51B00C0DBAB /* Default@2x.png */; };
 		6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */; };
-		6BC36D4D169EB51B00C0DBAB /* SCRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */; };
 		6BC36D95169EBB8900C0DBAB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */; };
 		6BC36D97169EBB9000C0DBAB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */; };
 		6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */; };
@@ -47,6 +60,48 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		04ADBEBA16B5DAF9005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D1614564E810060A5C5;
+			remoteInfo = RestKit;
+		};
+		04ADBEBC16B5DAF9005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160D2614564E820060A5C5;
+			remoteInfo = RestKitTests;
+		};
+		04ADBEBE16B5DAF9005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E62145651060060A5C5;
+			remoteInfo = RestKitFramework;
+		};
+		04ADBEC016B5DAF9005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 25160E78145651060060A5C5;
+			remoteInfo = RestKitFrameworkTests;
+		};
+		04ADBEC216B5DAF9005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 259C301615128079003066A2;
+			remoteInfo = RestKitResources;
+		};
+		04ADBEC416B5DBED005C1E11 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 25160D1514564E810060A5C5;
+			remoteInfo = RestKit;
+		};
 		6BC36D8F169EBB6300C0DBAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
@@ -101,6 +156,23 @@
 		0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarIcon.png; sourceTree = "<group>"; };
 		0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarIcon@2x.png"; sourceTree = "<group>"; };
 		0431B57016AE0D3600DE73E6 /* searchTextBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchTextBG.png; sourceTree = "<group>"; };
+		044EF66D16B367F80099A862 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = SensorContainer/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		044EF66E16B367F80099A862 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = SensorContainer/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		044EF67016B371660099A862 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		047963DE16B1167800DC4E85 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		047963E016B1183600DC4E85 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
+		04ADBEC616B5DBFC005C1E11 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		04ADBEC816B5DC0B005C1E11 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		04ADBECA16B5DC14005C1E11 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		04ADBECE16B5DC23005C1E11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		04ADBED316B5DE2C005C1E11 /* STThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STThing.h; sourceTree = "<group>"; };
+		04ADBED416B5DE2C005C1E11 /* STThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STThing.m; sourceTree = "<group>"; };
+		04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCRootViewController.mm; sourceTree = "<group>"; };
+		04F8D41416B0E00B006560CA /* AccelerometerSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSensor.h; sourceTree = "<group>"; };
+		04F8D41516B0E00B006560CA /* AccelerometerSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSensor.m; sourceTree = "<group>"; };
 		6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensorContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC36D33169EB51B00C0DBAB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6BC36D35169EB51B00C0DBAB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -115,7 +187,6 @@
 		6BC36D47169EB51B00C0DBAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCRootViewController.h; sourceTree = "<group>"; };
-		6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SCRootViewController.mm; sourceTree = "<group>"; };
 		6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -131,6 +202,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */,
+				04ADBED116B5DC2E005C1E11 /* SystemConfiguration.framework in Frameworks */,
+				04ADBECF16B5DC23005C1E11 /* Security.framework in Frameworks */,
+				04ADBECD16B5DC1C005C1E11 /* MobileCoreServices.framework in Frameworks */,
+				04ADBECB16B5DC14005C1E11 /* libxml2.dylib in Frameworks */,
+				04ADBEC916B5DC0C005C1E11 /* CoreData.framework in Frameworks */,
+				04ADBEC716B5DBFC005C1E11 /* CFNetwork.framework in Frameworks */,
 				0431B56A16AE02D600DE73E6 /* QuartzCore.framework in Frameworks */,
 				0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */,
 				6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */,
@@ -172,6 +250,8 @@
 		0431B52816ADFF9700DE73E6 /* Accelerometer */ = {
 			isa = PBXGroup;
 			children = (
+				04F8D41416B0E00B006560CA /* AccelerometerSensor.h */,
+				04F8D41516B0E00B006560CA /* AccelerometerSensor.m */,
 			);
 			path = Accelerometer;
 			sourceTree = "<group>";
@@ -220,6 +300,8 @@
 				0431B53F16ADFF9700DE73E6 /* STError.m */,
 				0431B54016ADFF9700DE73E6 /* STSensor.h */,
 				0431B54116ADFF9700DE73E6 /* STSensor.m */,
+				04ADBED316B5DE2C005C1E11 /* STThing.h */,
+				04ADBED416B5DE2C005C1E11 /* STThing.m */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -262,6 +344,9 @@
 		0431B56B16AE0D3600DE73E6 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				044EF67016B371660099A862 /* 37x-Checkmark.png */,
+				047963E016B1183600DC4E85 /* Icon@2x.png */,
+				047963DE16B1167800DC4E85 /* Icon.png */,
 				0431B56C16AE0D3600DE73E6 /* 32-iphone.png */,
 				0431B56D16AE0D3600DE73E6 /* searchBarBG.png */,
 				0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */,
@@ -272,12 +357,43 @@
 			path = SensorContainer/Resources;
 			sourceTree = "<group>";
 		};
+		044EF66B16B367790099A862 /* 3rdPartyUtils */ = {
+			isa = PBXGroup;
+			children = (
+				044EF66C16B367A00099A862 /* MBProgressHUD */,
+				0431B55B16AE022400DE73E6 /* GHSideBarNav */,
+			);
+			name = 3rdPartyUtils;
+			sourceTree = "<group>";
+		};
+		044EF66C16B367A00099A862 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				044EF66D16B367F80099A862 /* MBProgressHUD.h */,
+				044EF66E16B367F80099A862 /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			sourceTree = "<group>";
+		};
+		04ADBEB016B5DAF8005C1E11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				04ADBEBB16B5DAF9005C1E11 /* libRestKit.a */,
+				04ADBEBD16B5DAF9005C1E11 /* RestKitTests.octest */,
+				04ADBEBF16B5DAF9005C1E11 /* RestKit.framework */,
+				04ADBEC116B5DAF9005C1E11 /* RestKitFrameworkTests.octest */,
+				04ADBEC316B5DAF9005C1E11 /* RestKitResources.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		6BC36D24169EB51B00C0DBAB = {
 			isa = PBXGroup;
 			children = (
+				04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */,
 				6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */,
+				044EF66B16B367790099A862 /* 3rdPartyUtils */,
 				0431B56B16AE0D3600DE73E6 /* Resources */,
-				0431B55B16AE022400DE73E6 /* GHSideBarNav */,
 				6BC36D39169EB51B00C0DBAB /* SensorContainer */,
 				6BC36D32169EB51B00C0DBAB /* Frameworks */,
 				6BC36D30169EB51B00C0DBAB /* Products */,
@@ -295,6 +411,12 @@
 		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */,
+				04ADBECE16B5DC23005C1E11 /* Security.framework */,
+				04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */,
+				04ADBECA16B5DC14005C1E11 /* libxml2.dylib */,
+				04ADBEC816B5DC0B005C1E11 /* CoreData.framework */,
+				04ADBEC616B5DBFC005C1E11 /* CFNetwork.framework */,
 				0431B56916AE02D600DE73E6 /* QuartzCore.framework */,
 				0405084316A78C64005B0308 /* CoreMotion.framework */,
 				6BC36DA0169EBBE700C0DBAB /* AddressBook.framework */,
@@ -318,7 +440,7 @@
 				6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */,
 				6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */,
 				6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */,
-				6BC36D4C169EB51B00C0DBAB /* SCRootViewController.mm */,
+				04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */,
 				6BC36D3A169EB51B00C0DBAB /* Supporting Files */,
 			);
 			path = SensorContainer;
@@ -362,6 +484,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				04ADBEC516B5DBED005C1E11 /* PBXTargetDependency */,
 				6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */,
 			);
 			name = SensorContainer;
@@ -391,6 +514,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 04ADBEB016B5DAF8005C1E11 /* Products */;
+					ProjectRef = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 6BC36D88169EBB6300C0DBAB /* Products */;
 					ProjectRef = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
 				},
@@ -403,6 +530,41 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		04ADBEBB16B5DAF9005C1E11 /* libRestKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRestKit.a;
+			remoteRef = 04ADBEBA16B5DAF9005C1E11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04ADBEBD16B5DAF9005C1E11 /* RestKitTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitTests.octest;
+			remoteRef = 04ADBEBC16B5DAF9005C1E11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04ADBEBF16B5DAF9005C1E11 /* RestKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = RestKit.framework;
+			remoteRef = 04ADBEBE16B5DAF9005C1E11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04ADBEC116B5DAF9005C1E11 /* RestKitFrameworkTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitFrameworkTests.octest;
+			remoteRef = 04ADBEC016B5DAF9005C1E11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		04ADBEC316B5DAF9005C1E11 /* RestKitResources.bundle */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RestKitResources.bundle;
+			remoteRef = 04ADBEC216B5DAF9005C1E11 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -434,6 +596,9 @@
 				0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */,
 				0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */,
 				0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */,
+				047963DF16B1167800DC4E85 /* Icon.png in Resources */,
+				047963E116B1183600DC4E85 /* Icon@2x.png in Resources */,
+				044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +611,6 @@
 			files = (
 				6BC36D40169EB51B00C0DBAB /* main.mm in Sources */,
 				6BC36D44169EB51B00C0DBAB /* SCAppDelegate.m in Sources */,
-				6BC36D4D169EB51B00C0DBAB /* SCRootViewController.mm in Sources */,
 				0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */,
 				0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */,
 				0431B55216ADFF9700DE73E6 /* STError.m in Sources */,
@@ -458,12 +622,21 @@
 				0431B56516AE022400DE73E6 /* GHMenuCell.m in Sources */,
 				0431B56616AE022400DE73E6 /* GHMenuViewController.m in Sources */,
 				0431B56716AE022400DE73E6 /* GHRevealViewController.m in Sources */,
+				04F8D41616B0E00B006560CA /* AccelerometerSensor.m in Sources */,
+				044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */,
+				04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */,
+				04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		04ADBEC516B5DBED005C1E11 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RestKit;
+			targetProxy = 04ADBEC416B5DBED005C1E11 /* PBXContainerItemProxy */;
+		};
 		6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZXingWidget;
@@ -538,14 +711,24 @@
 		6BC36D5D169EB51C00C0DBAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"zxing/iphone/ZXingWidget/Classes/**",
 					zxing/cpp/core/src/,
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E06EFEEB-4FDB-47CA-BD6F-75D4AD8ABFB7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E06EFEEB-4FDB-47CA-BD6F-75D4AD8ABFB7";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -553,14 +736,24 @@
 		6BC36D5E169EB51C00C0DBAB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"zxing/iphone/ZXingWidget/Classes/**",
 					zxing/cpp/core/src/,
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "E06EFEEB-4FDB-47CA-BD6F-75D4AD8ABFB7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "E06EFEEB-4FDB-47CA-BD6F-75D4AD8ABFB7";
+				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

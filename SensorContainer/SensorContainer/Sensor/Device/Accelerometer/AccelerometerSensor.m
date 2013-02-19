@@ -45,14 +45,21 @@
 }
 
 -(void) accelerometerData:(NSTimer *) timer {
-    double x, y, z;
-    
     self.accelerometer = [self.motionManager accelerometerData];
-    x = [self.accelerometer acceleration].x;
-    y = [self.accelerometer acceleration].y;
-    z = [self.accelerometer acceleration].z;
+
+    NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
-    NSLog(@"x: %f   y: %f   z: %f", x, y, z);
+    NSString *x = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].x];
+    NSString *y = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].y];
+    NSString *z = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].z];
+    
+    [dict setObject:x forKey: @"x"];
+    [dict setObject:y forKey: @"y"];
+    [dict setObject:z forKey: @"z"];
+    STSensorData * data = [[STSensorData alloc] init];
+    data.data = dict;
+    
+    [self.delegate STSensor:self withData: data];
 }
 
 @end
