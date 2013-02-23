@@ -23,7 +23,7 @@
             //create sensor
             NSString *className = [aSensorConfig objectForKey: @"class"];
             STSensor * sensor = [[NSClassFromString( className ) alloc] initWithSensorCallModel:  model];
-
+            
             model           = nil;
             sensorMapping   = nil;
             className       = nil;
@@ -34,6 +34,7 @@
 
     model           = nil;
     sensorMapping   = nil;
+    
     NSLog(@"no sensor found.");
     return nil;
 }

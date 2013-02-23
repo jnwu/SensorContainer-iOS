@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0405084316A78C64005B0308 /* CoreMotion.framework */; };
+		042FF37716D45145005AE6FA /* MicrophoneSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FF37616D45145005AE6FA /* MicrophoneSensor.m */; };
 		0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B52B16ADFF9700DE73E6 /* CameraSensor.m */; };
 		0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */; };
 		0431B55216ADFF9700DE73E6 /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53F16ADFF9700DE73E6 /* STError.m */; };
@@ -127,6 +128,8 @@
 
 /* Begin PBXFileReference section */
 		0405084316A78C64005B0308 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		042FF37516D45145005AE6FA /* MicrophoneSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrophoneSensor.h; sourceTree = "<group>"; };
+		042FF37616D45145005AE6FA /* MicrophoneSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrophoneSensor.m; sourceTree = "<group>"; };
 		0431B52A16ADFF9700DE73E6 /* CameraSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSensor.h; sourceTree = "<group>"; };
 		0431B52B16ADFF9700DE73E6 /* CameraSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSensor.m; sourceTree = "<group>"; };
 		0431B53916ADFF9700DE73E6 /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeSensor.h; sourceTree = "<group>"; };
@@ -228,6 +231,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042FF36C16D450D5005AE6FA /* Microphone */ = {
+			isa = PBXGroup;
+			children = (
+				042FF37516D45145005AE6FA /* MicrophoneSensor.h */,
+				042FF37616D45145005AE6FA /* MicrophoneSensor.m */,
+			);
+			name = Microphone;
+			sourceTree = "<group>";
+		};
 		0431B52616ADFF9700DE73E6 /* Sensor */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +252,7 @@
 		0431B52716ADFF9700DE73E6 /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				042FF36C16D450D5005AE6FA /* Microphone */,
 				0431B52816ADFF9700DE73E6 /* Accelerometer */,
 				0431B52916ADFF9700DE73E6 /* Camera */,
 				0431B53816ADFF9700DE73E6 /* QRCode */,
@@ -626,6 +639,7 @@
 				044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */,
 				04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */,
 				04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */,
+				042FF37716D45145005AE6FA /* MicrophoneSensor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

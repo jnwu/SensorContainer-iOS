@@ -28,14 +28,6 @@
     return [root objectForKey: key];
 }
 
-/*
- Get the sensor call prefix
- return: sensor call prefix
- */
-+(NSString *) sensorCallPrefix
-{
-    return [STCSensorConfig getSensorConfigWithKey: @"sensorCallPrefix"];
-}
 
 +(NSArray *) getSensorConfig
 {

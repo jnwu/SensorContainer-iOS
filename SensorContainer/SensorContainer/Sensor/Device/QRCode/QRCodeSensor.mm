@@ -12,14 +12,15 @@
 
 @implementation QRCodeSensor
 
+static QRCodeSensor* sensor = nil;
+
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    self = [super initWithSensorCallModel: model];
-    if(self)
-    {
+    if(!sensor) {
+        sensor = [super initWithSensorCallModel: model];
     }
     
-    return self;
+    return sensor;
 }
 
 -(void) start

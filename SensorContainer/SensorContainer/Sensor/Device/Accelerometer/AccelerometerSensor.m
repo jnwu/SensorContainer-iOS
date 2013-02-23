@@ -13,38 +13,50 @@
 @interface AccelerometerSensor ()  <UINavigationControllerDelegate>
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) CMAccelerometerData *accelerometer;
+@property (strong, nonatomic) NSTimer *timer;
+@property (assign, nonatomic) int count;
 @end
 
 @implementation AccelerometerSensor
 
+static AccelerometerSensor* sensor = nil;
+
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    self = [super initWithSensorCallModel: model];
-    if(self)
-    {
-        self.motionManager = [[CMMotionManager alloc] init];
-        self.accelerometer = [[CMAccelerometerData alloc] init];
+    if(!sensor) {
+        sensor = [super initWithSensorCallModel: model];
+
+        sensor.motionManager = [[CMMotionManager alloc] init];
+        sensor.accelerometer = [[CMAccelerometerData alloc] init];
+        sensor.count = 0;
     }
-    
-    return self;
+        
+    return sensor;
 }
 
 -(void) start
 {
     self.motionManager.accelerometerUpdateInterval = 1;
     [self.motionManager startAccelerometerUpdates];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
+        
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
 }
 
 -(void) cancel
 {
-    [self.motionManager stopAccelerometerUpdates];
     //TODO: May not be able to cancel programmatically. Need to check
-    [self.delegate STSensorCancelled: self];
+    [self.motionManager stopAccelerometerUpdates];
+    [self.timer invalidate];
+    self.timer = nil;
 }
 
 -(void) accelerometerData:(NSTimer *) timer {
+    if(self.count == 4) {
+        [self.motionManager stopAccelerometerUpdates];
+        self.count = 0;
+        return;
+    }
+
     self.accelerometer = [self.motionManager accelerometerData];
 
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
@@ -60,6 +72,8 @@
     data.data = dict;
     
     [self.delegate STSensor:self withData: data];
+    
+    self.count++;
 }
 
 @end

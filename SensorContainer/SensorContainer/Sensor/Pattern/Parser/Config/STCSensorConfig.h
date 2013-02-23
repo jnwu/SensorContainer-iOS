@@ -11,7 +11,6 @@
 @interface STCSensorConfig : NSObject
 
 +(id) getSensorConfigWithKey: (NSString *) key;
-+(NSString *) sensorCallPrefix;
 +(NSArray *) getSensorConfig;
 
 @end

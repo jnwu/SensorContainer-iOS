@@ -20,6 +20,7 @@
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
     self = [super init];
+        
     if(self)
     {
         self.sensorCallModel = model;

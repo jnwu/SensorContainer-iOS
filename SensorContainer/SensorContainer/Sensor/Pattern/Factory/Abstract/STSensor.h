@@ -27,6 +27,7 @@
 
 @interface STSensor : NSObject
 
+
 /*
  Constructor.
  model: sensor call model contains all parameters for sensor to work.

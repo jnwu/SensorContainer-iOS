@@ -16,7 +16,7 @@
 
 #pragma mark -
 #pragma mark Private Interface
-@interface SCAppDelegate () <RKRequestDelegate, RKObjectLoaderDelegate>
+@interface SCAppDelegate ()
 @property (nonatomic, strong) GHMenuViewController *menuController;
 @end
 
@@ -29,8 +29,11 @@
 
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //[self sendRequestWithParams];
-    
+
+    // disable restkit logging
+    RKLogConfigureByName("*", RKLogLevelOff);
+
+    //
 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
     
 	UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
@@ -87,64 +90,6 @@
     [self.window makeKeyAndVisible];
     return YES;
 }
-
-
-- (void)sendRequestWithParams {
-    RKLogConfigureByName("*", RKLogLevelOff);
-
-    
-    
-    // Simple params
-    RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
-    RKObjectManager *objectManager = [RKObjectManager objectManagerWithBaseURL:baseURL];
-    
-    objectManager.acceptMIMEType = RKMIMETypeJSON;
-    objectManager.serializationMIMEType = RKMIMETypeJSON;
-    
-    RKObjectMapping *thingMapping = [RKObjectMapping mappingForClass:[STThing class]];
-    [thingMapping mapKeyPath:@"thingId" toAttribute:@"thingId"];
-    [thingMapping mapKeyPath:@"description" toAttribute:@"description"];
-    [thingMapping mapKeyPath:@"name" toAttribute:@"name"];
-    [thingMapping mapKeyPath:@"type" toAttribute:@"type"];
-    
-    [objectManager.mappingProvider registerObjectMapping:thingMapping withRootKeyPath:@""];
-    
-    // set rest param
-    NSDictionary *queryParams = [NSDictionary dictionaryWithObjectsAndKeys:@"123", @"thingId", nil];
-    RKURL *resourceURL = [RKURL URLWithBaseURL:[objectManager baseURL] resourcePath:@"/thing/search" queryParameters:queryParams];
-    
-    // send get request
-    [objectManager loadObjectsAtResourcePath:[NSString stringWithFormat:@"%@?%@", [resourceURL resourcePath], [resourceURL query]] delegate:self];
-}
-
-
-
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {    
-    if ([response isSuccessful]) {
-        // Looks like we have a 201 response of type 'application/json'
-        //NSLog(@"%@", [response bodyAsString]);
-    } else if ([response isError]) {
-        // Response status was either 400..499 or 500..599
-        //NSLog(@"Ouch! We have an HTTP error. Status Code description: %@", [response localizedStatusCodeString]);
-    }
-}
-
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-}
-
-
-- (void)objectLoader:(RKObjectLoader *)objectLoader didLoadObjects:(NSArray *)objects {
-    NSArray *components = [objectLoader.resourcePath componentsSeparatedByString:@"?"];
-    if ([(NSString *)components[0] compare:@"/thing/search"] == 0) {
-        STThing *thing = (STThing *) objects[0];
-        
-        NSLog(@"thing: %@", thing.name);
-        NSLog(@"size: %i", [objects count]);
-    }
-}
-
 
 @end
 

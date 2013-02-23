@@ -16,39 +16,41 @@
 
 @implementation CameraSensor
 
+static CameraSensor* sensor = nil;
+
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    self = [super initWithSensorCallModel: model];
-    if(self)
+    if(!sensor)
     {
+        sensor = [super initWithSensorCallModel:model];
+        
         //init camera controls
-        self.picker = [[UIImagePickerController alloc] init];
+        sensor.picker = [[UIImagePickerController alloc] init];
         
         //set source type:
         if([model.command isEqualToString: @"camera"] &&
            ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
             [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear] ))
         {
-            self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            sensor.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
-            self.picker.mediaTypes =
+            sensor.picker.mediaTypes =
                 [UIImagePickerController availableMediaTypesForSourceType:
                  UIImagePickerControllerSourceTypeCamera];
         }
         else
         {
-            self.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            sensor.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
     }
     
-    return self;
+    return sensor;
 }
 
 -(void) start
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
-    
     SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
     
     UIViewController *vc = (UIViewController *) appDelegate.revealController;
