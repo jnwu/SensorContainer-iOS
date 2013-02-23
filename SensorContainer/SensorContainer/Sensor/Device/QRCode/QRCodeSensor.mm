@@ -69,4 +69,9 @@ static QRCodeSensor* sensor = nil;
     [self.delegate STSensorCancelled: self];
 }
 
+-(void) data:(STSensorData *)data
+{
+    //id value = [data.data objectForKey:@"result"];
+}
+
 @end

@@ -23,6 +23,8 @@
         
     if(self)
     {
+        RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
+        self.client = [RKClient clientWithBaseURL:baseURL];
         self.sensorCallModel = model;
     }
     
@@ -39,5 +41,9 @@
     NSLog(@"you should no get here");
 }
 
+-(void) data:(STSensorData *)data
+{
+    NSLog(@"you should no get here");    
+}
 
 @end

@@ -9,7 +9,6 @@
 #import <CoreMotion/CoreMotion.h>
 #import "AccelerometerSensor.h"
 
-
 @interface AccelerometerSensor ()  <UINavigationControllerDelegate>
 @property (strong, nonatomic) CMMotionManager *motionManager;
 @property (strong, nonatomic) CMAccelerometerData *accelerometer;
@@ -53,6 +52,8 @@ static AccelerometerSensor* sensor = nil;
 -(void) accelerometerData:(NSTimer *) timer {
     if(self.count == 4) {
         [self.motionManager stopAccelerometerUpdates];
+        [self.timer invalidate];
+        self.timer = nil;
         self.count = 0;
         return;
     }
@@ -75,5 +76,26 @@ static AccelerometerSensor* sensor = nil;
     
     self.count++;
 }
+
+-(void) data:(STSensorData *)data
+{
+    id x = [data.data objectForKey:@"x"];
+    id y = [data.data objectForKey:@"y"];
+    id z = [data.data objectForKey:@"z"];
+    
+    // Send text to thing broker
+    NSMutableDictionary *acceleration = [[NSMutableDictionary alloc] init];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)x] forKey:@"x"];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)y] forKey:@"y"];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)z] forKey:@"z"];
+    
+    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
+    [dictRequest setObject:acceleration forKey:@"acceleration"];
+    
+    NSString *jsonRequest =  [dictRequest JSONString];
+    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
+    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+}
+
 
 @end

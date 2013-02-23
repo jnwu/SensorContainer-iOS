@@ -137,56 +137,15 @@
 
 
 #pragma mark STSensorDelegate
--(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data
-{
-    //Handling data from sensor
-    //TODO: use sensor factory to create sensor data handler class
-    // but nothing is implemented right now.
-    if([sensor1 isKindOfClass: [CameraSensor class]])
-    {
-        // Send text to thing broker
-        NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-        [dictRequest setObject:@"http://kimberly.magic.ubc.ca:8080/thingbroker" forKey:@"video_url"];
-        [dictRequest setObject:@"test!" forKey:@"foo"];
-        
-        NSString *jsonRequest =  [dictRequest JSONString];
-        RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-        [self.client post:@"/events/event/thing/messageboard?keep-stored=true" params:params delegate:self];
-        
-        
-        // Send image file to thing broker
-        //UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
-        //RKParams* params = [RKParams params];
-        //NSData* imageData = UIImagePNGRepresentation(image);
-        //[params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
-        //NSLog(@"RKParams HTTPHeaderValueForContentType = %@", [params HTTPHeaderValueForContentType]);
-        //[client post:@"/events/event/thing/messageboard?keep-stored=true" params:params delegate:self];
-    }
-    else if([sensor1 isKindOfClass: [QRCodeSensor class]])
-    {
-        //id value = [data.data objectForKey:@"result"];        
-    }
-    else if([sensor1 isKindOfClass: [AccelerometerSensor class]])
-    {
+-(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
+    
+    [sensor1 data:data];
+    
+    if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
         id z = [data.data objectForKey:@"z"];
-        
-        
-        // Send text to thing broker
-        NSMutableDictionary *acceleration = [[NSMutableDictionary alloc] init];
-        [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)x] forKey:@"x"];
-        [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)y] forKey:@"y"];
-        [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)z] forKey:@"z"];
-        
-        NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-        [dictRequest setObject:acceleration forKey:@"acceleration"];
-        
-        NSString *jsonRequest =  [dictRequest JSONString];
-        RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-        [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
-        
-        
+                
         NSString *jqueryCDN = @"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
         NSData *jquery = [NSData dataWithContentsOfURL:[NSURL URLWithString:jqueryCDN]];
         NSString *jqueryString = [[NSMutableString alloc] initWithData:jquery encoding:NSUTF8StringEncoding];
@@ -197,27 +156,15 @@
         
         [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
     }
-    else if([sensor1 isKindOfClass: [MicrophoneSensor class]]) {
-        id audioData = [data.data objectForKey:@"audioData"];
-        
-        if(audioData) {
-            RKParams* params = [RKParams params];
-            [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
-            [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
-       }
-    }
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
-{
-    NSLog(@"sensor got error");
-}
+{}
 
 -(void) STSensorCancelled: (STSensor *) sensor
 {}
 
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");    
-}
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
+{}
 
 @end

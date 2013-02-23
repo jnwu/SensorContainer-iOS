@@ -8,9 +8,5 @@
 #import <UIKit/UIKit.h>
 #import "STSensor.h"
 
-@protocol CameraSensorDelegate <STSensorDelegate>
-
-@end
-
 @interface CameraSensor : STSensor
 @end

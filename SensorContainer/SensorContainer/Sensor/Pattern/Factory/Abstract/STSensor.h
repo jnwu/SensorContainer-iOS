@@ -11,6 +11,11 @@
 #import "STError.h"
 #import "STCSensorCallModel.h"
 
+#import <RestKit/RestKit.h>
+#import <Restkit/JSONKit.h>
+#import <Restkit/RKRequestSerialization.h>
+#import <RestKit/RKMIMETypes.h>
+
 @class STSensor;
 @class STSensorData;
 
@@ -25,8 +30,7 @@
 @end
 
 
-@interface STSensor : NSObject
-
+@interface STSensor : NSObject <RKRequestDelegate>
 
 /*
  Constructor.
@@ -44,7 +48,14 @@
  */
 -(void) cancel;
 
+/*
+ Data. 
+ */
+-(void) data:(STSensorData *)data;
+
+
 @property (weak, nonatomic) id<STSensorDelegate> delegate;
 @property (strong, nonatomic) STCSensorCallModel * sensorCallModel;
+@property (strong, nonatomic) RKClient *client;
 
 @end

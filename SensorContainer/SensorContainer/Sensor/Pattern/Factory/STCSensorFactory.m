@@ -11,9 +11,9 @@
 #import "STCSensorConfig.h"
 @implementation STCSensorFactory
 
-+(STSensor *) getSensorWithCommand: (NSString *) senseorCall
++(STSensor *) getSensorWithCommand: (NSString *) sensorCall
 {
-    STCSensorCallModel * model = [STCSensorCallParser parseSensorCallStr: senseorCall];
+    STCSensorCallModel * model = [STCSensorCallParser parseSensorCallStr: sensorCall];
     NSArray * sensorMapping = [STCSensorConfig getSensorConfig];
     
     for(NSDictionary * aSensorConfig in sensorMapping)
@@ -37,6 +37,11 @@
     
     NSLog(@"no sensor found.");
     return nil;
+}
+
++(STSensor *) getHandlerWithCommand: (NSString *) sensorCall
+{
+    
 }
 
 @end

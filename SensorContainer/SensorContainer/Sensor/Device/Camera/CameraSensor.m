@@ -9,8 +9,7 @@
 #import "CameraSensor.h"
 #import "SCAppDelegate.h"
 
-
-@interface CameraSensor ()  <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CameraSensor ()  <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RKRequestDelegate>
 @property (nonatomic, strong) UIImagePickerController *picker;
 @end
 
@@ -86,5 +85,28 @@ static CameraSensor* sensor = nil;
     //notify delegate
     [self.delegate STSensorCancelled: self];
 }
+
+#pragma mark STSensorDelegate
+-(void) data:(STSensorData *)data
+{
+    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
+    [dictRequest setObject:@"http://kimberly.magic.ubc.ca:8080/thingbroker" forKey:@"video_url"];
+    [dictRequest setObject:@"test!" forKey:@"foo"];
+    
+    NSString *jsonRequest =  [dictRequest JSONString];
+    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
+    [self.client post:@"/events/event/thing/messageboard?keep-stored=true" params:params delegate:self];
+    
+/*
+    // Send image file to thing broker
+    UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
+    RKParams* params = [RKParams params];
+    NSData* imageData = UIImagePNGRepresentation(image);
+    [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
+    NSLog(@"RKParams HTTPHeaderValueForContentType = %@", [params HTTPHeaderValueForContentType]);
+    [self.client post:@"/events/event/thing/messageboard?keep-stored=true" params:params delegate:self];
+*/
+}
+
 
 @end

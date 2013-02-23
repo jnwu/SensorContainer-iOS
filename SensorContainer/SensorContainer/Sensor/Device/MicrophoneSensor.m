@@ -9,8 +9,7 @@
 #import "MicrophoneSensor.h"
 #import <AVFoundation/AVFoundation.h>
 
-
-@interface MicrophoneSensor ()  <AVAudioRecorderDelegate>
+@interface MicrophoneSensor ()  <AVAudioRecorderDelegate, RKRequestDelegate>
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (strong, nonatomic) AVAudioSession *audioSession;
 @property (strong, nonatomic) NSString *url;
@@ -110,14 +109,20 @@ static MicrophoneSensor* sensor = nil;
             data.data = dict;
             
             [self.delegate STSensor:self withData: data];
-        } else {
-            NSLog(@"null audio data");
         }
-        
 	}
-	else {
-		NSLog(@"audioRecorderDidFinishRecording ERROR");
-	}
+}
+
+#pragma mark STSensorDelegate
+-(void) data:(STSensorData *)data
+{
+    id audioData = [data.data objectForKey:@"audioData"];
+    
+    if(audioData) {
+        RKParams* params = [RKParams params];
+        [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
+        [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+    }
 }
 
 @end

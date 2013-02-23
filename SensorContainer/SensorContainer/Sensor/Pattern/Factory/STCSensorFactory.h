@@ -12,5 +12,6 @@
 @interface STCSensorFactory : NSObject
 
 +(STSensor *) getSensorWithCommand: (NSString *) senseorCall;
++(STSensor *) getHandlerWithCommand: (NSString *) sensorCall;
 
 @end
