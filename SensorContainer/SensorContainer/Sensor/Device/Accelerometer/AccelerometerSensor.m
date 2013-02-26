@@ -99,10 +99,7 @@ static AccelerometerSensor* sensor = nil;
 
 #pragma mark RKRequestDelegate
 - (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
-    NSLog(@"accelerometer didLoadResponse");
-    //    NSString *intervalString = [NSString stringWithFormat:@"%i", (int)time];
-    
-    
+    NSLog(@"accelerometer didLoadResponse");    
 }
 
 

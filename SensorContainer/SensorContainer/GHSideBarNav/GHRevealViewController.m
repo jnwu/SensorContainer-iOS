@@ -120,13 +120,6 @@ const CGFloat kGHRevealSidebarFlickVelocity = 1000.0f;
     return self;
 }
 
-#pragma mark UIViewController
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
-	return (orientation == UIInterfaceOrientationPortraitUpsideDown)
-		? (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-		: YES;
-}
-
 #pragma mark Public Methods
 - (void)dragContentView:(UIPanGestureRecognizer *)panGesture {
 	CGFloat translation = [panGesture translationInView:self.view].x;

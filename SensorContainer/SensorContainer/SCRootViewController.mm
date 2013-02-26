@@ -32,26 +32,30 @@
 
 @implementation SCRootViewController
 
+
+#pragma mark UIViewController
+- (void)viewWillLayoutSubviews {
+    self.webView.frame = self.view.frame;
+}
+
+
 #pragma mark SCRootViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //
+    self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+	self.view.backgroundColor = [UIColor whiteColor];
+
+    // init restkit client
     RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
     self.client = [RKClient clientWithBaseURL:baseURL];
     
-    
-    self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
-	self.view.backgroundColor = [UIColor whiteColor];
-    
     // add webview
-	NSString *urlAddress = @"http://jnwuserver.appspot.com/";
+	NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://jnwuserver.appspot.com/"]];
     self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    
-	NSURL *url = [NSURL URLWithString:urlAddress];
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
 
-	[self.webView loadRequest:requestObj];
+	// load mobile web app
+    [self.webView loadRequest:requestObj];
     self.webView.delegate = self;
     [self.view addSubview:self.webView];
 
@@ -64,9 +68,11 @@
 	self.hud.delegate = self;
 }
 
+
 #pragma mark UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     
+    // TODO: Takeout the following switch statement, temp code
     switch (navigationType) {
         case 0:
             if ([request.URL.scheme isEqualToString:@"inapp"]) {
@@ -93,7 +99,7 @@
             }
     }
     
-    
+    // retrieve parameters from url
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
     NSRange range = {3, [parts count]-3};
     
@@ -139,6 +145,7 @@
 #pragma mark STSensorDelegate
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
         
+    // TODO: Takeout the following if statement, temp code
     if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
@@ -164,8 +171,7 @@
 -(void) STSensorCancelled: (STSensor *) sensor
 {}
 
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-}
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
+{}
 
 @end
