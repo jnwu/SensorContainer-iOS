@@ -125,4 +125,11 @@ static MicrophoneSensor* sensor = nil;
     }
 }
 
+
+#pragma mark RKRequestDelegate
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+    NSLog(@"microphone didLoadResponse");
+}
+
+
 @end

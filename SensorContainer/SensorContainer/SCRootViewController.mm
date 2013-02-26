@@ -21,7 +21,7 @@
 #import <Restkit/RKRequestSerialization.h>
 #import <RestKit/RKMIMETypes.h>
 
-@interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, MBProgressHUDDelegate, RKRequestDelegate, RKObjectLoaderDelegate>
+@interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, MBProgressHUDDelegate, RKRequestDelegate>
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) STSensor *sensor;
@@ -138,9 +138,7 @@
 
 #pragma mark STSensorDelegate
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
-    
-    [sensor1 data:data];
-    
+        
     if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
@@ -156,6 +154,8 @@
         
         [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
     }
+    
+    [sensor1 data:data];
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
@@ -164,7 +164,8 @@
 -(void) STSensorCancelled: (STSensor *) sensor
 {}
 
-- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
-{}
+- (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
+}
 
 @end

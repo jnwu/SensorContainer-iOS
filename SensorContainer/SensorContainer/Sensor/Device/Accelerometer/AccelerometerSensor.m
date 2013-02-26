@@ -97,5 +97,13 @@ static AccelerometerSensor* sensor = nil;
     [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
 }
 
+#pragma mark RKRequestDelegate
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+    NSLog(@"accelerometer didLoadResponse");
+    //    NSString *intervalString = [NSString stringWithFormat:@"%i", (int)time];
+    
+    
+}
+
 
 @end
