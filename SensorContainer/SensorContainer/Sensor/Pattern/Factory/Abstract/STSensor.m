@@ -33,17 +33,22 @@
 
 -(void) start
 {
-    NSLog(@"you should no get here");
+    NSLog(@"you should not get here");
 }
 
 -(void) cancel
 {
-    NSLog(@"you should no get here");
+    NSLog(@"you should not get here");
 }
 
--(void) data:(STSensorData *)data
+-(void) upload:(STSensorData *)data
 {
-    NSLog(@"you should no get here");    
+    NSLog(@"you should not get here");
+}
+
+-(void) configure:(NSArray *)settings
+{
+    NSLog(@"you should not get here");    
 }
 
 @end

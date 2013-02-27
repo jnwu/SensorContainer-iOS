@@ -33,6 +33,7 @@ static AccelerometerSensor* sensor = nil;
     return sensor;
 }
 
+#pragma mark STSensor
 -(void) start
 {
     self.motionManager.accelerometerUpdateInterval = 1;
@@ -49,6 +50,32 @@ static AccelerometerSensor* sensor = nil;
     self.timer = nil;
 }
 
+-(void) upload:(STSensorData *)data
+{
+    id x = [data.data objectForKey:@"x"];
+    id y = [data.data objectForKey:@"y"];
+    id z = [data.data objectForKey:@"z"];
+    
+    // Send text to thing broker
+    NSMutableDictionary *acceleration = [[NSMutableDictionary alloc] init];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)x] forKey:@"x"];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)y] forKey:@"y"];
+    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)z] forKey:@"z"];
+    
+    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
+    [dictRequest setObject:acceleration forKey:@"data"];
+    
+    NSString *jsonRequest =  [dictRequest JSONString];
+    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
+    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+}
+
+-(void) configure:(NSArray *)settings
+{
+    NSLog(@"accelerometer configure: %i", [settings count]);
+}
+
+#pragma mark CMMotionManager
 -(void) accelerometerData:(NSTimer *) timer {
     if(self.count == 4) {
         [self.motionManager stopAccelerometerUpdates];
@@ -57,9 +84,9 @@ static AccelerometerSensor* sensor = nil;
         self.count = 0;
         return;
     }
-
+    
     self.accelerometer = [self.motionManager accelerometerData];
-
+    
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     
     NSString *x = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].x];
@@ -77,30 +104,8 @@ static AccelerometerSensor* sensor = nil;
     self.count++;
 }
 
--(void) data:(STSensorData *)data
-{
-    id x = [data.data objectForKey:@"x"];
-    id y = [data.data objectForKey:@"y"];
-    id z = [data.data objectForKey:@"z"];
-    
-    // Send text to thing broker
-    NSMutableDictionary *acceleration = [[NSMutableDictionary alloc] init];
-    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)x] forKey:@"x"];
-    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)y] forKey:@"y"];
-    [acceleration setObject: [NSString stringWithFormat:@"%@", (NSString *)z] forKey:@"z"];
-    
-    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-    [dictRequest setObject:acceleration forKey:@"acceleration"];
-    
-    NSString *jsonRequest =  [dictRequest JSONString];
-    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
-}
-
 #pragma mark RKRequestDelegate
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
-    NSLog(@"accelerometer didLoadResponse");    
-}
-
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{}
 
 @end

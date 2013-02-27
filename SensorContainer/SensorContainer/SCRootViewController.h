@@ -7,7 +7,5 @@
 //
 
 
-
 @interface SCRootViewController : UIViewController
-//+(void) setWebviewZoom;
 @end

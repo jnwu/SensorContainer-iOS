@@ -114,7 +114,7 @@ static MicrophoneSensor* sensor = nil;
 }
 
 #pragma mark STSensorDelegate
--(void) data:(STSensorData *)data
+-(void) upload:(STSensorData *)data
 {
     id audioData = [data.data objectForKey:@"audioData"];
     

@@ -10,8 +10,5 @@
 #import "STSensor.h"
 
 @interface STCSensorFactory : NSObject
-
-+(STSensor *) getSensorWithCommand: (NSString *) senseorCall;
-+(STSensor *) getHandlerWithCommand: (NSString *) sensorCall;
-
++(STSensor *) getSensorWithCommand: (NSString *) sensorCall;
 @end

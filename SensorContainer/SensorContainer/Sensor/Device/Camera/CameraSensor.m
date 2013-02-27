@@ -94,7 +94,7 @@ static CameraSensor* sensor = nil;
 }
 
 #pragma mark STSensorDelegate
--(void) data:(STSensorData *)data
+-(void) upload:(STSensorData *)data
 {
     UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
     //image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationDown];

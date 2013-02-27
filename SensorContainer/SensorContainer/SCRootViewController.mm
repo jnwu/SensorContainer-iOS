@@ -14,12 +14,12 @@
 #import "AccelerometerSensor.h"
 #import "MicrophoneSensor.h"
 #import "MBProgressHUD.h"
-#import "STThing.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>
 #import <Restkit/RKRequestSerialization.h>
 #import <RestKit/RKMIMETypes.h>
+
 
 @interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, MBProgressHUDDelegate, RKRequestDelegate>
 @property (strong, nonatomic) UIWebView *webView;
@@ -103,7 +103,7 @@
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
     NSRange range = {3, [parts count]-3};
     
-    if([parts count] < 4) {
+    if([parts count] < 5) {
         return YES;
     }
     
@@ -111,16 +111,26 @@
     if([(NSString *)[parts objectAtIndex:0] length] > 0) {
         self.sensor = [STCSensorFactory getSensorWithCommand:[parts objectAtIndex:0]];
         self.sensor.delegate = self;
-        SEL s = NSSelectorFromString([parts objectAtIndex:1]);
+        NSString *selector = [parts objectAtIndex:1];
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-        if ([self.sensor respondsToSelector:s]) {
-            [self.sensor performSelector:s];
+
+        if([parts count] > 2) {
+            NSRange range = {2, [parts count]-2};
+            selector = [NSString stringWithFormat:@"%@:", selector];
+            parts = [parts subarrayWithRange:range];            
+        } else {
+            parts = nil;
+        }
+        
+        if ([self.sensor respondsToSelector:NSSelectorFromString(selector)]) {
+            [self.sensor performSelector:NSSelectorFromString(selector) withObject:parts afterDelay:0];
+        }
+
 #pragma clang diagnostic pop
 
-            return NO;
-        }
+        return NO;
     }
     
     return YES;
@@ -162,7 +172,7 @@
         [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
     }
     
-    [sensor1 data:data];
+    [sensor1 upload:data];
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error

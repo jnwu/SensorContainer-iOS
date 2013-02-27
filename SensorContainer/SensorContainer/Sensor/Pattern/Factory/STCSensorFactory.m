@@ -9,6 +9,8 @@
 #import "STCSensorFactory.h"
 #import "STCSensorCallParser.h"
 #import "STCSensorConfig.h"
+
+
 @implementation STCSensorFactory
 
 +(STSensor *) getSensorWithCommand: (NSString *) sensorCall
@@ -37,11 +39,6 @@
     
     NSLog(@"no sensor found.");
     return nil;
-}
-
-+(STSensor *) getHandlerWithCommand: (NSString *) sensorCall
-{
-    
 }
 
 @end

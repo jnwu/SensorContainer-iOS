@@ -49,10 +49,14 @@
 -(void) cancel;
 
 /*
- Data. 
+ Upload sensor data to thing broker
  */
--(void) data:(STSensorData *)data;
+-(void) upload:(STSensorData *)data;
 
+/*
+ Configure sensor-specific settings
+ */
+-(void) configure:(NSArray *)settings;
 
 @property (weak, nonatomic) id<STSensorDelegate> delegate;
 @property (strong, nonatomic) STCSensorCallModel * sensorCallModel;
