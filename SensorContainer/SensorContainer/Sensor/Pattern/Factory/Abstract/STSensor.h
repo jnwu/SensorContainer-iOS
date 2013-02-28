@@ -10,6 +10,7 @@
 
 #import "STError.h"
 #import "STCSensorCallModel.h"
+#import "SCSettingViewController.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>

@@ -110,11 +110,13 @@
     parts = [parts subarrayWithRange:range];
     if([(NSString *)[parts objectAtIndex:0] length] > 0) {
         self.sensor = [STCSensorFactory getSensorWithCommand:[parts objectAtIndex:0]];
+        
+        if(!self.sensor) {
+            return NO;
+        }
+        
         self.sensor.delegate = self;
         NSString *selector = [parts objectAtIndex:1];
-
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
         if([parts count] > 2) {
             NSRange range = {2, [parts count]-2};
@@ -124,6 +126,9 @@
             parts = nil;
         }
         
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+
         if ([self.sensor respondsToSelector:NSSelectorFromString(selector)]) {
             [self.sensor performSelector:NSSelectorFromString(selector) withObject:parts afterDelay:0];
         }
@@ -157,10 +162,13 @@
         
     // TODO: Takeout the following if statement, temp code
     if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
+/*
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
         id z = [data.data objectForKey:@"z"];
                 
+        NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
+
         NSString *jqueryCDN = @"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
         NSData *jquery = [NSData dataWithContentsOfURL:[NSURL URLWithString:jqueryCDN]];
         NSString *jqueryString = [[NSMutableString alloc] initWithData:jquery encoding:NSUTF8StringEncoding];
@@ -170,6 +178,7 @@
                         (NSString *)x, (NSString *)y, (NSString *)z];
         
         [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
+*/ 
     }
     
     [sensor1 upload:data];

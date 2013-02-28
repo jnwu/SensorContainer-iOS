@@ -83,6 +83,8 @@ static MicrophoneSensor* sensor = nil;
     return sensor;
 }
 
+
+#pragma mark STSensor
 -(void) start
 {
     if(self.audioSession.inputAvailable) {        
@@ -113,7 +115,6 @@ static MicrophoneSensor* sensor = nil;
 	}
 }
 
-#pragma mark STSensorDelegate
 -(void) upload:(STSensorData *)data
 {
     id audioData = [data.data objectForKey:@"audioData"];
@@ -127,9 +128,7 @@ static MicrophoneSensor* sensor = nil;
 
 
 #pragma mark RKRequestDelegate
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
-    NSLog(@"microphone didLoadResponse");
-}
-
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{}
 
 @end

@@ -11,9 +11,7 @@
 
 @interface AccelerometerSensor ()  <UINavigationControllerDelegate>
 @property (strong, nonatomic) CMMotionManager *motionManager;
-@property (strong, nonatomic) CMAccelerometerData *accelerometer;
 @property (strong, nonatomic) NSTimer *timer;
-@property (assign, nonatomic) int count;
 @end
 
 @implementation AccelerometerSensor
@@ -24,10 +22,7 @@ static AccelerometerSensor* sensor = nil;
 {
     if(!sensor) {
         sensor = [super initWithSensorCallModel: model];
-
         sensor.motionManager = [[CMMotionManager alloc] init];
-        sensor.accelerometer = [[CMAccelerometerData alloc] init];
-        sensor.count = 0;
     }
         
     return sensor;
@@ -36,15 +31,18 @@ static AccelerometerSensor* sensor = nil;
 #pragma mark STSensor
 -(void) start
 {
+    if(self.motionManager.accelerometerActive) {
+        return;
+    }
+    
     self.motionManager.accelerometerUpdateInterval = 1;
     [self.motionManager startAccelerometerUpdates];
-        
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
+    
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.motionManager.accelerometerUpdateInterval target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
 }
 
 -(void) cancel
 {
-    //TODO: May not be able to cancel programmatically. Need to check
     [self.motionManager stopAccelerometerUpdates];
     [self.timer invalidate];
     self.timer = nil;
@@ -72,40 +70,42 @@ static AccelerometerSensor* sensor = nil;
 
 -(void) configure:(NSArray *)settings
 {
-    NSLog(@"accelerometer configure: %i", [settings count]);
-}
-
-#pragma mark CMMotionManager
--(void) accelerometerData:(NSTimer *) timer {
-    if(self.count == 4) {
-        [self.motionManager stopAccelerometerUpdates];
-        [self.timer invalidate];
-        self.timer = nil;
-        self.count = 0;
+    if(!self.motionManager.accelerometerActive) {
         return;
     }
     
-    self.accelerometer = [self.motionManager accelerometerData];
+    NSString *mode = [settings objectAtIndex:0];
+    [self.timer invalidate];
+    self.timer = nil;
     
+    if([mode isEqualToString:@"increaseInterval"]) {
+        self.motionManager.accelerometerUpdateInterval += 0.20;
+    } else if([mode isEqualToString:@"decreaseInterval"]) {
+        if(self.motionManager.accelerometerUpdateInterval - 0.20 <= 0) {
+            return;
+        }
+
+        self.motionManager.accelerometerUpdateInterval -= 0.20;
+    }
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:self.motionManager.accelerometerUpdateInterval target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
+}
+
+#pragma mark CMMotionManager
+-(void) accelerometerData:(NSTimer *) timer {    
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+    STSensorData * data = [[STSensorData alloc] init];
     
-    NSString *x = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].x];
-    NSString *y = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].y];
-    NSString *z = [NSString stringWithFormat:@"%f", [self.accelerometer acceleration].z];
+    NSString *x = [NSString stringWithFormat:@"%f", [[self.motionManager accelerometerData] acceleration].x];
+    NSString *y = [NSString stringWithFormat:@"%f", [[self.motionManager accelerometerData] acceleration].y];
+    NSString *z = [NSString stringWithFormat:@"%f", [[self.motionManager accelerometerData] acceleration].z];
     
     [dict setObject:x forKey: @"x"];
     [dict setObject:y forKey: @"y"];
     [dict setObject:z forKey: @"z"];
-    STSensorData * data = [[STSensorData alloc] init];
     data.data = dict;
     
     [self.delegate STSensor:self withData: data];
-    
-    self.count++;
 }
-
-#pragma mark RKRequestDelegate
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{}
 
 @end

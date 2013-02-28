@@ -23,7 +23,7 @@
         
     if(self)
     {
-        RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
+        RKURL *baseURL = [RKURL URLWithBaseURLString:[SCSettingViewController serverURL]];
         self.client = [RKClient clientWithBaseURL:baseURL];
         self.sensorCallModel = model;
     }

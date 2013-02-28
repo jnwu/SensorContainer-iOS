@@ -53,6 +53,8 @@ static CameraSensor* sensor = nil;
     return sensor;
 }
 
+
+#pragma mark STSensor
 -(void) start
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
@@ -70,6 +72,37 @@ static CameraSensor* sensor = nil;
 {
     //TODO: May not be able to cancel programmatically. Need to check
     [self.delegate STSensorCancelled: self];
+}
+
+-(void) upload:(STSensorData *)data
+{
+    UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
+    //image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationDown];
+    
+    // rotate uiimage by 90 cw
+	CGSize size = [image size];
+	UIGraphicsBeginImageContext(size);
+	CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(context, 0.0, 0.0);
+    CGContextRotateCTM(context, 0);
+    
+	[image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+	image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    // send image file to thing broker
+    RKParams* params = [RKParams params];
+    NSData* imageData = UIImageJPEGRepresentation(image, 0.0);
+    [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
+    
+    
+    // send image file
+    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+    
+    // update send time
+    self.time = [[NSDate date] timeIntervalSince1970];
+    
+    // set camera state
+    self.isTaken = true;
 }
 
 #pragma UIImagePickerControllerDelegate
@@ -93,40 +126,6 @@ static CameraSensor* sensor = nil;
     [self.delegate STSensorCancelled: self];
 }
 
-#pragma mark STSensorDelegate
--(void) upload:(STSensorData *)data
-{
-    UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
-    //image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationDown];
-
-    // rotate uiimage by 90 cw
-	CGSize size = [image size];
-	UIGraphicsBeginImageContext(size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-
-	
-    CGContextTranslateCTM(context, 0.0, 0.0);
-    CGContextRotateCTM(context, 0);
-
-    
-	[image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-	image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    // send image file to thing broker
-    RKParams* params = [RKParams params];
-    NSData* imageData = UIImageJPEGRepresentation(image, 0.0);
-    [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
-
-    
-    // send image file
-    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
-
-    // update send time
-    self.time = [[NSDate date] timeIntervalSince1970];
-    
-    // set camera state
-    self.isTaken = true;
-}
 
 #pragma mark RKRequestDelegate
 - (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {

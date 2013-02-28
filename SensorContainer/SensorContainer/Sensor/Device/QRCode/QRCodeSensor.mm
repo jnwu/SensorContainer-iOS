@@ -23,6 +23,8 @@ static QRCodeSensor* sensor = nil;
     return sensor;
 }
 
+
+#pragma mark STSensor
 -(void) start
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
@@ -42,13 +44,10 @@ static QRCodeSensor* sensor = nil;
 }
 
 -(void) cancel
-{
-    //might want to have a status flag
-}
+{}
 
-#pragma mark -
+
 #pragma mark ZXingDelegateMethods
-
 - (void)zxingController:(ZXingWidgetController*)controller didScanResult:(NSString *)result
 {
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
@@ -67,11 +66,6 @@ static QRCodeSensor* sensor = nil;
 {
     [controller dismissViewControllerAnimated: YES completion:^(){}];
     [self.delegate STSensorCancelled: self];
-}
-
--(void) data:(STSensorData *)data
-{
-    //id value = [data.data objectForKey:@"result"];
 }
 
 @end

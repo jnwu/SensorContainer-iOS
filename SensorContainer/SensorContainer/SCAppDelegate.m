@@ -10,6 +10,7 @@
 #import "GHMenuCell.h"
 #import "GHMenuViewController.h"
 #import "SCRootViewController.h"
+#import "SCSettingViewController.h"
 #import "STThing.h"
 
 #import <RestKit/RestKit.h>
@@ -47,13 +48,11 @@
     
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]];
+    UINavigationController *settingController = [[UINavigationController alloc] initWithRootViewController:[[SCSettingViewController alloc] initWithStyle:UITableViewStyleGrouped]];
     
 	NSArray *controllers = @[
     @[navigationController, navigationController, navigationController],
-    @[navigationController, navigationController, navigationController],
-    @[
-    [[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] init]]
-    ]
+    @[settingController]
 	];
         
 	NSArray *cellInfos = @[
@@ -63,7 +62,7 @@
     @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"MallHop", @"")}
     ],
     @[
-    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"About", @"")}
+    @{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString(@"ThingBroker", @"")}
     ]
 	];
 	
