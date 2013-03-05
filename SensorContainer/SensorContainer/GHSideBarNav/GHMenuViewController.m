@@ -11,7 +11,6 @@
 #import "GHRevealViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
-
 #pragma mark -
 #pragma mark Implementation
 @implementation GHMenuViewController {

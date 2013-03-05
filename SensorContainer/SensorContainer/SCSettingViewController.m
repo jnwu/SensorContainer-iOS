@@ -31,9 +31,9 @@ static SCSettingViewController *viewController = nil;
 
 +(NSString *) serverURL {
     if(!viewController.serverURLTextField) {
-        NSLog(@"nil text");
         return nil;
     }
+    
     return viewController.serverURLTextField.text;
 }
 
@@ -64,22 +64,17 @@ static SCSettingViewController *viewController = nil;
     
     // add text field in table cell
     self.serverURLTextField.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, cell.frame.size.width - 40, cell.frame.size.height - 10);
-//    self.serverURLTextField.delegate = self;
-//    self.serverURLTextField.placeholder = @"Server URL";
-//    self.serverURLTextField.text = @"http://kimberly.magic.ubc.ca:8080/thingbroker";
-    
     [cell.contentView addSubview:self.serverURLTextField];
     
     // configure cell
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+ 
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return @"ThingBroker";
 }
-
 
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

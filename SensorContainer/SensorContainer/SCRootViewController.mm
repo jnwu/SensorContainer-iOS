@@ -161,8 +161,12 @@
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
         
     // TODO: Takeout the following if statement, temp code
-    if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
-/*
+    if([sensor1 isKindOfClass: [QRCodeSensor class]]) {
+        id result = [data.data objectForKey:@"result"];
+        
+        NSLog(@"result: %@", (NSString *)result);
+        
+        /*
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
         id z = [data.data objectForKey:@"z"];
