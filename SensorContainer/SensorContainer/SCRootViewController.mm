@@ -13,6 +13,7 @@
 #import "QRCodeSensor.h"
 #import "AccelerometerSensor.h"
 #import "MicrophoneSensor.h"
+#import "SCSettingViewController.h"
 #import "MBProgressHUD.h"
 
 #import <RestKit/RestKit.h>
@@ -51,7 +52,7 @@
     self.client = [RKClient clientWithBaseURL:baseURL];
     
     // add webview
-	NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://jnwuserver.appspot.com/"]];
+	NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:[SCSettingViewController clientURL]]];
     self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
 
 	// load mobile web app
@@ -66,6 +67,24 @@
 	self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     self.hud.labelText = @"Loading";
 	self.hud.delegate = self;
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+    NSString *currentURL = self.webView.request.URL.absoluteString;
+    NSLog(@"appeared: %@    clientUrl: %@", currentURL, [SCSettingViewController clientURL]);
+    
+    if(currentURL != nil && ![currentURL isEqualToString:[SCSettingViewController clientURL]] ) {
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:[SCSettingViewController clientURL]]];
+        [self.webView loadRequest:requestObj];
+
+        // set up progress for initial loading
+        self.connection = [[NSURLConnection alloc] initWithRequest:requestObj delegate:self];
+        [self.connection start];
+        
+        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        self.hud.labelText = @"Loading";
+        self.hud.delegate = self;
+    }
 }
 
 

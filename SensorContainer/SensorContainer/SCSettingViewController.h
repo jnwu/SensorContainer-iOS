@@ -9,4 +9,5 @@
 
 @interface SCSettingViewController : UITableViewController
 +(NSString *) serverURL;
++(NSString *) clientURL;
 @end
