@@ -13,6 +13,15 @@
 
 #pragma mark -
 #pragma mark Implementation
+
+@interface  GHMenuViewController()
+@property (nonatomic, strong) UIViewController *previousViewController;
+@property (nonatomic, strong) GHRevealViewController *revealViewController;
+@end
+
+
+static GHMenuViewController *ghMenuViewController = nil;
+
 @implementation GHMenuViewController {
 	GHRevealViewController *_sidebarVC;
 	UISearchBar *_searchBar;
@@ -28,17 +37,19 @@
 						withHeaders:(NSArray *)headers 
 					withControllers:(NSArray *)controllers 
 					  withCellInfos:(NSArray *)cellInfos {
-	if (self = [super initWithNibName:nil bundle:nil]) {
-		_sidebarVC = sidebarVC;
+    ghMenuViewController = [super init];
+
+    if (ghMenuViewController) {
+        ghMenuViewController.revealViewController = sidebarVC;
 		_searchBar = searchBar;
 		_headers = headers;
 		_controllers = controllers;
 		_cellInfos = cellInfos;
 		
-		_sidebarVC.sidebarViewController = self;
-		_sidebarVC.contentViewController = _controllers[0][0];
+		ghMenuViewController.revealViewController.sidebarViewController = self;
+		ghMenuViewController.revealViewController.contentViewController = _controllers[0][0];
 	}
-	return self;
+	return ghMenuViewController;
 }
 
 #pragma mark UIViewController
@@ -46,8 +57,6 @@
 	[super viewDidLoad];
 	self.view.frame = CGRectMake(0.0f, 0.0f, kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds));
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-	
-	//[self.view addSubview:_searchBar];
 	
 	_menuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds) - 44.0f)
 												  style:UITableViewStylePlain];
@@ -62,7 +71,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	self.view.frame = CGRectMake(0.0f, 0.0f,kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds));
-	//[_searchBar sizeToFit];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)orientation {
@@ -132,8 +140,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	_sidebarVC.contentViewController = _controllers[indexPath.section][indexPath.row];
-	[_sidebarVC toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
+    self.previousViewController = self.revealViewController.contentViewController;
+    self.revealViewController.contentViewController = _controllers[indexPath.section][indexPath.row];
+	[self.revealViewController toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
 }
 
 #pragma mark Public Methods
@@ -142,7 +151,14 @@
 	if (scrollPosition == UITableViewScrollPositionNone) {
 		[_menuTableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
 	}
-	_sidebarVC.contentViewController = _controllers[indexPath.section][indexPath.row];
+	self.revealViewController.contentViewController = _controllers[indexPath.section][indexPath.row];
 }
+
++(void)setPreviousAsContentViewController {
+    if(ghMenuViewController.previousViewController) {
+        ghMenuViewController.revealViewController.contentViewController = ghMenuViewController.previousViewController;
+    }
+}
+
 
 @end

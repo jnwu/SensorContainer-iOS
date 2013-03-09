@@ -21,4 +21,5 @@
 					animated:(BOOL)animated 
 			  scrollPosition:(UITableViewScrollPosition)scrollPosition;
 
++(void)setPreviousAsContentViewController;
 @end
