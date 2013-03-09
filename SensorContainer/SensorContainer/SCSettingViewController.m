@@ -21,16 +21,16 @@ static SCSettingViewController *viewController = nil;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     viewController = [super initWithStyle:style];
-    if (self) {
-        self.serverURLTextField = [[UITextField alloc] init];
-        self.serverURLTextField.delegate = self;
-        self.serverURLTextField.placeholder = @"Server URL";
-        self.serverURLTextField.text = @"http://kimberly.magic.ubc.ca:8080/thingbroker";
+    if (viewController) {
+        viewController.serverURLTextField = [[UITextField alloc] init];
+        viewController.serverURLTextField.delegate = self;
+        viewController.serverURLTextField.placeholder = @"Server URL";
+        viewController.serverURLTextField.text = @"http://kimberly.magic.ubc.ca:8080/thingbroker";
         
-        self.clientURLTextField = [[UITextField alloc] init];
-        self.clientURLTextField.delegate = self;
-        self.clientURLTextField.placeholder = @"Client URL";
-        self.clientURLTextField.text = @"http://jnwuserver.appspot.com/";
+        viewController.clientURLTextField = [[UITextField alloc] init];
+        viewController.clientURLTextField.delegate = self;
+        viewController.clientURLTextField.placeholder = @"Client URL";
+        viewController.clientURLTextField.text = @"http://jnwuserver.appspot.com/";
     }
     return viewController;
 }
