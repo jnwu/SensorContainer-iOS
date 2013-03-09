@@ -6,8 +6,11 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "MBProgressHUD.h"
 
-@interface MBProgressHUD_Utility : NSObject
+@interface MBProgressHUD (Utility)
+
++(void) showCompleteWithText:(NSString *)text;
++(void) showText:(NSString *)text;
 
 @end
