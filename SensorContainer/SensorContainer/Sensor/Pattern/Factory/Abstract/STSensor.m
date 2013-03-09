@@ -41,7 +41,7 @@
     NSLog(@"you should not get here");
 }
 
--(void) upload:(STSensorData *)data
+-(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
 {
     NSLog(@"you should not get here");
 }

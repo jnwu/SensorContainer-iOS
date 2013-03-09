@@ -43,8 +43,9 @@ static QRCodeSensor* sensor = nil;
     [vc presentViewController:widController animated:YES completion: nil];
 }
 
--(void) cancel
-{}
+-(void) cancel {
+    [self.delegate STSensorCancelled: self];    
+}
 
 
 #pragma mark ZXingDelegateMethods

@@ -46,9 +46,11 @@ static AccelerometerSensor* sensor = nil;
     [self.motionManager stopAccelerometerUpdates];
     [self.timer invalidate];
     self.timer = nil;
+    
+    [self.delegate STSensorCancelled: self];    
 }
 
--(void) upload:(STSensorData *)data
+-(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
 {
     id x = [data.data objectForKey:@"x"];
     id y = [data.data objectForKey:@"y"];
@@ -65,7 +67,7 @@ static AccelerometerSensor* sensor = nil;
     
     NSString *jsonRequest =  [dictRequest JSONString];
     RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+    [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
 }
 
 -(void) configure:(NSArray *)settings
@@ -105,7 +107,7 @@ static AccelerometerSensor* sensor = nil;
     [dict setObject:z forKey: @"z"];
     data.data = dict;
     
-    [self.delegate STSensor:self withData: data];
+    [self.delegate STSensor:self withData:data];
 }
 
 @end

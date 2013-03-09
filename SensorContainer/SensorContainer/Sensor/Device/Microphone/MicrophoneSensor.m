@@ -6,12 +6,13 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import "MicrophoneSensor.h"
+
 #import <AVFoundation/AVFoundation.h>
 #import <Foundation/Foundation.h>
-
 #import <FLACiOS/metadata.h>
 
+#import "MicrophoneSensor.h"
+#import "MBProgressHUD+Utility.h"
 #include "wav_to_flac.h"
 
 
@@ -101,9 +102,10 @@ static MicrophoneSensor* sensor = nil;
 -(void) cancel
 {
     [self.recorder stop];
+    [self.delegate STSensorCancelled: self];    
 }
 
--(void) upload:(STSensorData *)data
+-(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
 {
     id audioData = [data.data objectForKey:@"audioData"];
     id stringData = [data.data objectForKey:@"stringData"];
@@ -111,7 +113,7 @@ static MicrophoneSensor* sensor = nil;
     if(audioData) {
         RKParams* params = [RKParams params];
         [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
-        [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+        [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
     }
     
     if(stringData) {
@@ -124,7 +126,7 @@ static MicrophoneSensor* sensor = nil;
         
         NSString *jsonRequest =  [dictRequest JSONString];
         RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-        [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+        [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
     }
 }
 
@@ -176,6 +178,10 @@ static MicrophoneSensor* sensor = nil;
                     // extract recognition string
                     int index = [result rangeOfString:@"utterance"].location;
                     int length = [result rangeOfString:@"utterance"].length;
+                    
+                    if(!length)
+                        return;
+                    
                     NSString *subStr = [result substringFromIndex:index+length+3];
                     index = [subStr rangeOfString:@"\""].location;
                     subStr = [subStr substringToIndex:index];
@@ -200,7 +206,9 @@ static MicrophoneSensor* sensor = nil;
 
 
 #pragma mark RKRequestDelegate
-- (void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response
-{}
+- (void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+    // display hud
+    [MBProgressHUD showCompleteWithText:@"Uploaded Audio"];
+}
 
 @end

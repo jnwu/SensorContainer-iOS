@@ -8,6 +8,7 @@
 
 #import "CameraSensor.h"
 #import "SCAppDelegate.h"
+#import "MBProgressHUD+Utility.h"
 
 #import <RestKit/RKJSONParserJSONKit.h>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) UIImagePickerController *picker;
 @property (nonatomic, assign) NSTimeInterval time;
 @property (nonatomic, assign) BOOL isTaken;
+@property (nonatomic, strong) NSString *thing;
 @end
 
 @implementation CameraSensor
@@ -47,7 +49,7 @@ static CameraSensor* sensor = nil;
         }
         
         // set camera state
-        self.isTaken = false;
+        self.isTaken = NO;
     }
     
     return sensor;
@@ -60,7 +62,6 @@ static CameraSensor* sensor = nil;
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
     SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
     UIViewController *vc = (UIViewController *) appDelegate.revealController;
     
     //present image picker
@@ -74,12 +75,14 @@ static CameraSensor* sensor = nil;
     [self.delegate STSensorCancelled: self];
 }
 
--(void) upload:(STSensorData *)data
+-(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
 {
-    UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
-    //image = [UIImage imageWithCGImage:image.CGImage scale:image.scale orientation:UIImageOrientationDown];
+    // keep a local copy of thing id, as subsequent asynchronous sends are required
+    self.thing = [thing copy];
     
     // rotate uiimage by 90 cw
+    UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
+
 	CGSize size = [image size];
 	UIGraphicsBeginImageContext(size);
 	CGContextRef context = UIGraphicsGetCurrentContext();
@@ -96,13 +99,13 @@ static CameraSensor* sensor = nil;
     
     
     // send image file
-    [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
+    [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", self.thing] params:params delegate:self];
     
     // update send time
     self.time = [[NSDate date] timeIntervalSince1970];
     
     // set camera state
-    self.isTaken = true;
+    self.isTaken = YES;
 }
 
 #pragma UIImagePickerControllerDelegate
@@ -123,7 +126,7 @@ static CameraSensor* sensor = nil;
     // close camera
     [self.picker dismissViewControllerAnimated:YES completion:^(){}];
     //notify delegate
-    [self.delegate STSensorCancelled: self];
+    [self.delegate STSensorCancelled:self];
 }
 
 
@@ -135,23 +138,13 @@ static CameraSensor* sensor = nil;
                 
         // after the file has been sent to thing broker, sent request to get content id
         if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isTaken) {
-            [self.client get:[NSString stringWithFormat:@"/events/thing/canvas?requester=canvas"] delegate:self];
-            self.isTaken = false;
-        }
-        
-        // received content id, send append request
-        if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"requester"]) {
-            NSDictionary *dict = [response parsedBody:nil];
-            NSArray *array = nil;
-            
-            for (id key in dict)
-            {
-                array = [(NSDictionary *) key allValues];
-                break;
-            }
+            NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [[response bodyAsString] dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+            NSArray *contentID = [jsonDict objectForKey:@"content"];
             
             // set append imagr src url
-            NSString *post = [NSString stringWithFormat:@"<img src='http://kimberly.magic.ubc.ca:8080/thingbroker/events/event/content/%@?mustAttach=false' height='250' width='250'>", [[array objectAtIndex:1] objectAtIndex:0]];
+            NSString *post = [NSString stringWithFormat:@"<img src='http://kimberly.magic.ubc.ca:8080/thingbroker/events/event/content/%@?mustAttach=false' height='250' width='250'>", [contentID objectAtIndex:0]];
             
             // post image src
             NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
@@ -159,8 +152,14 @@ static CameraSensor* sensor = nil;
             
             NSString *jsonRequest =  [dictRequest JSONString];
             RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-            [self.client post:@"/events/event/thing/canvas?keep-stored=true" params:params delegate:self];
-        }
+            [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", self.thing] params:params delegate:self];
+            
+            // turn off camera state, to avoid repeatedly sends
+            self.isTaken = NO;
+            
+            // display hud
+            [MBProgressHUD showCompleteWithText:@"Uploaded Photo"];
+        }        
     }
 }
 

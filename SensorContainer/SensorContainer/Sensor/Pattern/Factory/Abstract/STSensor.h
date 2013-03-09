@@ -52,7 +52,7 @@
 /*
  Upload sensor data to thing broker
  */
--(void) upload:(STSensorData *)data;
+-(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing;
 
 /*
  Configure sensor-specific settings
