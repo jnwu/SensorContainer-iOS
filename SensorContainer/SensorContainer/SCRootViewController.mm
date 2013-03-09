@@ -28,11 +28,23 @@
 @property (strong, nonatomic) STSensor *sensor;
 @property (strong, nonatomic) MBProgressHUD *hud;
 @property (strong, nonatomic) RKClient *client;
+@property (assign, nonatomic) BOOL isSensorActive;
+@property (strong, nonatomic) NSString *thing;
+@property (strong, nonatomic) NSString *url;
 @end
 
 
 @implementation SCRootViewController
 
+- (id)initWithURL:(NSString *)url {
+    self = [super init];
+   
+    if(self) {
+        self.url = [[NSString alloc] initWithString:url];
+    }
+    
+    return self;
+}
 
 #pragma mark UIViewController
 - (void)viewWillLayoutSubviews {
@@ -47,6 +59,9 @@
     self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
 
+    self.isSensorActive = NO;
+    self.thing = nil;
+    
     // init restkit client
     RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
     self.client = [RKClient clientWithBaseURL:baseURL];
@@ -71,8 +86,8 @@
 
 -(void)viewDidAppear:(BOOL)animated {
     NSString *currentURL = self.webView.request.URL.absoluteString;
-    NSLog(@"appeared: %@    clientUrl: %@", currentURL, [SCSettingViewController clientURL]);
-    
+
+    // load new page if client url has been changed
     if(currentURL != nil && ![currentURL isEqualToString:[SCSettingViewController clientURL]] ) {
         NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:[SCSettingViewController clientURL]]];
         [self.webView loadRequest:requestObj];
@@ -120,12 +135,13 @@
     
     // retrieve parameters from url
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
-    NSRange range = {3, [parts count]-3};
+    NSRange range = {4, [parts count]-4};
     
-    if([parts count] < 5) {
+    if([parts count] < 6) {
         return YES;
     }
     
+    self.thing = [(NSString *)[parts objectAtIndex:3] copy];
     parts = [parts subarrayWithRange:range];
     if([(NSString *)[parts objectAtIndex:0] length] > 0) {
         self.sensor = [STCSensorFactory getSensorWithCommand:[parts objectAtIndex:0]];
@@ -133,17 +149,25 @@
         if(!self.sensor) {
             return NO;
         }
-        
-        self.sensor.delegate = self;
+                
+        // if a sensor is running, stop it, and start new sensor
         NSString *selector = [parts objectAtIndex:1];
-
+        if([selector isEqualToString:@"start"] && self.isSensorActive) {
+            [self.sensor cancel];
+        }
+        
+        // check for function parameters
         if([parts count] > 2) {
             NSRange range = {2, [parts count]-2};
+            
             selector = [NSString stringWithFormat:@"%@:", selector];
             parts = [parts subarrayWithRange:range];            
         } else {
             parts = nil;
         }
+        
+        self.isSensorActive = YES;
+        self.sensor.delegate = self;
         
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
@@ -180,17 +204,14 @@
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
         
     // TODO: Takeout the following if statement, temp code
-    if([sensor1 isKindOfClass: [QRCodeSensor class]]) {
-        id result = [data.data objectForKey:@"result"];
-        
-        NSLog(@"result: %@", (NSString *)result);
-        
-        /*
-        id x = [data.data objectForKey:@"x"];
-        id y = [data.data objectForKey:@"y"];
-        id z = [data.data objectForKey:@"z"];
-                
-        NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
+    if([sensor1 isKindOfClass: [AccelerometerSensor class]]) {
+/*
+         id x = [data.data objectForKey:@"x"];
+         id y = [data.data objectForKey:@"y"];
+         id z = [data.data objectForKey:@"z"];
+         
+         NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
+         
 
         NSString *jqueryCDN = @"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
         NSData *jquery = [NSData dataWithContentsOfURL:[NSURL URLWithString:jqueryCDN]];
@@ -204,14 +225,16 @@
 */ 
     }
     
-    [sensor1 upload:data];
+    if(self.thing)
+        [sensor1 uploadData:data ForThing:self.thing];
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
 {}
 
--(void) STSensorCancelled: (STSensor *) sensor
-{}
+-(void) STSensorCancelled: (STSensor *) sensor {
+    self.isSensorActive = NO;
+}
 
 - (void)objectLoader:(RKObjectLoader *)objectLoader didFailWithError:(NSError *)error
 {}
