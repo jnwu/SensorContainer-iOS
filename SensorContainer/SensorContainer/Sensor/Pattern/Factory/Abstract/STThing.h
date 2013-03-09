@@ -9,13 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface STThing : NSObject
-@property (strong, nonatomic) NSString *thingId;
-@property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *description;
-@property (strong, nonatomic) NSString *type;
-@property (strong, nonatomic) NSDictionary *metadata;
-@property (strong, nonatomic) NSMutableArray *followers;
-@property (strong, nonatomic) NSMutableArray *following;
-@property (assign, nonatomic) BOOL state;
+-(id) initWithThingId:(NSString *)thingId;
+
++(void) setThingId:(NSString *)thingId;
++(void) setDisplayId:(NSString *)displayId;
++(NSString *) thingId;
++(NSString *) displayId;
 @end
 
