@@ -9,9 +9,19 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>SensorContainerTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>04CB408E16E287120066F946</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>6BC36D2E169EB51B00C0DBAB</key>
 		<dict>
 			<key>primary</key>

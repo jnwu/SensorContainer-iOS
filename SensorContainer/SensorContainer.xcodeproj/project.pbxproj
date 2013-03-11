@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0405084316A78C64005B0308 /* CoreMotion.framework */; };
-		042FF37716D45145005AE6FA /* MicrophoneSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 042FF37616D45145005AE6FA /* MicrophoneSensor.m */; };
 		0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B52B16ADFF9700DE73E6 /* CameraSensor.m */; };
 		0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */; };
 		0431B55216ADFF9700DE73E6 /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53F16ADFF9700DE73E6 /* STError.m */; };
@@ -27,8 +26,10 @@
 		0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */; };
 		0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */; };
 		0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B57016AE0D3600DE73E6 /* searchTextBG.png */; };
+		04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */; };
 		044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EF66E16B367F80099A862 /* MBProgressHUD.m */; };
 		044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 044EF67016B371660099A862 /* 37x-Checkmark.png */; };
+		046F821716DEC7980030D813 /* SCSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046F821616DEC7980030D813 /* SCSettingViewController.m */; };
 		047963DF16B1167800DC4E85 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 047963DE16B1167800DC4E85 /* Icon.png */; };
 		047963E116B1183600DC4E85 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 047963E016B1183600DC4E85 /* Icon@2x.png */; };
 		04ADBEC716B5DBFC005C1E11 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBEC616B5DBFC005C1E11 /* CFNetwork.framework */; };
@@ -40,6 +41,16 @@
 		04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04ADBEBB16B5DAF9005C1E11 /* libRestKit.a */; };
 		04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */ = {isa = PBXBuildFile; fileRef = 04ADBED416B5DE2C005C1E11 /* STThing.m */; };
 		04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */; };
+		04AE8D7416DC6939002909AD /* MicrophoneSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE8D7316DC6939002909AD /* MicrophoneSensor.m */; };
+		04AFE00016ED41E500826D54 /* SensorContainerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04CB409B16E287120066F946 /* SensorContainerTests.mm */; };
+		04AFE00116ED42E200826D54 /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */; };
+		04CB409116E287120066F946 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB409016E287120066F946 /* SenTestingKit.framework */; };
+		04CB409216E287120066F946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
+		04CB409316E287120066F946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
+		04CB409916E287120066F946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04CB409716E287120066F946 /* InfoPlist.strings */; };
+		04CF774416EA61C30015B8AD /* SCQRViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04CF774316EA61C30015B8AD /* SCQRViewController.mm */; };
+		04E23E0B16E2FC07002D50AD /* FLACiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E23E0116E2F7C7002D50AD /* FLACiOS.framework */; };
+		04E23E0F16E3008D002D50AD /* wav_to_flac.c in Sources */ = {isa = PBXBuildFile; fileRef = 04E23E0D16E3008D002D50AD /* wav_to_flac.c */; };
 		04F8D41616B0E00B006560CA /* AccelerometerSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D41516B0E00B006560CA /* AccelerometerSensor.m */; };
 		6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
@@ -103,6 +114,13 @@
 			remoteGlobalIDString = 25160D1514564E810060A5C5;
 			remoteInfo = RestKit;
 		};
+		04E23D4A16E298C1002D50AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6BC36D26169EB51B00C0DBAB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6BC36D2E169EB51B00C0DBAB;
+			remoteInfo = SensorContainer;
+		};
 		6BC36D8F169EBB6300C0DBAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */;
@@ -128,8 +146,6 @@
 
 /* Begin PBXFileReference section */
 		0405084316A78C64005B0308 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		042FF37516D45145005AE6FA /* MicrophoneSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicrophoneSensor.h; sourceTree = "<group>"; };
-		042FF37616D45145005AE6FA /* MicrophoneSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicrophoneSensor.m; sourceTree = "<group>"; };
 		0431B52A16ADFF9700DE73E6 /* CameraSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSensor.h; sourceTree = "<group>"; };
 		0431B52B16ADFF9700DE73E6 /* CameraSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSensor.m; sourceTree = "<group>"; };
 		0431B53916ADFF9700DE73E6 /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeSensor.h; sourceTree = "<group>"; };
@@ -159,9 +175,13 @@
 		0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarIcon.png; sourceTree = "<group>"; };
 		0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarIcon@2x.png"; sourceTree = "<group>"; };
 		0431B57016AE0D3600DE73E6 /* searchTextBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchTextBG.png; sourceTree = "<group>"; };
+		04483A3C16E7F5D100B0EFBF /* MBProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+Utility.h"; path = "Utilities/MBProgressHUD+Utility.h"; sourceTree = "<group>"; };
+		04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+Utility.m"; path = "Utilities/MBProgressHUD+Utility.m"; sourceTree = "<group>"; };
 		044EF66D16B367F80099A862 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = SensorContainer/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
 		044EF66E16B367F80099A862 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = SensorContainer/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		044EF67016B371660099A862 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
+		046F821516DEC7980030D813 /* SCSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSettingViewController.h; sourceTree = "<group>"; };
+		046F821616DEC7980030D813 /* SCSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSettingViewController.m; sourceTree = "<group>"; };
 		047963DE16B1167800DC4E85 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		047963E016B1183600DC4E85 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RestKit.xcodeproj; path = RestKit/RestKit.xcodeproj; sourceTree = "<group>"; };
@@ -171,9 +191,23 @@
 		04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		04ADBECE16B5DC23005C1E11 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		04ADBED316B5DE2C005C1E11 /* STThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STThing.h; sourceTree = "<group>"; };
-		04ADBED416B5DE2C005C1E11 /* STThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STThing.m; sourceTree = "<group>"; };
+		04ADBED316B5DE2C005C1E11 /* STThing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STThing.h; path = Sensor/Pattern/Factory/Abstract/STThing.h; sourceTree = "<group>"; };
+		04ADBED416B5DE2C005C1E11 /* STThing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = STThing.m; path = Sensor/Pattern/Factory/Abstract/STThing.m; sourceTree = "<group>"; };
 		04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCRootViewController.mm; sourceTree = "<group>"; };
+		04AE8D7216DC6939002909AD /* MicrophoneSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MicrophoneSensor.h; path = Microphone/MicrophoneSensor.h; sourceTree = "<group>"; };
+		04AE8D7316DC6939002909AD /* MicrophoneSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneSensor.m; path = Microphone/MicrophoneSensor.m; sourceTree = "<group>"; };
+		04CB408F16E287120066F946 /* SensorContainerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SensorContainerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		04CB409016E287120066F946 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		04CB409616E287120066F946 /* SensorContainerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensorContainerTests-Info.plist"; sourceTree = "<group>"; };
+		04CB409816E287120066F946 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		04CB409A16E287120066F946 /* SensorContainerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SensorContainerTests.h; sourceTree = "<group>"; };
+		04CB409B16E287120066F946 /* SensorContainerTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SensorContainerTests.mm; sourceTree = "<group>"; };
+		04CB409D16E287120066F946 /* SensorContainerTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensorContainerTests-Prefix.pch"; sourceTree = "<group>"; };
+		04CF774216EA61C30015B8AD /* SCQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCQRViewController.h; sourceTree = "<group>"; };
+		04CF774316EA61C30015B8AD /* SCQRViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCQRViewController.mm; sourceTree = "<group>"; };
+		04E23E0116E2F7C7002D50AD /* FLACiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLACiOS.framework; path = ../../../../FLACiOS.framework; sourceTree = "<group>"; };
+		04E23E0D16E3008D002D50AD /* wav_to_flac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wav_to_flac.c; path = ../../../wav_to_flac/wav_to_flac.c; sourceTree = "<group>"; };
+		04E23E0E16E3008D002D50AD /* wav_to_flac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wav_to_flac.h; path = ../../../wav_to_flac/wav_to_flac.h; sourceTree = "<group>"; };
 		04F8D41416B0E00B006560CA /* AccelerometerSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSensor.h; sourceTree = "<group>"; };
 		04F8D41516B0E00B006560CA /* AccelerometerSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSensor.m; sourceTree = "<group>"; };
 		6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensorContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -201,10 +235,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		04CB408B16E287120066F946 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04CB409116E287120066F946 /* SenTestingKit.framework in Frameworks */,
+				04CB409216E287120066F946 /* UIKit.framework in Frameworks */,
+				04CB409316E287120066F946 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC36D2C169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04E23E0B16E2FC07002D50AD /* FLACiOS.framework in Frameworks */,
 				04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */,
 				04ADBED116B5DC2E005C1E11 /* SystemConfiguration.framework in Frameworks */,
 				04ADBECF16B5DC23005C1E11 /* Security.framework in Frameworks */,
@@ -234,8 +279,8 @@
 		042FF36C16D450D5005AE6FA /* Microphone */ = {
 			isa = PBXGroup;
 			children = (
-				042FF37516D45145005AE6FA /* MicrophoneSensor.h */,
-				042FF37616D45145005AE6FA /* MicrophoneSensor.m */,
+				04AE8D7216DC6939002909AD /* MicrophoneSensor.h */,
+				04AE8D7316DC6939002909AD /* MicrophoneSensor.m */,
 			);
 			name = Microphone;
 			sourceTree = "<group>";
@@ -252,6 +297,7 @@
 		0431B52716ADFF9700DE73E6 /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				04CF774C16EA6A4E0015B8AD /* GPS */,
 				042FF36C16D450D5005AE6FA /* Microphone */,
 				0431B52816ADFF9700DE73E6 /* Accelerometer */,
 				0431B52916ADFF9700DE73E6 /* Camera */,
@@ -313,8 +359,6 @@
 				0431B53F16ADFF9700DE73E6 /* STError.m */,
 				0431B54016ADFF9700DE73E6 /* STSensor.h */,
 				0431B54116ADFF9700DE73E6 /* STSensor.m */,
-				04ADBED316B5DE2C005C1E11 /* STThing.h */,
-				04ADBED416B5DE2C005C1E11 /* STThing.m */,
 			);
 			path = Abstract;
 			sourceTree = "<group>";
@@ -370,9 +414,19 @@
 			path = SensorContainer/Resources;
 			sourceTree = "<group>";
 		};
+		04483A3116E7F3FB00B0EFBF /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				04483A3C16E7F5D100B0EFBF /* MBProgressHUD+Utility.h */,
+				04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
 		044EF66B16B367790099A862 /* 3rdPartyUtils */ = {
 			isa = PBXGroup;
 			children = (
+				04E23E0C16E3006B002D50AD /* Wav2FLAC */,
 				044EF66C16B367A00099A862 /* MBProgressHUD */,
 				0431B55B16AE022400DE73E6 /* GHSideBarNav */,
 			);
@@ -400,6 +454,51 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		04CB409416E287120066F946 /* SensorContainerTests */ = {
+			isa = PBXGroup;
+			children = (
+				04CB409A16E287120066F946 /* SensorContainerTests.h */,
+				04CB409B16E287120066F946 /* SensorContainerTests.mm */,
+				04CB409516E287120066F946 /* Supporting Files */,
+			);
+			path = SensorContainerTests;
+			sourceTree = "<group>";
+		};
+		04CB409516E287120066F946 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				04CB409616E287120066F946 /* SensorContainerTests-Info.plist */,
+				04CB409716E287120066F946 /* InfoPlist.strings */,
+				04CB409D16E287120066F946 /* SensorContainerTests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		04CF774A16EA626C0015B8AD /* Thing */ = {
+			isa = PBXGroup;
+			children = (
+				04ADBED316B5DE2C005C1E11 /* STThing.h */,
+				04ADBED416B5DE2C005C1E11 /* STThing.m */,
+			);
+			name = Thing;
+			sourceTree = "<group>";
+		};
+		04CF774C16EA6A4E0015B8AD /* GPS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = GPS;
+			sourceTree = "<group>";
+		};
+		04E23E0C16E3006B002D50AD /* Wav2FLAC */ = {
+			isa = PBXGroup;
+			children = (
+				04E23E0D16E3008D002D50AD /* wav_to_flac.c */,
+				04E23E0E16E3008D002D50AD /* wav_to_flac.h */,
+			);
+			name = Wav2FLAC;
+			sourceTree = "<group>";
+		};
 		6BC36D24169EB51B00C0DBAB = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +507,7 @@
 				044EF66B16B367790099A862 /* 3rdPartyUtils */,
 				0431B56B16AE0D3600DE73E6 /* Resources */,
 				6BC36D39169EB51B00C0DBAB /* SensorContainer */,
+				04CB409416E287120066F946 /* SensorContainerTests */,
 				6BC36D32169EB51B00C0DBAB /* Frameworks */,
 				6BC36D30169EB51B00C0DBAB /* Products */,
 			);
@@ -417,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */,
+				04CB408F16E287120066F946 /* SensorContainerTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -424,6 +525,7 @@
 		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04E23E0116E2F7C7002D50AD /* FLACiOS.framework */,
 				04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */,
 				04ADBECE16B5DC23005C1E11 /* Security.framework */,
 				04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */,
@@ -442,6 +544,7 @@
 				6BC36D33169EB51B00C0DBAB /* UIKit.framework */,
 				6BC36D35169EB51B00C0DBAB /* Foundation.framework */,
 				6BC36D37169EB51B00C0DBAB /* CoreGraphics.framework */,
+				04CB409016E287120066F946 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -449,11 +552,17 @@
 		6BC36D39169EB51B00C0DBAB /* SensorContainer */ = {
 			isa = PBXGroup;
 			children = (
+				04CF774A16EA626C0015B8AD /* Thing */,
+				04483A3116E7F3FB00B0EFBF /* Utilities */,
 				0431B52616ADFF9700DE73E6 /* Sensor */,
 				6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */,
 				6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */,
 				6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */,
 				04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */,
+				046F821516DEC7980030D813 /* SCSettingViewController.h */,
+				046F821616DEC7980030D813 /* SCSettingViewController.m */,
+				04CF774216EA61C30015B8AD /* SCQRViewController.h */,
+				04CF774316EA61C30015B8AD /* SCQRViewController.mm */,
 				6BC36D3A169EB51B00C0DBAB /* Supporting Files */,
 			);
 			path = SensorContainer;
@@ -486,13 +595,32 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		04CB408E16E287120066F946 /* SensorContainerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04CB40A516E287120066F946 /* Build configuration list for PBXNativeTarget "SensorContainerTests" */;
+			buildPhases = (
+				04CB408A16E287120066F946 /* Sources */,
+				04CB408B16E287120066F946 /* Frameworks */,
+				04CB408C16E287120066F946 /* Resources */,
+				04CB408D16E287120066F946 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				04E23D4B16E298C1002D50AD /* PBXTargetDependency */,
+			);
+			name = SensorContainerTests;
+			productName = SensorContainerTests;
+			productReference = 04CB408F16E287120066F946 /* SensorContainerTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		6BC36D2E169EB51B00C0DBAB /* SensorContainer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6BC36D5C169EB51C00C0DBAB /* Build configuration list for PBXNativeTarget "SensorContainer" */;
 			buildPhases = (
 				6BC36D2B169EB51B00C0DBAB /* Sources */,
-				6BC36D2C169EB51B00C0DBAB /* Frameworks */,
 				6BC36D2D169EB51B00C0DBAB /* Resources */,
+				6BC36D2C169EB51B00C0DBAB /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -538,6 +666,7 @@
 			projectRoot = "";
 			targets = (
 				6BC36D2E169EB51B00C0DBAB /* SensorContainer */,
+				04CB408E16E287120066F946 /* SensorContainerTests */,
 			);
 		};
 /* End PBXProject section */
@@ -595,6 +724,14 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		04CB408C16E287120066F946 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04CB409916E287120066F946 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC36D2D169EB51B00C0DBAB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -617,7 +754,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		04CB408D16E287120066F946 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		04CB408A16E287120066F946 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04AFE00116ED42E200826D54 /* STCSensorFactory.m in Sources */,
+				04AFE00016ED41E500826D54 /* SensorContainerTests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6BC36D2B169EB51B00C0DBAB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -639,7 +801,11 @@
 				044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */,
 				04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */,
 				04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */,
-				042FF37716D45145005AE6FA /* MicrophoneSensor.m in Sources */,
+				04AE8D7416DC6939002909AD /* MicrophoneSensor.m in Sources */,
+				046F821716DEC7980030D813 /* SCSettingViewController.m in Sources */,
+				04E23E0F16E3008D002D50AD /* wav_to_flac.c in Sources */,
+				04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */,
+				04CF774416EA61C30015B8AD /* SCQRViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +817,11 @@
 			name = RestKit;
 			targetProxy = 04ADBEC416B5DBED005C1E11 /* PBXContainerItemProxy */;
 		};
+		04E23D4B16E298C1002D50AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6BC36D2E169EB51B00C0DBAB /* SensorContainer */;
+			targetProxy = 04E23D4A16E298C1002D50AD /* PBXContainerItemProxy */;
+		};
 		6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = ZXingWidget;
@@ -659,6 +830,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		04CB409716E287120066F946 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04CB409816E287120066F946 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -670,6 +849,74 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		04CB409E16E287120066F946 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SensorContainer.app/SensorContainer";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SensorContainerTests/SensorContainerTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+					"zxing/iphone/ZXingWidget/Classes/**",
+					zxing/cpp/core/src/,
+				);
+				INFOPLIST_FILE = "SensorContainerTests/SensorContainerTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				MACH_O_TYPE = mh_bundle;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		04CB409F16E287120066F946 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SensorContainer.app/SensorContainer";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SRCROOT)\"",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SensorContainerTests/SensorContainerTests-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
+					"zxing/iphone/ZXingWidget/Classes/**",
+					zxing/cpp/core/src/,
+				);
+				INFOPLIST_FILE = "SensorContainerTests/SensorContainerTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				MACH_O_TYPE = mh_bundle;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		6BC36D5A169EB51C00C0DBAB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -727,14 +974,23 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"zxing/iphone/ZXingWidget/Classes/**",
 					zxing/cpp/core/src/,
 					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../..\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -752,14 +1008,23 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jack Wu (F5DVHSVAUU)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../..\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				HEADER_SEARCH_PATHS = (
 					"zxing/iphone/ZXingWidget/Classes/**",
 					zxing/cpp/core/src/,
 					"\"$(BUILT_PRODUCTS_DIR)/../../Headers\"",
 				);
 				INFOPLIST_FILE = "SensorContainer/SensorContainer-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../..\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
@@ -775,6 +1040,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		04CB40A516E287120066F946 /* Build configuration list for PBXNativeTarget "SensorContainerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04CB409E16E287120066F946 /* Debug */,
+				04CB409F16E287120066F946 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		6BC36D29169EB51B00C0DBAB /* Build configuration list for PBXProject "SensorContainer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

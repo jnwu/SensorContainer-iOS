@@ -24,7 +24,6 @@
     NSDictionary *root = [[NSDictionary alloc] initWithContentsOfFile:path];
     
     path = nil;
-    
     return [root objectForKey: key];
 }
 

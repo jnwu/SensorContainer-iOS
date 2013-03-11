@@ -18,7 +18,8 @@ static STThing *thing = nil;
 @implementation STThing
 
 // the app can only interact with one thing at any time
--(id) initWithThingId:(NSString *)thingId {
+- (id)initWithThingId:(NSString *)thingId
+{
     thing = [super init];
     
     if(thing) {
@@ -28,20 +29,26 @@ static STThing *thing = nil;
     return thing;
 }
 
-+(void) setThingId:(NSString *)thingId {
++ (void)setThingId:(NSString *)thingId
+{
     thing.thingId = thingId;
 }
 
-+(void) setDisplayId:(NSString *)displayId {
++ (void)setDisplayId:(NSString *)displayId
+{
     thing.displayId = displayId;
 }
 
-+(NSString *) thingId {
++ (NSString *)thingId
+{
     return thing.thingId;
 }
 
-+(NSString *) displayId {
++ (NSString *)displayId
+{
     return thing.displayId;
 }
+
+
 
 @end
