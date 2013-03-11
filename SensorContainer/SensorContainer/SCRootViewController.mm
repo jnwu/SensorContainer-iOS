@@ -63,7 +63,7 @@
     self.thing = nil;
     
     // init restkit client
-    RKURL *baseURL = [RKURL URLWithBaseURLString:@"http://kimberly.magic.ubc.ca:8080/thingbroker"];
+    RKURL *baseURL = [RKURL URLWithBaseURLString:[SCSettingViewController serverURL]];
     self.client = [RKClient clientWithBaseURL:baseURL];
     
     // add webview
@@ -117,7 +117,7 @@
                     
                     NSString *jsonRequest =  [dictRequest JSONString];
                     RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-                    [self.client post:@"/events/event/thing/impress?keep-stored=true" params:params delegate:self];
+                    [self.client post:@"/things/impress/events?keep-stored=true" params:params delegate:self];
                 }
                 
                 if ([request.URL.host isEqualToString:@"previousSlide"]) {
@@ -126,7 +126,7 @@
                     
                     NSString *jsonRequest =  [dictRequest JSONString];
                     RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-                    [self.client post:@"/events/event/thing/impress?keep-stored=true" params:params delegate:self];
+                    [self.client post:@"/things/impress/events?keep-stored=true" params:params delegate:self];
                 }
                 
                 return NO;
