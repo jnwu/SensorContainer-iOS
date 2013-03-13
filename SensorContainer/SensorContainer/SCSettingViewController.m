@@ -30,7 +30,7 @@ static SCSettingViewController *viewController = nil;
         viewController.clientURLTextField = [[UITextField alloc] init];
         viewController.clientURLTextField.delegate = self;
         viewController.clientURLTextField.placeholder = @"Client URL";
-        viewController.clientURLTextField.text = @"http://jnwuserver.appspot.com/";
+        viewController.clientURLTextField.text = @"http://jnwuclient.appspot.com/";
     }
     return viewController;
 }
