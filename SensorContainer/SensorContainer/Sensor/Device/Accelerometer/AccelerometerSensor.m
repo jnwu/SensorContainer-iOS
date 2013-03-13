@@ -8,6 +8,7 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "AccelerometerSensor.h"
+#import "MBProgressHUD+Utility.h"
 
 @interface AccelerometerSensor ()  <UINavigationControllerDelegate>
 @property (strong, nonatomic) CMMotionManager *motionManager;
@@ -39,6 +40,8 @@ static AccelerometerSensor* sensor = nil;
     [self.motionManager startAccelerometerUpdates];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:self.motionManager.accelerometerUpdateInterval target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
+
+    [MBProgressHUD showCompleteWithText:@"Started Accelerometer"];
 }
 
 -(void) cancel
@@ -47,7 +50,8 @@ static AccelerometerSensor* sensor = nil;
     [self.timer invalidate];
     self.timer = nil;
     
-    [self.delegate STSensorCancelled: self];    
+    [MBProgressHUD showCompleteWithText:@"Stopped Accelerometer"];
+    [self.delegate STSensorCancelled: self];
 }
 
 -(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing

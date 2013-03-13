@@ -20,6 +20,7 @@
 @property (strong, nonatomic) AVAudioRecorder *recorder;
 @property (strong, nonatomic) AVAudioSession *audioSession;
 @property (strong, nonatomic) NSString *url;
+@property (strong, nonatomic) MBProgressHUD *hud;
 @end
 
 static MicrophoneSensor* sensor = nil;
@@ -96,13 +97,15 @@ static MicrophoneSensor* sensor = nil;
 {
     if(self.audioSession.inputAvailable) {        
         [self.recorder record];
+        self.hud = [MBProgressHUD showLoadingWithHUD:self.hud AndText:@"Listening"];
     }
 }
 
 -(void) cancel
 {
+    [self.hud hide:YES];
     [self.recorder stop];
-    [self.delegate STSensorCancelled: self];    
+    [self.delegate STSensorCancelled: self];
 }
 
 -(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
