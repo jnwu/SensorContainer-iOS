@@ -28,17 +28,20 @@
 
 #pragma mark STSensorDelegate
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
-//    [STThing setDisplayId:@""];
     [GHMenuViewController setPreviousAsContentViewController];
+    NSArray *parts = [[data.data objectForKey:@"result"] componentsSeparatedByString:@"/"];
+
+    if([parts count] == 5) {
+        [STThing setDisplayId:[parts objectAtIndex:4]];
+        [MBProgressHUD showCompleteWithText:@"Updated Display ID"];
+    }
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
 {}
 
 -(void) STSensorCancelled: (STSensor *) sensor {
-    [GHMenuViewController setPreviousAsContentViewController];
-    
-    [MBProgressHUD showCompleteWithText:@"Updated Display ID"];
+    [GHMenuViewController setPreviousAsContentViewController];        
 }
 
 @end
