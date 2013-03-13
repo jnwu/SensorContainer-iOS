@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 
 @interface STThing : NSObject
--(id) initWithThingId:(NSString *)thingId;
-
-+(void) setThingId:(NSString *)thingId;
-+(void) setDisplayId:(NSString *)displayId;
-+(NSString *) thingId;
-+(NSString *) displayId;
++ (STThing *)thing;
++ (void)setThingBrokerURL:(NSString *)url;
++ (void)setThingId:(NSString *)thingId;
++ (void)setDisplayId:(NSString *)displayId;
++ (NSString *)thingId;
++ (NSString *)displayId;
++ (NSString *)thingBrokerURL;
 @end
 
