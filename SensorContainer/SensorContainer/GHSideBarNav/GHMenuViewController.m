@@ -16,7 +16,9 @@
 
 @interface  GHMenuViewController()
 @property (nonatomic, strong) UIViewController *previousViewController;
+@property (nonatomic, strong) NSIndexPath *previousIndexPath;
 @property (nonatomic, strong) GHRevealViewController *revealViewController;
+@property (nonatomic, strong) UITableView *menuTableView;
 @end
 
 
@@ -25,7 +27,6 @@ static GHMenuViewController *ghMenuViewController = nil;
 @implementation GHMenuViewController {
 	GHRevealViewController *_sidebarVC;
 	UISearchBar *_searchBar;
-	UITableView *_menuTableView;
 	NSArray *_headers;
 	NSArray *_controllers;
 	NSArray *_cellInfos;
@@ -58,14 +59,16 @@ static GHMenuViewController *ghMenuViewController = nil;
 	self.view.frame = CGRectMake(0.0f, 0.0f, kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds));
 	self.view.autoresizingMask = UIViewAutoresizingFlexibleHeight;
 	
-	_menuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds) - 44.0f)
+	self.menuTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0f, 0.0f, kGHRevealSidebarWidth, CGRectGetHeight(self.view.bounds) - 44.0f)
 												  style:UITableViewStylePlain];
-	_menuTableView.delegate = self;
-	_menuTableView.dataSource = self;
-	_menuTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-	_menuTableView.backgroundColor = [UIColor clearColor];
-	_menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-	[self.view addSubview:_menuTableView];
+    self.menuTableView.delegate = self;
+	self.menuTableView.dataSource = self;
+	self.menuTableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+	self.menuTableView.backgroundColor = [UIColor clearColor];
+	self.menuTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+	[self.view addSubview:self.menuTableView];
+
+    
 	[self selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
 }
 
@@ -140,6 +143,10 @@ static GHMenuViewController *ghMenuViewController = nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(!(indexPath.row == 1 && indexPath.section == 1)) {
+        self.previousIndexPath = indexPath;
+    }
+    
     self.previousViewController = self.revealViewController.contentViewController;
     self.revealViewController.contentViewController = _controllers[indexPath.section][indexPath.row];
 	[self.revealViewController toggleSidebar:NO duration:kGHRevealSidebarDefaultAnimationDuration];
@@ -147,9 +154,10 @@ static GHMenuViewController *ghMenuViewController = nil;
 
 #pragma mark Public Methods
 - (void)selectRowAtIndexPath:(NSIndexPath *)indexPath animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
-	[_menuTableView selectRowAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+	[self.menuTableView selectRowAtIndexPath:indexPath animated:animated scrollPosition:scrollPosition];
+
 	if (scrollPosition == UITableViewScrollPositionNone) {
-		[_menuTableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
+		[self.menuTableView scrollToRowAtIndexPath:indexPath atScrollPosition:scrollPosition animated:animated];
 	}
 	self.revealViewController.contentViewController = _controllers[indexPath.section][indexPath.row];
 }
@@ -157,6 +165,7 @@ static GHMenuViewController *ghMenuViewController = nil;
 +(void)setPreviousAsContentViewController {
     if(ghMenuViewController.previousViewController) {
         ghMenuViewController.revealViewController.contentViewController = ghMenuViewController.previousViewController;
+        [ghMenuViewController.menuTableView selectRowAtIndexPath:ghMenuViewController.previousIndexPath animated:NO scrollPosition:UITableViewScrollPositionTop];
     }
 }
 
