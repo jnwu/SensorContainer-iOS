@@ -10,6 +10,7 @@
 
 @interface MBProgressHUD (Utility)
 
++(MBProgressHUD *) showLoadingWithHUD:(MBProgressHUD *)hud AndText:(NSString *)text;
 +(void) showCompleteWithText:(NSString *)text;
 +(void) showText:(NSString *)text;
 

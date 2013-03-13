@@ -9,12 +9,29 @@
 #import "MBProgressHUD+Utility.h"
 #import "SCAppDelegate.h"
 
+
 @implementation MBProgressHUD (Utility)
+
++(MBProgressHUD *) showLoadingWithHUD:(MBProgressHUD *)hud AndText:(NSString *)text {
+    SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
+    UIViewController *vc = (UIViewController *) appDelegate.revealController;
+	hud = [[MBProgressHUD alloc] initWithView:vc.view];
+    
+	[vc.view addSubview:hud];
+    
+	hud.mode = MBProgressHUDModeIndeterminate;
+	hud.labelText = text;
+    hud.userInteractionEnabled = NO;
+	
+	[hud show:YES];
+    
+    return hud;
+}
 
 +(void) showCompleteWithText:(NSString *)text {
     SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController *vc = (UIViewController *) appDelegate.revealController;
-	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:vc.view];
+	MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:vc.view];    
     
 	[vc.view addSubview:hud];
     
