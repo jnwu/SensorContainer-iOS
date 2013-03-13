@@ -15,6 +15,7 @@
 #import "MicrophoneSensor.h"
 #import "SCSettingViewController.h"
 #import "MBProgressHUD.h"
+#import "STThing.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>
@@ -22,7 +23,7 @@
 #import <RestKit/RKMIMETypes.h>
 
 
-@interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, MBProgressHUDDelegate, RKRequestDelegate>
+@interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, RKRequestDelegate>
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) STSensor *sensor;
@@ -58,9 +59,7 @@
     
     self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
-
     self.isSensorActive = NO;
-    self.thing = nil;
     
     // init restkit client
     RKURL *baseURL = [RKURL URLWithBaseURLString:[SCSettingViewController serverURL]];
@@ -81,14 +80,13 @@
     
 	self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
     self.hud.labelText = @"Loading";
-	self.hud.delegate = self;
 }
 
 -(void)viewDidAppear:(BOOL)animated {
     NSString *currentURL = self.webView.request.URL.absoluteString;
 
     // load new page if client url has been changed
-    if(currentURL != nil && ![currentURL isEqualToString:[SCSettingViewController clientURL]] ) {
+    if(currentURL != nil && ![currentURL isEqualToString:@""] && ![currentURL isEqualToString:[SCSettingViewController clientURL]]) {
         NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:[SCSettingViewController clientURL]]];
         [self.webView loadRequest:requestObj];
 
@@ -98,41 +96,13 @@
         
         self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
         self.hud.labelText = @"Loading";
-        self.hud.delegate = self;
     }
 }
 
 
 #pragma mark UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    
-    // TODO: Takeout the following switch statement, temp code
-    switch (navigationType) {
-        case 0:
-            if ([request.URL.scheme isEqualToString:@"inapp"]) {
-                
-                if ([request.URL.host isEqualToString:@"nextSlide"]) {
-                    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-                    [dictRequest setObject:@"next" forKey:@"data"];
-                    
-                    NSString *jsonRequest =  [dictRequest JSONString];
-                    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-                    [self.client post:@"/things/impress/events?keep-stored=true" params:params delegate:self];
-                }
-                
-                if ([request.URL.host isEqualToString:@"previousSlide"]) {
-                    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-                    [dictRequest setObject:@"previous" forKey:@"data"];
-                    
-                    NSString *jsonRequest =  [dictRequest JSONString];
-                    RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-                    [self.client post:@"/things/impress/events?keep-stored=true" params:params delegate:self];
-                }
-                
-                return NO;
-            }
-    }
-    
+        
     // retrieve parameters from url
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
     NSRange range = {4, [parts count]-4};
@@ -141,9 +111,31 @@
         return YES;
     }
     
-    self.thing = [(NSString *)[parts objectAtIndex:3] copy];
+    //self.thing = [(NSString *)[parts objectAtIndex:3] copy];
+    [STThing setThingId:(NSString *)[parts objectAtIndex:3]];
+    
     parts = [parts subarrayWithRange:range];
     if([(NSString *)[parts objectAtIndex:0] length] > 0) {
+        
+        // slide presentation specific controls
+        if([(NSString *)[parts objectAtIndex:0] isEqualToString:@"touch"]) {
+            NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
+            
+            if([(NSString *)[parts objectAtIndex:1] isEqualToString:@"next"]) {
+                [dictRequest setObject:@"next" forKey:@"data"];
+            }
+            
+            if([(NSString *)[parts objectAtIndex:1] isEqualToString:@"prev"]) {
+                [dictRequest setObject:@"previous" forKey:@"data"];
+            }
+
+            NSString *jsonRequest =  [dictRequest JSONString];
+            RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
+            
+            [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
+            return NO;
+        }
+        
         self.sensor = [STCSensorFactory getSensorWithCommand:[parts objectAtIndex:0]];
         
         if(!self.sensor) {
@@ -192,7 +184,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
 	self.hud.mode = MBProgressHUDModeIndeterminate;
-	[self.hud hide:YES afterDelay:2];
+	[self.hud hide:YES afterDelay:1.5];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
@@ -225,8 +217,8 @@
 */ 
     }
     
-    if(self.thing)
-        [sensor1 uploadData:data ForThing:self.thing];
+    if([STThing thing])
+        [sensor1 uploadData:data ForThing:[NSString stringWithFormat:@"%@%@", [STThing thingId], [STThing displayId]]];
 }
 
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
