@@ -21,7 +21,8 @@ static SCSettingViewController *viewController = nil;
 - (id)initWithStyle:(UITableViewStyle)style
 {
     viewController = [super initWithStyle:style];
-    if (viewController) {
+    if (viewController)
+    {
         viewController.serverURLTextField = [[UITextField alloc] init];
         viewController.serverURLTextField.delegate = self;
         viewController.serverURLTextField.placeholder = @"Server URL";
@@ -35,16 +36,20 @@ static SCSettingViewController *viewController = nil;
     return viewController;
 }
 
-+(NSString *) serverURL {
-    if(!viewController.serverURLTextField) {
++(NSString *) serverURL
+{
+    if(!viewController.serverURLTextField)
+    {
         return nil;
     }
     
     return viewController.serverURLTextField.text;
 }
 
-+(NSString *) clientURL {
-    if(!viewController.clientURLTextField) {
++(NSString *) clientURL
+{
+    if(!viewController.clientURLTextField)
+    {
         return nil;
     }
     
@@ -53,7 +58,8 @@ static SCSettingViewController *viewController = nil;
 
 
 #pragma mark UIViewController
-- (void)viewWillLayoutSubviews {
+- (void)viewWillLayoutSubviews
+{
     self.serverURLTextField.frame = CGRectMake(self.serverURLTextField.superview.frame.origin.x + 10, self.serverURLTextField.superview.frame.origin.y + 10, self.serverURLTextField.superview.frame.size.width - 40, self.serverURLTextField.superview.frame.size.height - 10);
     self.clientURLTextField.frame = CGRectMake(self.clientURLTextField.superview.frame.origin.x + 10, self.clientURLTextField.superview.frame.origin.y + 10, self.clientURLTextField.superview.frame.size.width - 40, self.clientURLTextField.superview.frame.size.height - 10);
 }
@@ -75,7 +81,8 @@ static SCSettingViewController *viewController = nil;
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = nil;
     
-    if(indexPath.section == 0) {
+    if(indexPath.section == 0)
+    {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -88,7 +95,9 @@ static SCSettingViewController *viewController = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-    } else if(indexPath.section == 1) {
+    }
+    else if(indexPath.section == 1)
+    {
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
         if (cell == nil)
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -101,12 +110,15 @@ static SCSettingViewController *viewController = nil;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
-    } else
+    }
+    else
         return nil;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch(section) {
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch(section)
+    {
         case 0:
             return @"ThingBroker Server";
     

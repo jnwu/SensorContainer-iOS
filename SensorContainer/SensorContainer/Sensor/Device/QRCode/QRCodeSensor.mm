@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import "STSensor.h"
 #import "SCAppDelegate.h"
 #import "QRCodeSensor.h"
 
@@ -14,9 +13,10 @@
 
 static QRCodeSensor* sensor = nil;
 
--(id) initWithSensorCallModel:(STCSensorCallModel *)model
+- (id)initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    if(!sensor) {
+    if(!sensor)
+    {
         sensor = [super initWithSensorCallModel: model];
     }
     
@@ -25,7 +25,7 @@ static QRCodeSensor* sensor = nil;
 
 
 #pragma mark STSensor
--(void) start
+- (void)start
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
@@ -43,7 +43,8 @@ static QRCodeSensor* sensor = nil;
     [vc presentViewController:widController animated:YES completion: nil];
 }
 
--(void) cancel {
+- (void)cancel
+{
     [self.delegate STSensorCancelled: self];    
 }
 

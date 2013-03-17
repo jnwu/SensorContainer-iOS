@@ -13,7 +13,7 @@
 
 @implementation STCSensorFactory
 
-+(STSensor *) getSensorWithCommand: (NSString *) sensorCall
++ (STSensor *)getSensorWithCommand: (NSString *) sensorCall
 {
     STCSensorCallModel * model = [STCSensorCallParser parseSensorCallStr: sensorCall];
     NSArray * sensorMapping = [STCSensorConfig getSensorConfig];

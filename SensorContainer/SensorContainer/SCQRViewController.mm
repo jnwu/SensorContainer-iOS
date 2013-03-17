@@ -20,18 +20,21 @@
 
 @implementation SCQRViewController
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
     self.sensor = [STCSensorFactory getSensorWithCommand:@"qrcode"];
     self.sensor.delegate = self;
     [self.sensor start];
 }
 
 #pragma mark STSensorDelegate
--(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data {
+-(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data
+{
     [GHMenuViewController setPreviousAsContentViewController];
     NSArray *parts = [[data.data objectForKey:@"result"] componentsSeparatedByString:@"/"];
 
-    if([parts count] == 5) {
+    if([parts count] == 5)
+    {
         [STThing setDisplayId:[parts objectAtIndex:4]];
         [MBProgressHUD showCompleteWithText:@"Updated Display ID"];
     }
@@ -40,7 +43,8 @@
 -(void) STSensor: (STSensor *) sensor withError: (STError *) error
 {}
 
--(void) STSensorCancelled: (STSensor *) sensor {
+-(void) STSensorCancelled: (STSensor *) sensor
+{
     [GHMenuViewController setPreviousAsContentViewController];        
 }
 

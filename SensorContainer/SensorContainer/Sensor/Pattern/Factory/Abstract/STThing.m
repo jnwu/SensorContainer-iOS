@@ -19,7 +19,7 @@ static STThing *thing = nil;
 @implementation STThing
 
 // the app can only interact with one thing at any time
-+(STThing *) thing
++ (STThing *)thing
 {
     return thing;
 }
@@ -28,7 +28,8 @@ static STThing *thing = nil;
 {
     thing = [super init];
     
-    if(thing) {
+    if(thing)
+    {
         thing.thingId = thingId;
     }
     
@@ -37,7 +38,8 @@ static STThing *thing = nil;
 
 + (void)setThingId:(NSString *)thingId
 {
-    if(!thing) {
+    if(!thing)
+    {
         thing = [[STThing alloc] initWithThingId:thingId];
         thing.displayId = @"";
     }
@@ -46,7 +48,8 @@ static STThing *thing = nil;
 
 + (void)setDisplayId:(NSString *)displayId
 {
-    if(!thing) {
+    if(!thing)
+    {
         thing = [[STThing alloc] initWithThingId:@""];
     }    
     thing.displayId = displayId;
@@ -54,7 +57,8 @@ static STThing *thing = nil;
 
 + (void)setThingBrokerURL:(NSString *)url
 {
-    if(!thing) {
+    if(!thing)
+    {
         thing = [[STThing alloc] initWithThingId:@""];
     }
     thing.url = url;
