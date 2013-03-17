@@ -17,7 +17,7 @@
 @synthesize sensorCallModel;
 @synthesize delegate;
 
--(id) initWithSensorCallModel:(STCSensorCallModel *)model
+- (id)initWithSensorCallModel:(STCSensorCallModel *)model
 {
     self = [super init];
         
@@ -31,22 +31,22 @@
     return self;
 }
 
--(void) start
+- (void)start
 {
     NSLog(@"you should not get here");
 }
 
--(void) cancel
+- (void)cancel
 {
     NSLog(@"you should not get here");
 }
 
--(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
+- (void)uploadData:(STSensorData *)data
 {
     NSLog(@"you should not get here");
 }
 
--(void) configure:(NSArray *)settings
+- (void)configure:(NSArray *)settings
 {
     NSLog(@"you should not get here");    
 }

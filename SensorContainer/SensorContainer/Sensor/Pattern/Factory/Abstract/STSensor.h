@@ -11,19 +11,22 @@
 #import "STError.h"
 #import "STCSensorCallModel.h"
 #import "SCSettingViewController.h"
+#import "MBProgressHUD+Utility.h"
+#import "STThing.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>
 #import <Restkit/RKRequestSerialization.h>
 #import <RestKit/RKMIMETypes.h>
+//#import <RestKit/RKJSONParserJSONKit.h>
 
 @class STSensor;
 @class STSensorData;
 
 @protocol STSensorDelegate <NSObject>
--(void) STSensor: (STSensor *) sensor withData: (STSensorData *) data;
--(void) STSensor: (STSensor *) sensor withError: (STError *) error;
--(void) STSensorCancelled: (STSensor *) sensor;
+- (void)STSensor: (STSensor *) sensor withData: (STSensorData *) data;
+- (void)STSensor: (STSensor *) sensor withError: (STError *) error;
+- (void)STSensorCancelled: (STSensor *) sensor;
 @end
 
 @interface STSensorData : NSObject
@@ -37,27 +40,27 @@
  Constructor.
  model: sensor call model contains all parameters for sensor to work.
  */
--(id) initWithSensorCallModel: (STCSensorCallModel *) model;
+- (id)initWithSensorCallModel: (STCSensorCallModel *) model;
 
 /*
  Start sensing
  */
--(void) start;
+- (void)start;
 
 /*
  Cancel sensoring. This is required to call if the sensor is continuously sensing
  */
--(void) cancel;
+- (void)cancel;
 
 /*
  Upload sensor data to thing broker
  */
--(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing;
+- (void)uploadData:(STSensorData *)data;
 
 /*
  Configure sensor-specific settings
  */
--(void) configure:(NSArray *)settings;
+- (void)configure:(NSArray *)settings;
 
 @property (weak, nonatomic) id<STSensorDelegate> delegate;
 @property (strong, nonatomic) STCSensorCallModel * sensorCallModel;
