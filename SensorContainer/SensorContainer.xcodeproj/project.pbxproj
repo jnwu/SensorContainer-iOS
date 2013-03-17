@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04029B5016F15328007F92C3 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04029B4F16F15327007F92C3 /* MediaPlayer.framework */; };
 		0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0405084316A78C64005B0308 /* CoreMotion.framework */; };
+		040BFC2E16F047A400C0FF5A /* MediaSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 040BFC2D16F047A400C0FF5A /* MediaSensor.m */; };
+		04201FE316F459CD0013DF7D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04201FE216F459CD0013DF7D /* CoreLocation.framework */; };
 		0431B54C16ADFF9700DE73E6 /* CameraSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B52B16ADFF9700DE73E6 /* CameraSensor.m */; };
 		0431B55116ADFF9700DE73E6 /* QRCodeSensor.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53A16ADFF9700DE73E6 /* QRCodeSensor.mm */; };
 		0431B55216ADFF9700DE73E6 /* STError.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B53F16ADFF9700DE73E6 /* STError.m */; };
@@ -26,6 +29,8 @@
 		0431B57316AE0D3600DE73E6 /* searchBarIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */; };
 		0431B57416AE0D3600DE73E6 /* searchBarIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */; };
 		0431B57516AE0D3600DE73E6 /* searchTextBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B57016AE0D3600DE73E6 /* searchTextBG.png */; };
+		0434672816F28AF300B418D7 /* GPSSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434672716F28AF300B418D7 /* GPSSensor.m */; };
+		0434672C16F28B5F00B418D7 /* MagnetometerSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434672B16F28B5F00B418D7 /* MagnetometerSensor.m */; };
 		04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */; };
 		044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EF66E16B367F80099A862 /* MBProgressHUD.m */; };
 		044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 044EF67016B371660099A862 /* 37x-Checkmark.png */; };
@@ -44,6 +49,8 @@
 		04AE8D7416DC6939002909AD /* MicrophoneSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04AE8D7316DC6939002909AD /* MicrophoneSensor.m */; };
 		04AFE00016ED41E500826D54 /* SensorContainerTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04CB409B16E287120066F946 /* SensorContainerTests.mm */; };
 		04AFE00116ED42E200826D54 /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */; };
+		04B4A39216F5257200E933A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4A39016F5257200E933A4 /* Default.png */; };
+		04B4A39316F5257200E933A4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4A39116F5257200E933A4 /* Default@2x.png */; };
 		04CB409116E287120066F946 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB409016E287120066F946 /* SenTestingKit.framework */; };
 		04CB409216E287120066F946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		04CB409316E287120066F946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
@@ -58,9 +65,6 @@
 		6BC36D3E169EB51B00C0DBAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */; };
 		6BC36D40169EB51B00C0DBAB /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D3F169EB51B00C0DBAB /* main.mm */; };
 		6BC36D44169EB51B00C0DBAB /* SCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */; };
-		6BC36D46169EB51B00C0DBAB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D45169EB51B00C0DBAB /* Default.png */; };
-		6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D47169EB51B00C0DBAB /* Default@2x.png */; };
-		6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */; };
 		6BC36D95169EBB8900C0DBAB /* libZXingWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D90169EBB6300C0DBAB /* libZXingWidget.a */; };
 		6BC36D97169EBB9000C0DBAB /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */; };
 		6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D98169EBB9A00C0DBAB /* AudioToolbox.framework */; };
@@ -107,13 +111,6 @@
 			remoteGlobalIDString = 259C301615128079003066A2;
 			remoteInfo = RestKitResources;
 		};
-		04ADBEC416B5DBED005C1E11 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 04ADBEAF16B5DAF8005C1E11 /* RestKit.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 25160D1514564E810060A5C5;
-			remoteInfo = RestKit;
-		};
 		04E23D4A16E298C1002D50AD /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6BC36D26169EB51B00C0DBAB /* Project object */;
@@ -145,7 +142,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04029B4F16F15327007F92C3 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		0405084316A78C64005B0308 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		040BFC2C16F047A400C0FF5A /* MediaSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MediaSensor.h; path = Media/MediaSensor.h; sourceTree = "<group>"; };
+		040BFC2D16F047A400C0FF5A /* MediaSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MediaSensor.m; path = Media/MediaSensor.m; sourceTree = "<group>"; };
+		04201FE216F459CD0013DF7D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		0431B52A16ADFF9700DE73E6 /* CameraSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraSensor.h; sourceTree = "<group>"; };
 		0431B52B16ADFF9700DE73E6 /* CameraSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraSensor.m; sourceTree = "<group>"; };
 		0431B53916ADFF9700DE73E6 /* QRCodeSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeSensor.h; sourceTree = "<group>"; };
@@ -175,6 +176,10 @@
 		0431B56E16AE0D3600DE73E6 /* searchBarIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarIcon.png; sourceTree = "<group>"; };
 		0431B56F16AE0D3600DE73E6 /* searchBarIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "searchBarIcon@2x.png"; sourceTree = "<group>"; };
 		0431B57016AE0D3600DE73E6 /* searchTextBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchTextBG.png; sourceTree = "<group>"; };
+		0434672616F28AF300B418D7 /* GPSSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GPSSensor.h; path = GPS/GPSSensor.h; sourceTree = "<group>"; };
+		0434672716F28AF300B418D7 /* GPSSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GPSSensor.m; path = GPS/GPSSensor.m; sourceTree = "<group>"; };
+		0434672A16F28B5F00B418D7 /* MagnetometerSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagnetometerSensor.h; path = Magnetometer/MagnetometerSensor.h; sourceTree = "<group>"; };
+		0434672B16F28B5F00B418D7 /* MagnetometerSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagnetometerSensor.m; path = Magnetometer/MagnetometerSensor.m; sourceTree = "<group>"; };
 		04483A3C16E7F5D100B0EFBF /* MBProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+Utility.h"; path = "Utilities/MBProgressHUD+Utility.h"; sourceTree = "<group>"; };
 		04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+Utility.m"; path = "Utilities/MBProgressHUD+Utility.m"; sourceTree = "<group>"; };
 		044EF66D16B367F80099A862 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = SensorContainer/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
@@ -196,6 +201,8 @@
 		04ADBED616B5E61C005C1E11 /* SCRootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCRootViewController.mm; sourceTree = "<group>"; };
 		04AE8D7216DC6939002909AD /* MicrophoneSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MicrophoneSensor.h; path = Microphone/MicrophoneSensor.h; sourceTree = "<group>"; };
 		04AE8D7316DC6939002909AD /* MicrophoneSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneSensor.m; path = Microphone/MicrophoneSensor.m; sourceTree = "<group>"; };
+		04B4A39016F5257200E933A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../../../../../Downloads/splash_screen/Default.png; sourceTree = "<group>"; };
+		04B4A39116F5257200E933A4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../../../../Downloads/splash_screen/Default@2x.png"; sourceTree = "<group>"; };
 		04CB408F16E287120066F946 /* SensorContainerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SensorContainerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB409016E287120066F946 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		04CB409616E287120066F946 /* SensorContainerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensorContainerTests-Info.plist"; sourceTree = "<group>"; };
@@ -220,9 +227,6 @@
 		6BC36D41169EB51B00C0DBAB /* SensorContainer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensorContainer-Prefix.pch"; sourceTree = "<group>"; };
 		6BC36D42169EB51B00C0DBAB /* SCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCAppDelegate.h; sourceTree = "<group>"; };
 		6BC36D43169EB51B00C0DBAB /* SCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SCAppDelegate.m; sourceTree = "<group>"; };
-		6BC36D45169EB51B00C0DBAB /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		6BC36D47169EB51B00C0DBAB /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6BC36D4B169EB51B00C0DBAB /* SCRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SCRootViewController.h; sourceTree = "<group>"; };
 		6BC36D87169EBB6300C0DBAB /* ZXingWidget.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZXingWidget.xcodeproj; path = zxing/iphone/ZXingWidget/ZXingWidget.xcodeproj; sourceTree = "<group>"; };
 		6BC36D96169EBB9000C0DBAB /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -249,6 +253,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04201FE316F459CD0013DF7D /* CoreLocation.framework in Frameworks */,
+				6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */,
+				04029B5016F15328007F92C3 /* MediaPlayer.framework in Frameworks */,
 				04E23E0B16E2FC07002D50AD /* FLACiOS.framework in Frameworks */,
 				04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */,
 				04ADBED116B5DC2E005C1E11 /* SystemConfiguration.framework in Frameworks */,
@@ -261,7 +268,6 @@
 				0405084416A78C64005B0308 /* CoreMotion.framework in Frameworks */,
 				6BC36DA2169EBBE700C0DBAB /* AddressBook.framework in Frameworks */,
 				6BC36DA3169EBBE700C0DBAB /* AddressBookUI.framework in Frameworks */,
-				6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */,
 				6BC36D9D169EBBB400C0DBAB /* CoreVideo.framework in Frameworks */,
 				6BC36D9B169EBBA700C0DBAB /* libiconv.dylib in Frameworks */,
 				6BC36D99169EBB9B00C0DBAB /* AudioToolbox.framework in Frameworks */,
@@ -276,6 +282,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040BFC2616F0477A00C0FF5A /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				040BFC2C16F047A400C0FF5A /* MediaSensor.h */,
+				040BFC2D16F047A400C0FF5A /* MediaSensor.m */,
+			);
+			name = Media;
+			sourceTree = "<group>";
+		};
 		042FF36C16D450D5005AE6FA /* Microphone */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +312,9 @@
 		0431B52716ADFF9700DE73E6 /* Device */ = {
 			isa = PBXGroup;
 			children = (
-				04CF774C16EA6A4E0015B8AD /* GPS */,
+				0434672916F28B1700B418D7 /* Magnetometer */,
+				0434672016F289ED00B418D7 /* GPS */,
+				040BFC2616F0477A00C0FF5A /* Media */,
 				042FF36C16D450D5005AE6FA /* Microphone */,
 				0431B52816ADFF9700DE73E6 /* Accelerometer */,
 				0431B52916ADFF9700DE73E6 /* Camera */,
@@ -414,6 +431,24 @@
 			path = SensorContainer/Resources;
 			sourceTree = "<group>";
 		};
+		0434672016F289ED00B418D7 /* GPS */ = {
+			isa = PBXGroup;
+			children = (
+				0434672616F28AF300B418D7 /* GPSSensor.h */,
+				0434672716F28AF300B418D7 /* GPSSensor.m */,
+			);
+			name = GPS;
+			sourceTree = "<group>";
+		};
+		0434672916F28B1700B418D7 /* Magnetometer */ = {
+			isa = PBXGroup;
+			children = (
+				0434672A16F28B5F00B418D7 /* MagnetometerSensor.h */,
+				0434672B16F28B5F00B418D7 /* MagnetometerSensor.m */,
+			);
+			name = Magnetometer;
+			sourceTree = "<group>";
+		};
 		04483A3116E7F3FB00B0EFBF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -483,13 +518,6 @@
 			name = Thing;
 			sourceTree = "<group>";
 		};
-		04CF774C16EA6A4E0015B8AD /* GPS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = GPS;
-			sourceTree = "<group>";
-		};
 		04E23E0C16E3006B002D50AD /* Wav2FLAC */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +553,8 @@
 		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04201FE216F459CD0013DF7D /* CoreLocation.framework */,
+				04029B4F16F15327007F92C3 /* MediaPlayer.framework */,
 				04E23E0116E2F7C7002D50AD /* FLACiOS.framework */,
 				04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */,
 				04ADBECE16B5DC23005C1E11 /* Security.framework */,
@@ -571,14 +601,13 @@
 		6BC36D3A169EB51B00C0DBAB /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04B4A39016F5257200E933A4 /* Default.png */,
+				04B4A39116F5257200E933A4 /* Default@2x.png */,
 				0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */,
 				6BC36D3B169EB51B00C0DBAB /* SensorContainer-Info.plist */,
 				6BC36D3C169EB51B00C0DBAB /* InfoPlist.strings */,
 				6BC36D3F169EB51B00C0DBAB /* main.mm */,
 				6BC36D41169EB51B00C0DBAB /* SensorContainer-Prefix.pch */,
-				6BC36D45169EB51B00C0DBAB /* Default.png */,
-				6BC36D47169EB51B00C0DBAB /* Default@2x.png */,
-				6BC36D49169EB51B00C0DBAB /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -625,7 +654,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				04ADBEC516B5DBED005C1E11 /* PBXTargetDependency */,
 				6BC36D94169EBB7B00C0DBAB /* PBXTargetDependency */,
 			);
 			name = SensorContainer;
@@ -737,9 +765,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BC36D3E169EB51B00C0DBAB /* InfoPlist.strings in Resources */,
-				6BC36D46169EB51B00C0DBAB /* Default.png in Resources */,
-				6BC36D48169EB51B00C0DBAB /* Default@2x.png in Resources */,
-				6BC36D4A169EB51B00C0DBAB /* Default-568h@2x.png in Resources */,
 				0431B55916ADFFB200DE73E6 /* STSensorConfig.plist in Resources */,
 				0431B57116AE0D3600DE73E6 /* 32-iphone.png in Resources */,
 				0431B57216AE0D3600DE73E6 /* searchBarBG.png in Resources */,
@@ -749,6 +774,8 @@
 				047963DF16B1167800DC4E85 /* Icon.png in Resources */,
 				047963E116B1183600DC4E85 /* Icon@2x.png in Resources */,
 				044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */,
+				04B4A39216F5257200E933A4 /* Default.png in Resources */,
+				04B4A39316F5257200E933A4 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -806,17 +833,15 @@
 				04E23E0F16E3008D002D50AD /* wav_to_flac.c in Sources */,
 				04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */,
 				04CF774416EA61C30015B8AD /* SCQRViewController.mm in Sources */,
+				040BFC2E16F047A400C0FF5A /* MediaSensor.m in Sources */,
+				0434672816F28AF300B418D7 /* GPSSensor.m in Sources */,
+				0434672C16F28B5F00B418D7 /* MagnetometerSensor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		04ADBEC516B5DBED005C1E11 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = RestKit;
-			targetProxy = 04ADBEC416B5DBED005C1E11 /* PBXContainerItemProxy */;
-		};
 		04E23D4B16E298C1002D50AD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6BC36D2E169EB51B00C0DBAB /* SensorContainer */;
@@ -977,6 +1002,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../..\"",
+					"\"$(SRCROOT)/RestKit/Tests/Vendor/OCHamcrest\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
@@ -1011,6 +1037,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../..\"",
+					"\"$(SRCROOT)/RestKit/Tests/Vendor/OCHamcrest\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
