@@ -13,7 +13,7 @@
     NSDictionary * _param;
 }
 
--(id) initWithCommand: (NSString *) inCommand param: (NSDictionary *) parameters;
+- (id)initWithCommand: (NSString *) inCommand param: (NSDictionary *) parameters;
 
 @property(nonatomic, retain) NSString * command;
 @property(nonatomic, readonly) NSDictionary * param;

@@ -8,6 +8,6 @@
 
 
 @interface SCSettingViewController : UITableViewController
-+(NSString *) serverURL;
-+(NSString *) clientURL;
++ (NSString *)serverURL;
++ (NSString *)clientURL;
 @end

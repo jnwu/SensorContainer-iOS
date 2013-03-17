@@ -1,12 +1,13 @@
 //
-//  AccelerometerSensor.h
+//  MagnetometerSensor.h
 //  SensorContainer
 //
-//  Created by Jack Wu on 13-01-16.
+//  Created by Jack Wu on 13-03-14.
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import "STSensor.h"
+#import <Foundation/Foundation.h>
 
-@interface MagnetometerSensor : STSensor
+@interface MagnetometerSensor : NSObject
+
 @end

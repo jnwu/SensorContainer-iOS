@@ -1,13 +1,13 @@
 //
 //  GPSSensor.h
-//  STS-Kurogo
+//  SensorContainer
 //
-//  Created by Daniel Yuen on 12-12-18.
-//  Copyright (c) 2012 Daniel Yuen. All rights reserved.
+//  Created by Jack Wu on 13-03-14.
+//  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import "STSensor.h"
-/*not implemented yet*/
-@interface GPSSensor : STSensor
+#import <Foundation/Foundation.h>
+
+@interface GPSSensor : NSObject
 
 @end

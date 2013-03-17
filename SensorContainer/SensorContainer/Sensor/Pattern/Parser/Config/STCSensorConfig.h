@@ -10,7 +10,7 @@
 
 @interface STCSensorConfig : NSObject
 
-+(id) getSensorConfigWithKey: (NSString *) key;
-+(NSArray *) getSensorConfig;
++ (id)getSensorConfigWithKey: (NSString *) key;
++ (NSArray *)getSensorConfig;
 
 @end

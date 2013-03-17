@@ -16,6 +16,6 @@
  callStr: sensor call
  return: an STCSensorCallModel object if it is a valid command; otherwise return nil.
  */
-+(STCSensorCallModel *) parseSensorCallStr: (NSString *) callStr;
++ (STCSensorCallModel *)parseSensorCallStr: (NSString *) callStr;
 
 @end

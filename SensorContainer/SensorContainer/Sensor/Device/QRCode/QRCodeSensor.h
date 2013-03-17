@@ -11,5 +11,4 @@
 #import "STSensor.h"
 
 @interface QRCodeSensor : STSensor <ZXingDelegate>
-
 @end

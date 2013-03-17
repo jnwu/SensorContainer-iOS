@@ -8,5 +8,5 @@
 
 
 @interface SCRootViewController : UIViewController
--(id) initWithURL:(NSString *)url;
+- (id)initWithURL:(NSString *)url;
 @end
