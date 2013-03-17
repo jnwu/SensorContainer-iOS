@@ -8,7 +8,7 @@
 
 #import <CoreMotion/CoreMotion.h>
 #import "AccelerometerSensor.h"
-#import "MBProgressHUD+Utility.h"
+
 
 @interface AccelerometerSensor ()  <UINavigationControllerDelegate>
 @property (strong, nonatomic) CMMotionManager *motionManager;
@@ -21,7 +21,8 @@ static AccelerometerSensor* sensor = nil;
 
 -(id) initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    if(!sensor) {
+    if(!sensor)
+    {
         sensor = [super initWithSensorCallModel: model];
         sensor.motionManager = [[CMMotionManager alloc] init];
     }
@@ -32,9 +33,8 @@ static AccelerometerSensor* sensor = nil;
 #pragma mark STSensor
 -(void) start
 {
-    if(self.motionManager.accelerometerActive) {
+    if(self.motionManager.accelerometerActive)
         return;
-    }
     
     self.motionManager.accelerometerUpdateInterval = 1;
     [self.motionManager startAccelerometerUpdates];
@@ -54,7 +54,7 @@ static AccelerometerSensor* sensor = nil;
     [self.delegate STSensorCancelled: self];
 }
 
--(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
+-(void) uploadData:(STSensorData *)data
 {
     id x = [data.data objectForKey:@"x"];
     id y = [data.data objectForKey:@"y"];
@@ -71,34 +71,33 @@ static AccelerometerSensor* sensor = nil;
     
     NSString *jsonRequest =  [dictRequest JSONString];
     RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-    [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
+    [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
 }
 
 -(void) configure:(NSArray *)settings
 {
-    if(!self.motionManager.accelerometerActive) {
+    if(!self.motionManager.accelerometerActive)
         return;
-    }
     
     NSString *mode = [settings objectAtIndex:0];
     [self.timer invalidate];
     self.timer = nil;
     
-    if([mode isEqualToString:@"increaseInterval"]) {
+    if([mode isEqualToString:@"increaseInterval"])
         self.motionManager.accelerometerUpdateInterval += 0.20;
-    } else if([mode isEqualToString:@"decreaseInterval"]) {
-        if(self.motionManager.accelerometerUpdateInterval - 0.20 <= 0) {
-            return;
-        }
-
-        self.motionManager.accelerometerUpdateInterval -= 0.20;
+    else if([mode isEqualToString:@"decreaseInterval"])
+    {
+        if(self.motionManager.accelerometerUpdateInterval - 0.20 >= 0.20)
+            self.motionManager.accelerometerUpdateInterval -= 0.20;
     }
 
+    [MBProgressHUD showText:[NSString stringWithFormat:@"Interval: %f", self.motionManager.accelerometerUpdateInterval]];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:self.motionManager.accelerometerUpdateInterval target:self selector:@selector(accelerometerData:) userInfo:nil repeats:YES];
 }
 
 #pragma mark CMMotionManager
--(void) accelerometerData:(NSTimer *) timer {    
+-(void) accelerometerData:(NSTimer *) timer
+{
     NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
     STSensorData * data = [[STSensorData alloc] init];
     
