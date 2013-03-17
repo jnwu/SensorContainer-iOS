@@ -12,7 +12,6 @@
 #import <FLACiOS/metadata.h>
 
 #import "MicrophoneSensor.h"
-#import "MBProgressHUD+Utility.h"
 #include "wav_to_flac.h"
 
 
@@ -21,20 +20,19 @@
 @property (strong, nonatomic) AVAudioSession *audioSession;
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) MBProgressHUD *hud;
+@property (assign, nonatomic) BOOL isSpeechRecognition;
 @end
 
 static MicrophoneSensor* sensor = nil;
 
 @implementation MicrophoneSensor
 
--(id) initWithSensorCallModel:(STCSensorCallModel *)model
+- (id)initWithSensorCallModel:(STCSensorCallModel *)model
 {
-    if(!sensor) {
+    if(!sensor)
+    {
         sensor = [super initWithSensorCallModel: model];
-        
-        // init destination path
-        //NSDate *date = [NSDate dateWithTimeIntervalSinceNow:0];
-        //sensor.url = [NSString stringWithFormat:@"%@/%@.caf", NSTemporaryDirectory(), [date description]];
+        sensor.isSpeechRecognition = NO;
         
         // init recorder
         NSDictionary* recorderSettings = [[NSMutableDictionary alloc] init];        
@@ -50,34 +48,39 @@ static MicrophoneSensor* sensor = nil;
         // init audioSession
         sensor.audioSession = [AVAudioSession sharedInstance];
         [sensor.audioSession setCategory :AVAudioSessionCategoryPlayAndRecord error:&error];
-        if(error){
+        if(error)
+        {
             NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
             return nil;
         }
         
         error = nil;
         [sensor.audioSession setCategory:AVAudioSessionCategoryRecord error:&error];
-        if(error){
+        if(error)
+        {
             NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
             return nil;
         }
         
         error = nil;
         [sensor.audioSession setActive:YES error:&error];
-        if(error){
+        if(error)
+        {
             NSLog(@"audioSession: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
             return nil;
         }
         
         
         error = nil;
-        if(sensor.audioSession.inputAvailable && !sensor.recorder) {
+        if(sensor.audioSession.inputAvailable && !sensor.recorder)
+        {
             NSString *soundsDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"Sounds"];
             [[NSFileManager defaultManager] createDirectoryAtPath:soundsDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
             NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Test.wav", soundsDirectoryPath]];
             
             sensor.recorder = [[AVAudioRecorder alloc] initWithURL:url settings:recorderSettings error:&error];
-            if(error) {
+            if(error)
+            {
                 NSLog(@"recorder: %@ %d %@", [error domain], [error code], [[error userInfo] description]);
                 return nil;
             }
@@ -93,33 +96,59 @@ static MicrophoneSensor* sensor = nil;
 
 
 #pragma mark STSensor
--(void) start
+- (void)start
 {
-    if(self.audioSession.inputAvailable) {        
+    if(self.audioSession.inputAvailable)
+    {
         [self.recorder record];
         self.hud = [MBProgressHUD showLoadingWithHUD:self.hud AndText:@"Listening"];
     }
 }
 
--(void) cancel
+- (void)cancel
 {
-    [self.hud hide:YES];
-    [self.recorder stop];
-    [self.delegate STSensorCancelled: self];
+    if(self.recorder.recording == YES)
+    {
+        [self.hud hide:YES];
+        [self.recorder stop];
+        [self.delegate STSensorCancelled: self];
+    }
 }
 
--(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
+-(void) configure:(NSArray *)settings
+{
+    NSString *setting = [settings objectAtIndex:0];
+    
+    if([setting isEqualToString:@"toggleSpeechRecognition"])
+    {
+        if(self.isSpeechRecognition)
+        {
+            self.isSpeechRecognition = NO;
+            [MBProgressHUD showText:@"Recognition Off"];
+        }
+        else
+        {
+            self.isSpeechRecognition = YES;
+            [MBProgressHUD showText:@"Recognition On"];
+        }
+    }
+}
+
+
+- (void)uploadData:(STSensorData *)data
 {
     id audioData = [data.data objectForKey:@"audioData"];
     id stringData = [data.data objectForKey:@"stringData"];
     
-    if(audioData) {
+    if(audioData)
+    {
         RKParams* params = [RKParams params];
         [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
-        [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
+        [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
     }
     
-    if(stringData) {
+    if(stringData)
+    {
         // Send text to thing broker
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject: [NSString stringWithFormat:@"%@", (NSString *)stringData] forKey:@"stringData"];
@@ -129,7 +158,7 @@ static MicrophoneSensor* sensor = nil;
         
         NSString *jsonRequest =  [dictRequest JSONString];
         RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-        [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", thing] params:params delegate:self];
+        [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
     }
 }
 
@@ -137,13 +166,15 @@ static MicrophoneSensor* sensor = nil;
 #pragma mark AVAudioRecorderDelegate
 - (void)audioRecorderDidFinishRecording:(AVAudioRecorder *)recorder successfully:(BOOL)flag
 {
-	if (flag) {
+	if(flag)
+    {
         NSString *soundsDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"Sounds"];
         NSString *wavFile = [NSString stringWithFormat:@"%@/Test.wav", soundsDirectoryPath];
         NSData *audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@", wavFile]];
         
         // send wav file to thingbroker
-        if(audioData) {
+        if(audioData)
+        {
             NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
             [dict setObject:audioData forKey:@"audioData"];
             
@@ -153,63 +184,73 @@ static MicrophoneSensor* sensor = nil;
             [self.delegate STSensor:self withData: data];
         }
         
-        // convert file from wav to flac format
-        NSString *flacFileWithoutExtension = [NSString stringWithFormat:@"%@/Test", soundsDirectoryPath];
-        int interval = 30;
-        char** flac_files = (char**) malloc(sizeof(char*) * 1024);
-        convertWavToFlac([wavFile UTF8String], [flacFileWithoutExtension UTF8String], interval, flac_files);
-        
-        audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/Test.flac", soundsDirectoryPath]];
-        if(audioData) {
-            // send flac file to google speech api
-            NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+        // convert recorded audio to string
+        if(self.isSpeechRecognition)
+        {
+            // convert file from wav to flac format
+            NSString *flacFileWithoutExtension = [NSString stringWithFormat:@"%@/Test", soundsDirectoryPath];
+            int interval = 30;
+            char** flac_files = (char**) malloc(sizeof(char*) * 1024);
+            convertWavToFlac([wavFile UTF8String], [flacFileWithoutExtension UTF8String], interval, flac_files);
             
-            // TODO: Validate google speech api server
-
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                            initWithURL:[NSURL URLWithString:@"https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"]];
-             
-            [request setHTTPMethod:@"POST"];
-            [request addValue:@"audio/x-flac; rate=44100" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:audioData];
-            
-            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                if ([data length] > 0 && error == nil) {
-                    NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                    
-                    // extract recognition string
-                    int index = [result rangeOfString:@"utterance"].location;
-                    int length = [result rangeOfString:@"utterance"].length;
-                    
-                    if(!length)
-                        return;
-                    
-                    NSString *subStr = [result substringFromIndex:index+length+3];
-                    index = [subStr rangeOfString:@"\""].location;
-                    subStr = [subStr substringToIndex:index];
-
-                    // send recognition string to thingbroker
-                    [dict setObject:subStr forKey:@"stringData"];
-                    STSensorData *data = [[STSensorData alloc] init];
-                    data.data = dict;
-                    
-                    [self.delegate STSensor:self withData: data];
-                }
-                else if (error != nil && error.code == NSURLErrorTimedOut) {
-                    // Time out error
-                }
-                else if (error != nil) {
-                    // Error!
-                }
-            }];
+            audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/Test.flac", soundsDirectoryPath]];
+            if(audioData)
+            {
+                // send flac file to google speech api
+                NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+                
+                // TODO: Validate google speech api server
+                
+                NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
+                                                initWithURL:[NSURL URLWithString:@"https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"]];
+                
+                [request setHTTPMethod:@"POST"];
+                [request addValue:@"audio/x-flac; rate=44100" forHTTPHeaderField:@"Content-Type"];
+                [request setHTTPBody:audioData];
+                
+                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+                [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+                {
+                    if ([data length] > 0 && error == nil)
+                    {
+                        NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                        
+                        // extract recognition string
+                        int index = [result rangeOfString:@"utterance"].location;
+                        int length = [result rangeOfString:@"utterance"].length;
+                        
+                        if(!length)
+                            return;
+                        
+                        NSString *subStr = [result substringFromIndex:index+length+3];
+                        index = [subStr rangeOfString:@"\""].location;
+                        subStr = [subStr substringToIndex:index];
+                        
+                        // send recognition string to thingbroker
+                        [dict setObject:subStr forKey:@"stringData"];
+                        STSensorData *data = [[STSensorData alloc] init];
+                        data.data = dict;
+                        
+                        [self.delegate STSensor:self withData: data];
+                    }
+                    else if (error != nil && error.code == NSURLErrorTimedOut)
+                    {
+                        // Time out error
+                    }
+                    else if (error != nil)
+                    {
+                        // Error!
+                    }
+                }];
+            }
         }
     }
 }
 
 
 #pragma mark RKRequestDelegate
-- (void) request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{
     // display hud
     [MBProgressHUD showCompleteWithText:@"Uploaded Audio"];
 }
