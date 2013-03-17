@@ -20,10 +20,11 @@
 
 #pragma mark -
 #pragma mark Private Interface
-@interface SCAppDelegate () <RKRequestDelegate>
+@interface SCAppDelegate () <RKRequestDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) GHMenuViewController *menuController;
 @property (nonatomic, strong) NSMutableArray *apps;
 @property (nonatomic, strong) NSMutableArray *links;
+@property (nonatomic, strong) UIAlertView *alert;
 @end
 
 
@@ -34,7 +35,10 @@
 #pragma mark Properties
 
 #pragma mark UIApplicationDelegate
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    self.alert = nil;
+    
     // disable restkit logging
     RKLogConfigureByName("*", RKLogLevelOff);
 
@@ -44,41 +48,72 @@
     [request sendSynchronously];
     
     [self setupSidbarAndViewControllers];
+    
+    client = nil;
+    request = nil;
+    
+    // show alert for no apps found
+    if(self.alert)
+        [self.alert show];
+    
     return YES;
 }
 
-- (void)setupSidbarAndViewControllers {
- 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];    
+- (void)setupSidbarAndViewControllers
+{
+    NSArray *headers = nil;
+    NSArray *controllers = nil;
+    NSArray *cellInfos = nil;
+    
+    NSMutableArray *cells = [[NSMutableArray alloc] init];
+    NSMutableArray *cellNavs = [[NSMutableArray alloc] init];
+
 	UIColor *bgColor = [UIColor colorWithRed:(50.0f/255.0f) green:(57.0f/255.0f) blue:(74.0f/255.0f) alpha:1.0f];
+    UINavigationController *qrController = [[UINavigationController alloc] initWithRootViewController:[[SCQRViewController alloc] init]];
+    UINavigationController *settingController = [[UINavigationController alloc] initWithRootViewController:[[SCSettingViewController alloc]initWithStyle:UITableViewStyleGrouped]];
+
+ 	[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:NO];
 	self.revealController = [[GHRevealViewController alloc] initWithNibName:nil bundle:nil];
 	self.revealController.view.backgroundColor = bgColor;
-    
-    // add header subsections in menu sidebar
-	NSArray *headers = @[@"APPS", @"SETTINGS"];
-    UINavigationController *settingController = [[UINavigationController alloc] initWithRootViewController:[[SCSettingViewController alloc] initWithStyle:UITableViewStyleGrouped]];
-    UINavigationController *qrController = [[UINavigationController alloc] initWithRootViewController:[[SCQRViewController alloc] init]];
-    
-    // add apps and links for menu sidebar    
-    NSMutableArray *cells = [[NSMutableArray alloc] init];
-    for(int i=0 ; i<[self.apps count] ; i++) {
-        [cells addObject:@{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"],
-                            kSidebarCellTextKey: NSLocalizedString([self.apps objectAtIndex:i], @"")}];
+
+    // only show settings if no apps found in large container
+    if((!self.apps || [self.apps count] == 0) || (!self.links || [self.links count] == 0))
+    {
+        headers = @[@"SETTINGS"];
+        controllers = @[@[settingController, qrController]];
+        cellInfos = @[@[
+                          @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Broker URL", @"")},
+                          @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
+                    ];
+        
+        self.alert = [[UIAlertView alloc] initWithTitle:nil
+                                                message:@"No apps found in cherry container, please restart app when apps have been added"
+                                               delegate:self
+                                      cancelButtonTitle:@"Ok"
+                                      otherButtonTitles:nil, nil];
     }
-    
-    NSMutableArray *cellNavs = [[NSMutableArray alloc] init];
-    for(int i=0 ; i<[self.links count] ; i++) {
-        [cellNavs addObject:[[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] initWithURL:[self.links objectAtIndex:i]]]];
+    else
+    {
+        headers = @[@"APPS", @"SETTINGS"];
+
+        // add apps and links for menu sidebar
+        for(int i=0 ; i<[self.apps count] ; i++)
+        {
+            [cells addObject:@{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString([self.apps objectAtIndex:i], @"")}];
+        }
+        
+        for(int i=0 ; i<[self.links count] ; i++)
+        {
+            [cellNavs addObject:[[UINavigationController alloc] initWithRootViewController:[[SCRootViewController alloc] initWithURL:[self.links objectAtIndex:i]]]];
+        }
+
+        controllers = @[cellNavs, @[settingController, qrController]];
+        cellInfos = @[cells,
+                      @[
+                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Broker URL", @"")},
+                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
+                    ];
     }
-    
-	NSArray *controllers = @[cellNavs, @[settingController, qrController]];
-	NSArray *cellInfos = @[ cells, @[
-                                        @{ kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"],
-                                            kSidebarCellTextKey: NSLocalizedString(@"Broker URL", @"")},
-                                        @{ kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"],
-                                           kSidebarCellTextKey: NSLocalizedString(@"Scan Display", @"")}                                        
-                                    ]
-                        ];
-    
     
     // Hide navigation bar
 	[controllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
@@ -105,39 +140,63 @@
 
 
 #pragma mark RKRequestDelegate
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{
     self.apps = [[NSMutableArray alloc] init];
     self.links = [[NSMutableArray alloc] init];
     
-    // chop json string into separate json objects
     NSString *body = [response bodyAsString];
+
+    // stop JSON parsing if error no json object found in response
+    if(![NSJSONSerialization   JSONObjectWithData:[body dataUsingEncoding:NSUTF8StringEncoding]
+                                          options:NSJSONReadingMutableContainers
+                                            error:nil])
+        return;
+
+    // chop json string into separate json objects
     body = [body substringWithRange:NSMakeRange(1, [body length]-1)];
     body = [body substringWithRange:NSMakeRange(0, [body length]-1)];
 
     NSRange range = [body rangeOfString:@"}"];
-    while((range.location) < [body length]) {
-        if([[body substringWithRange:NSMakeRange(0, 1)] isEqualToString:@","]) {
+    while((range.location) < [body length])
+    {
+        if([[body substringWithRange:NSMakeRange(0, 1)] isEqualToString:@","])
             body = [body substringWithRange:NSMakeRange(1, [body length]-1)];
-        }
     
         // convert next json object in array
         range = [body rangeOfString:@"}"];
         NSString *jsonString = [body substringWithRange:NSMakeRange(0, range.location+1)];
-        NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]
-                                                                   options: NSJSONReadingMutableContainers
-                                                                     error: nil];
         
-        // 2 - name
-        // 6 - link
-        // append apps info
-        NSArray *values = [jsonDict allValues];
-        [self.apps addObject:[values objectAtIndex:2]];
-        [self.links addObject:[values objectAtIndex:6]];
+        NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData:[jsonString dataUsingEncoding:NSUTF8StringEncoding]
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:nil];
 
+        if([[jsonDict objectForKey:@"mobile_url"] length] == 0)
+            [self.links addObject:[jsonDict objectForKey:@"url"]];
+        else
+            [self.links addObject:[jsonDict objectForKey:@"mobile_url"]];
+
+        [self.apps addObject:[jsonDict objectForKey:@"name"]];
+        
         // move cursor to next json object
         body = [body substringWithRange:NSMakeRange(range.location+1, [body length]-range.location-1)];
         range.location = 0;
     }
 }
+
+- (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
+{
+    NSLog(@"didFailLoadWithError");
+}
+
+- (void)requestDidTimeout:(RKRequest *)request
+{
+    NSLog(@"requestDidTimeout");
+}
+
+
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{}
 
 @end
