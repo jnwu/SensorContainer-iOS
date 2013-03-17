@@ -8,45 +8,49 @@
 
 #import "CameraSensor.h"
 #import "SCAppDelegate.h"
-#import "MBProgressHUD+Utility.h"
 
-#import <RestKit/RKJSONParserJSONKit.h>
 
 @interface CameraSensor ()  <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RKRequestDelegate>
 @property (nonatomic, strong) UIImagePickerController *picker;
-@property (nonatomic, assign) NSTimeInterval time;
 @property (nonatomic, assign) BOOL isTaken;
-@property (nonatomic, strong) NSString *thing;
 @end
 
 @implementation CameraSensor
 
 static CameraSensor* sensor = nil;
 
--(id) initWithSensorCallModel:(STCSensorCallModel *)model
+- (id)initWithSensorCallModel:(STCSensorCallModel *)model
 {
+    if(sensor && [model.command isEqualToString:@"camera"] && sensor.picker.sourceType == UIImagePickerControllerSourceTypeCamera)
+        return sensor;
+    else if(sensor && [model.command isEqualToString:@"gallery"] && sensor.picker.sourceType == UIImagePickerControllerSourceTypePhotoLibrary)
+        return sensor;
+    else
+        sensor = nil;
+    
     if(!sensor)
     {
+        
         sensor = [super initWithSensorCallModel:model];
         
         //init camera controls
         sensor.picker = [[UIImagePickerController alloc] init];
         
         //set source type:
-        if([model.command isEqualToString: @"camera"] &&
-           ([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
-            [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear] ))
+        if([model.command isEqualToString: @"camera"])
         {
-            sensor.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-            
-            sensor.picker.mediaTypes =
-                [UIImagePickerController availableMediaTypesForSourceType:
-                 UIImagePickerControllerSourceTypeCamera];
+            if(([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront] ||
+                [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceRear] ))
+            {
+                sensor.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+                sensor.picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:UIImagePickerControllerSourceTypeCamera];
+                sensor.picker.videoQuality = UIImagePickerControllerQualityTypeLow;
+            }
+            else
+                sensor.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         }
-        else
-        {
+        else if([model.command isEqualToString:@"gallery"])
             sensor.picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        }
         
         // set camera state
         self.isTaken = NO;
@@ -57,10 +61,8 @@ static CameraSensor* sensor = nil;
 
 
 #pragma mark STSensor
--(void) start
+- (void)start
 {
-    //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
-    //Get current view controller, so we can present camera controls
     SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController *vc = (UIViewController *) appDelegate.revealController;
     
@@ -69,17 +71,13 @@ static CameraSensor* sensor = nil;
     self.picker.delegate = self;
 }
 
--(void) cancel
+- (void)cancel
 {
-    //TODO: May not be able to cancel programmatically. Need to check
     [self.delegate STSensorCancelled: self];
 }
 
--(void) uploadData:(STSensorData *)data ForThing:(NSString *)thing
-{
-    // keep a local copy of thing id, as subsequent asynchronous sends are required
-    self.thing = [thing copy];
-    
+- (void)uploadData:(STSensorData *)data
+{    
     // rotate uiimage by 90 cw
     UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
 
@@ -97,31 +95,25 @@ static CameraSensor* sensor = nil;
     NSData* imageData = UIImageJPEGRepresentation(image, 0.0);
     [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
     
-    
     // send image file
-    [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", self.thing] params:params delegate:self];
-    
-    // update send time
-    self.time = [[NSDate date] timeIntervalSince1970];
+    [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
     
     // set camera state
     self.isTaken = YES;
 }
 
 #pragma UIImagePickerControllerDelegate
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    [self.picker dismissViewControllerAnimated:YES completion:^(){}];
     STSensorData * data = [[STSensorData alloc] init];
     data.data = info;
     
-    [self.delegate STSensor:self withData: data];
-    
-    //remove image picker from screen
-    [self.picker dismissViewControllerAnimated: YES completion:^(){}];
+    [self.delegate STSensor:self withData: data];    
     self.picker.delegate = nil;
 }
 
--(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     // close camera
     [self.picker dismissViewControllerAnimated:YES completion:^(){}];
@@ -131,20 +123,23 @@ static CameraSensor* sensor = nil;
 
 
 #pragma mark RKRequestDelegate
-- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response {
+- (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
+{
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"?"];
-    if([parts count] == 2) {
+    if([parts count] == 2)
+    {
         parts = [[parts objectAtIndex:1] componentsSeparatedByString:@"="];
                 
         // after the file has been sent to thing broker, sent request to get content id
-        if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isTaken) {
+        if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isTaken)
+        {
             NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [[response bodyAsString] dataUsingEncoding:NSUTF8StringEncoding]
                                                                        options: NSJSONReadingMutableContainers
                                                                          error: nil];
             NSArray *contentID = [jsonDict objectForKey:@"content"];
             
-            // set append imagr src url
-            NSString *post = [NSString stringWithFormat:@"<img src='http://kimberly.magic.ubc.ca:8080/thingbroker/events/event/content/%@?mustAttach=false' height='250' width='250'>", [contentID objectAtIndex:0]];
+            // set append image src url
+            NSString *post = [NSString stringWithFormat:@"<img src='http://kimberly.magic.ubc.ca:8080/thingbroker/content/%@?mustAttach=false' height='250' width='250'>", [contentID objectAtIndex:0]];
             
             // post image src
             NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
@@ -152,7 +147,7 @@ static CameraSensor* sensor = nil;
             
             NSString *jsonRequest =  [dictRequest JSONString];
             RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-            [self.client post:[NSString stringWithFormat:@"/things/%@/events?keep-stored=true", self.thing] params:params delegate:self];
+            [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
             
             // turn off camera state, to avoid repeatedly sends
             self.isTaken = NO;
