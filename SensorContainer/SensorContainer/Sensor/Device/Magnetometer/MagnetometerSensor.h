@@ -6,8 +6,7 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "STSensor.h"
 
-@interface MagnetometerSensor : NSObject
-
+@interface MagnetometerSensor : STSensor
 @end

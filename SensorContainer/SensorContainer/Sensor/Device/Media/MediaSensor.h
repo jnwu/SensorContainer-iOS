@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "STSensor.h"
 
-@interface MediaSensor : NSObject
-
+@interface MediaSensor : STSensor
 @end
