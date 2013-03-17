@@ -5,6 +5,24 @@
 	<key>sensors</key>
 	<array>
 		<dict>
+			<key>name</key>
+			<string>magnetometer</string>
+			<key>class</key>
+			<string>MagnetometerSensor</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>gps</string>
+			<key>class</key>
+			<string>GPSSensor</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>media</string>
+			<key>class</key>
+			<string>MediaSensor</string>
+		</dict>
+		<dict>
 			<key>class</key>
 			<string>MicrophoneSensor</string>
 			<key>name</key>
