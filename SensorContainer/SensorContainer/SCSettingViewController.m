@@ -6,12 +6,14 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import "SCSettingViewController.h"
 #import <UIKit/UIKit.h>
 
+#import "SCSettingViewController.h"
+#import "STThing.h"
+
 @interface SCSettingViewController () <UITextFieldDelegate>
-@property (nonatomic, strong) UITextField *serverURLTextField;
-@property (nonatomic, strong) UITextField *clientURLTextField;
+@property (nonatomic, strong) UITextField *thingBrokerUrlTextField;
+@property (nonatomic, strong) UITextField *containerUrlTextField;
 @end
 
 static SCSettingViewController *viewController = nil;
@@ -23,45 +25,45 @@ static SCSettingViewController *viewController = nil;
     viewController = [super initWithStyle:style];
     if (viewController)
     {
-        viewController.serverURLTextField = [[UITextField alloc] init];
-        viewController.serverURLTextField.delegate = self;
-        viewController.serverURLTextField.placeholder = @"Server URL";
-        viewController.serverURLTextField.text = @"http://kimberly.magic.ubc.ca:8080/thingbroker";
+        viewController.thingBrokerUrlTextField = [[UITextField alloc] init];
+        viewController.thingBrokerUrlTextField.delegate = self;
+        viewController.thingBrokerUrlTextField.placeholder = @"Server URL";
+        viewController.thingBrokerUrlTextField.text = [STThing thingBrokerUrl];
         
-        viewController.clientURLTextField = [[UITextField alloc] init];
-        viewController.clientURLTextField.delegate = self;
-        viewController.clientURLTextField.placeholder = @"Client URL";
-        viewController.clientURLTextField.text = @"http://jnwuclient.appspot.com/";
+        viewController.containerUrlTextField = [[UITextField alloc] init];
+        viewController.containerUrlTextField.delegate = self;
+        viewController.containerUrlTextField.placeholder = @"Client URL";
+        viewController.containerUrlTextField.text = [STThing containerUrl];
     }
     return viewController;
 }
 
 +(NSString *) serverURL
 {
-    if(!viewController.serverURLTextField)
+    if(!viewController.thingBrokerUrlTextField)
     {
         return nil;
     }
     
-    return viewController.serverURLTextField.text;
+    return viewController.thingBrokerUrlTextField.text;
 }
 
 +(NSString *) clientURL
 {
-    if(!viewController.clientURLTextField)
+    if(!viewController.containerUrlTextField)
     {
         return nil;
     }
     
-    return viewController.clientURLTextField.text;
+    return viewController.containerUrlTextField.text;
 }
 
 
 #pragma mark UIViewController
 - (void)viewWillLayoutSubviews
 {
-    self.serverURLTextField.frame = CGRectMake(self.serverURLTextField.superview.frame.origin.x + 10, self.serverURLTextField.superview.frame.origin.y + 10, self.serverURLTextField.superview.frame.size.width - 40, self.serverURLTextField.superview.frame.size.height - 10);
-    self.clientURLTextField.frame = CGRectMake(self.clientURLTextField.superview.frame.origin.x + 10, self.clientURLTextField.superview.frame.origin.y + 10, self.clientURLTextField.superview.frame.size.width - 40, self.clientURLTextField.superview.frame.size.height - 10);
+    self.thingBrokerUrlTextField.frame = CGRectMake(self.thingBrokerUrlTextField.superview.frame.origin.x + 10, self.thingBrokerUrlTextField.superview.frame.origin.y + 10, self.thingBrokerUrlTextField.superview.frame.size.width - 40, self.thingBrokerUrlTextField.superview.frame.size.height - 10);
+    self.containerUrlTextField.frame = CGRectMake(self.containerUrlTextField.superview.frame.origin.x + 10, self.containerUrlTextField.superview.frame.origin.y + 10, self.containerUrlTextField.superview.frame.size.width - 40, self.containerUrlTextField.superview.frame.size.height - 10);
 }
 
 
@@ -88,8 +90,8 @@ static SCSettingViewController *viewController = nil;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         // add text field in table cell
-        self.serverURLTextField.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, cell.frame.size.width - 40, cell.frame.size.height - 10);
-        [cell.contentView addSubview:self.serverURLTextField];
+        self.thingBrokerUrlTextField.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, cell.frame.size.width - 40, cell.frame.size.height - 10);
+        [cell.contentView addSubview:self.thingBrokerUrlTextField];
         
         // configure cell
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -103,8 +105,8 @@ static SCSettingViewController *viewController = nil;
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         
         // add text field in table cell
-        self.clientURLTextField.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, cell.frame.size.width - 40, cell.frame.size.height - 10);
-        [cell.contentView addSubview:self.clientURLTextField];
+        self.containerUrlTextField.frame = CGRectMake(cell.frame.origin.x + 10, cell.frame.origin.y + 10, cell.frame.size.width - 40, cell.frame.size.height - 10);
+        [cell.contentView addSubview:self.containerUrlTextField];
         
         // configure cell
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -123,7 +125,7 @@ static SCSettingViewController *viewController = nil;
             return @"ThingBroker Server";
     
         case 1:
-            return @"ThingBroker Client";
+            return @"Web Application Container";
     }
     
     return nil;
@@ -132,7 +134,7 @@ static SCSettingViewController *viewController = nil;
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];    
+    [textField resignFirstResponder];
     return YES;
 }
 

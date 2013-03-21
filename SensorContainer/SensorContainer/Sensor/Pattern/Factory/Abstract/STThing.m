@@ -11,10 +11,13 @@
 @interface STThing ()
 @property (nonatomic, strong) NSString *thingId;
 @property (nonatomic, strong) NSString *displayId;
-@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *containerUrl;
+@property (nonatomic, strong) NSString *thingBrokerUrl;
 @end
 
 static STThing *thing = nil;
+static NSString *kThingBrokerUrl = @"http://kimberly.magic.ubc.ca:8080/thingbroker";
+static NSString *kContainerUrl = @"http://container.icd.magic.ubc.ca/api/apps";
 
 @implementation STThing
 
@@ -31,6 +34,8 @@ static STThing *thing = nil;
     if(thing)
     {
         thing.thingId = thingId;
+        [thing setContainerUrl:kContainerUrl];
+        [thing setThingBrokerUrl:kThingBrokerUrl];
     }
     
     return thing;
@@ -49,20 +54,27 @@ static STThing *thing = nil;
 + (void)setDisplayId:(NSString *)displayId
 {
     if(!thing)
-    {
         thing = [[STThing alloc] initWithThingId:@""];
-    }    
+
     thing.displayId = displayId;
 }
 
-+ (void)setThingBrokerURL:(NSString *)url
++ (void)setThingBrokerUrl:(NSString *)url
 {
     if(!thing)
-    {
         thing = [[STThing alloc] initWithThingId:@""];
-    }
-    thing.url = url;
+
+    thing.thingBrokerUrl = url;
 }
+
++ (void)setContainerUrl:(NSString *)url
+{
+    if(!thing)
+        thing = [[STThing alloc] initWithThingId:@""];
+
+    thing.containerUrl = url;
+}
+
 
 + (NSString *)thingId
 {
@@ -74,9 +86,20 @@ static STThing *thing = nil;
     return thing.displayId;
 }
 
-+ (NSString *)thingBrokerURL
++ (NSString *)thingBrokerUrl
 {
-    return thing.url;
+    if(!thing)
+        thing = [[STThing alloc] initWithThingId:@""];
+    
+    return thing.thingBrokerUrl;
+}
+
++ (NSString *)containerUrl
+{
+    if(!thing)
+        thing = [[STThing alloc] initWithThingId:@""];
+    
+    return thing.containerUrl;
 }
 
 @end

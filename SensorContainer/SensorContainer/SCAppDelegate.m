@@ -12,6 +12,7 @@
 #import "SCRootViewController.h"
 #import "SCSettingViewController.h"
 #import "SCQRViewController.h"
+#import "STThing.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>
@@ -43,7 +44,7 @@
     RKLogConfigureByName("*", RKLogLevelOff);
 
     // get app list
-    RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:@"http://container.icd.magic.ubc.ca/api/apps"]];
+    RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:[STThing containerUrl]]];
     RKRequest *request = [client get:@"/" queryParameters:nil delegate:self];
     [request sendSynchronously];
     

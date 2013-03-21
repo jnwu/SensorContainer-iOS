@@ -10,11 +10,14 @@
 
 @interface STThing : NSObject
 + (STThing *)thing;
-+ (void)setThingBrokerURL:(NSString *)url;
++ (void)setThingBrokerUrl:(NSString *)url;
++ (void)setContainerUrl:(NSString *)url;
 + (void)setThingId:(NSString *)thingId;
 + (void)setDisplayId:(NSString *)displayId;
+
 + (NSString *)thingId;
 + (NSString *)displayId;
-+ (NSString *)thingBrokerURL;
++ (NSString *)thingBrokerUrl;
++ (NSString *)containerUrl;
 @end
 
