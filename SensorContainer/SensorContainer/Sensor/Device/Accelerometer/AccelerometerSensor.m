@@ -46,6 +46,9 @@ static AccelerometerSensor* sensor = nil;
 
 -(void) cancel
 {
+    if(!self.motionManager.accelerometerActive)
+        return;
+    
     [self.motionManager stopAccelerometerUpdates];
     [self.timer invalidate];
     self.timer = nil;

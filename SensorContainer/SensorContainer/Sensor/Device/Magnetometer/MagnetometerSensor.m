@@ -45,6 +45,9 @@ static MagnetometerSensor* sensor = nil;
 
 - (void)cancel
 {
+    if(!self.motionManager.magnetometerActive)
+        return;
+    
     [self.motionManager stopMagnetometerUpdates];
     [self.timer invalidate];
     self.timer = nil;
