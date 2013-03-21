@@ -20,9 +20,6 @@
 		0431B55616ADFF9700DE73E6 /* STCSensorCallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54916ADFF9700DE73E6 /* STCSensorCallModel.m */; };
 		0431B55716ADFF9700DE73E6 /* STCSensorCallParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54B16ADFF9700DE73E6 /* STCSensorCallParser.m */; };
 		0431B55916ADFFB200DE73E6 /* STSensorConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */; };
-		0431B56516AE022400DE73E6 /* GHMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B55D16AE022400DE73E6 /* GHMenuCell.m */; };
-		0431B56616AE022400DE73E6 /* GHMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B55F16AE022400DE73E6 /* GHMenuViewController.m */; };
-		0431B56716AE022400DE73E6 /* GHRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B56116AE022400DE73E6 /* GHRevealViewController.m */; };
 		0431B56A16AE02D600DE73E6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0431B56916AE02D600DE73E6 /* QuartzCore.framework */; };
 		0431B57116AE0D3600DE73E6 /* 32-iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56C16AE0D3600DE73E6 /* 32-iphone.png */; };
 		0431B57216AE0D3600DE73E6 /* searchBarBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 0431B56D16AE0D3600DE73E6 /* searchBarBG.png */; };
@@ -32,7 +29,6 @@
 		0434672816F28AF300B418D7 /* GPSSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434672716F28AF300B418D7 /* GPSSensor.m */; };
 		0434672C16F28B5F00B418D7 /* MagnetometerSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 0434672B16F28B5F00B418D7 /* MagnetometerSensor.m */; };
 		04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */; };
-		044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 044EF66E16B367F80099A862 /* MBProgressHUD.m */; };
 		044EF67116B371660099A862 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 044EF67016B371660099A862 /* 37x-Checkmark.png */; };
 		046F821716DEC7980030D813 /* SCSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046F821616DEC7980030D813 /* SCSettingViewController.m */; };
 		047963DF16B1167800DC4E85 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 047963DE16B1167800DC4E85 /* Icon.png */; };
@@ -51,13 +47,17 @@
 		04AFE00116ED42E200826D54 /* STCSensorFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0431B54316ADFF9700DE73E6 /* STCSensorFactory.m */; };
 		04B4A39216F5257200E933A4 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4A39016F5257200E933A4 /* Default.png */; };
 		04B4A39316F5257200E933A4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04B4A39116F5257200E933A4 /* Default@2x.png */; };
+		04C8960D16FBACA7007A2E09 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8960C16FBACA7007A2E09 /* MBProgressHUD.m */; };
+		04C8961416FBACB3007A2E09 /* GHMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8960F16FBACB3007A2E09 /* GHMenuCell.m */; };
+		04C8961516FBACB3007A2E09 /* GHMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8961116FBACB3007A2E09 /* GHMenuViewController.m */; };
+		04C8961616FBACB3007A2E09 /* GHRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04C8961316FBACB3007A2E09 /* GHRevealViewController.m */; };
+		04C8961916FBAD28007A2E09 /* wav_to_flac.c in Sources */ = {isa = PBXBuildFile; fileRef = 04C8961716FBAD28007A2E09 /* wav_to_flac.c */; };
+		04C8961B16FBAF04007A2E09 /* FLACiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04C8961A16FBAF04007A2E09 /* FLACiOS.framework */; };
 		04CB409116E287120066F946 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04CB409016E287120066F946 /* SenTestingKit.framework */; };
 		04CB409216E287120066F946 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		04CB409316E287120066F946 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
 		04CB409916E287120066F946 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04CB409716E287120066F946 /* InfoPlist.strings */; };
 		04CF774416EA61C30015B8AD /* SCQRViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 04CF774316EA61C30015B8AD /* SCQRViewController.mm */; };
-		04E23E0B16E2FC07002D50AD /* FLACiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04E23E0116E2F7C7002D50AD /* FLACiOS.framework */; };
-		04E23E0F16E3008D002D50AD /* wav_to_flac.c in Sources */ = {isa = PBXBuildFile; fileRef = 04E23E0D16E3008D002D50AD /* wav_to_flac.c */; };
 		04F8D41616B0E00B006560CA /* AccelerometerSensor.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F8D41516B0E00B006560CA /* AccelerometerSensor.m */; };
 		6BC36D34169EB51B00C0DBAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D33169EB51B00C0DBAB /* UIKit.framework */; };
 		6BC36D36169EB51B00C0DBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BC36D35169EB51B00C0DBAB /* Foundation.framework */; };
@@ -164,12 +164,6 @@
 		0431B54A16ADFF9700DE73E6 /* STCSensorCallParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STCSensorCallParser.h; sourceTree = "<group>"; };
 		0431B54B16ADFF9700DE73E6 /* STCSensorCallParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STCSensorCallParser.m; sourceTree = "<group>"; };
 		0431B55816ADFFB200DE73E6 /* STSensorConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = STSensorConfig.plist; path = Config/STSensorConfig.plist; sourceTree = "<group>"; };
-		0431B55C16AE022400DE73E6 /* GHMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMenuCell.h; sourceTree = "<group>"; };
-		0431B55D16AE022400DE73E6 /* GHMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHMenuCell.m; sourceTree = "<group>"; };
-		0431B55E16AE022400DE73E6 /* GHMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHMenuViewController.h; sourceTree = "<group>"; };
-		0431B55F16AE022400DE73E6 /* GHMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHMenuViewController.m; sourceTree = "<group>"; };
-		0431B56016AE022400DE73E6 /* GHRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GHRevealViewController.h; sourceTree = "<group>"; };
-		0431B56116AE022400DE73E6 /* GHRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHRevealViewController.m; sourceTree = "<group>"; };
 		0431B56916AE02D600DE73E6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		0431B56C16AE0D3600DE73E6 /* 32-iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "32-iphone.png"; sourceTree = "<group>"; };
 		0431B56D16AE0D3600DE73E6 /* searchBarBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = searchBarBG.png; sourceTree = "<group>"; };
@@ -182,8 +176,6 @@
 		0434672B16F28B5F00B418D7 /* MagnetometerSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagnetometerSensor.m; path = Magnetometer/MagnetometerSensor.m; sourceTree = "<group>"; };
 		04483A3C16E7F5D100B0EFBF /* MBProgressHUD+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MBProgressHUD+Utility.h"; path = "Utilities/MBProgressHUD+Utility.h"; sourceTree = "<group>"; };
 		04483A3D16E7F5D100B0EFBF /* MBProgressHUD+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MBProgressHUD+Utility.m"; path = "Utilities/MBProgressHUD+Utility.m"; sourceTree = "<group>"; };
-		044EF66D16B367F80099A862 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = SensorContainer/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
-		044EF66E16B367F80099A862 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = SensorContainer/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		044EF67016B371660099A862 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "37x-Checkmark.png"; sourceTree = "<group>"; };
 		046F821516DEC7980030D813 /* SCSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCSettingViewController.h; sourceTree = "<group>"; };
 		046F821616DEC7980030D813 /* SCSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCSettingViewController.m; sourceTree = "<group>"; };
@@ -203,6 +195,17 @@
 		04AE8D7316DC6939002909AD /* MicrophoneSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MicrophoneSensor.m; path = Microphone/MicrophoneSensor.m; sourceTree = "<group>"; };
 		04B4A39016F5257200E933A4 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../../../../../../Downloads/splash_screen/Default.png; sourceTree = "<group>"; };
 		04B4A39116F5257200E933A4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../../../../../../Downloads/splash_screen/Default@2x.png"; sourceTree = "<group>"; };
+		04C8960B16FBACA6007A2E09 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = SensorContainer/3rdPartyUtils/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
+		04C8960C16FBACA7007A2E09 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = SensorContainer/3rdPartyUtils/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
+		04C8960E16FBACB3007A2E09 /* GHMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHMenuCell.h; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHMenuCell.h; sourceTree = SOURCE_ROOT; };
+		04C8960F16FBACB3007A2E09 /* GHMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHMenuCell.m; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHMenuCell.m; sourceTree = SOURCE_ROOT; };
+		04C8961016FBACB3007A2E09 /* GHMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHMenuViewController.h; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHMenuViewController.h; sourceTree = SOURCE_ROOT; };
+		04C8961116FBACB3007A2E09 /* GHMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHMenuViewController.m; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHMenuViewController.m; sourceTree = SOURCE_ROOT; };
+		04C8961216FBACB3007A2E09 /* GHRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GHRevealViewController.h; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHRevealViewController.h; sourceTree = SOURCE_ROOT; };
+		04C8961316FBACB3007A2E09 /* GHRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GHRevealViewController.m; path = SensorContainer/3rdPartyUtils/GHSideBarNav/GHRevealViewController.m; sourceTree = SOURCE_ROOT; };
+		04C8961716FBAD28007A2E09 /* wav_to_flac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wav_to_flac.c; path = SensorContainer/3rdPartyUtils/wav_to_flac/wav_to_flac.c; sourceTree = "<group>"; };
+		04C8961816FBAD28007A2E09 /* wav_to_flac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wav_to_flac.h; path = SensorContainer/3rdPartyUtils/wav_to_flac/wav_to_flac.h; sourceTree = "<group>"; };
+		04C8961A16FBAF04007A2E09 /* FLACiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLACiOS.framework; path = SensorContainer/3rdPartyUtils/FLACiOS.framework; sourceTree = "<group>"; };
 		04CB408F16E287120066F946 /* SensorContainerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SensorContainerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04CB409016E287120066F946 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		04CB409616E287120066F946 /* SensorContainerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SensorContainerTests-Info.plist"; sourceTree = "<group>"; };
@@ -212,9 +215,6 @@
 		04CB409D16E287120066F946 /* SensorContainerTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SensorContainerTests-Prefix.pch"; sourceTree = "<group>"; };
 		04CF774216EA61C30015B8AD /* SCQRViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCQRViewController.h; sourceTree = "<group>"; };
 		04CF774316EA61C30015B8AD /* SCQRViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SCQRViewController.mm; sourceTree = "<group>"; };
-		04E23E0116E2F7C7002D50AD /* FLACiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FLACiOS.framework; path = ../../../../FLACiOS.framework; sourceTree = "<group>"; };
-		04E23E0D16E3008D002D50AD /* wav_to_flac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wav_to_flac.c; path = ../../../wav_to_flac/wav_to_flac.c; sourceTree = "<group>"; };
-		04E23E0E16E3008D002D50AD /* wav_to_flac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wav_to_flac.h; path = ../../../wav_to_flac/wav_to_flac.h; sourceTree = "<group>"; };
 		04F8D41416B0E00B006560CA /* AccelerometerSensor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccelerometerSensor.h; sourceTree = "<group>"; };
 		04F8D41516B0E00B006560CA /* AccelerometerSensor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerometerSensor.m; sourceTree = "<group>"; };
 		6BC36D2F169EB51B00C0DBAB /* SensorContainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SensorContainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,10 +253,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04C8961B16FBAF04007A2E09 /* FLACiOS.framework in Frameworks */,
 				04201FE316F459CD0013DF7D /* CoreLocation.framework in Frameworks */,
 				6BC36D9F169EBBBD00C0DBAB /* CoreMedia.framework in Frameworks */,
 				04029B5016F15328007F92C3 /* MediaPlayer.framework in Frameworks */,
-				04E23E0B16E2FC07002D50AD /* FLACiOS.framework in Frameworks */,
 				04ADBED216B5DC34005C1E11 /* libRestKit.a in Frameworks */,
 				04ADBED116B5DC2E005C1E11 /* SystemConfiguration.framework in Frameworks */,
 				04ADBECF16B5DC23005C1E11 /* Security.framework in Frameworks */,
@@ -404,12 +404,12 @@
 		0431B55B16AE022400DE73E6 /* GHSideBarNav */ = {
 			isa = PBXGroup;
 			children = (
-				0431B55C16AE022400DE73E6 /* GHMenuCell.h */,
-				0431B55D16AE022400DE73E6 /* GHMenuCell.m */,
-				0431B55E16AE022400DE73E6 /* GHMenuViewController.h */,
-				0431B55F16AE022400DE73E6 /* GHMenuViewController.m */,
-				0431B56016AE022400DE73E6 /* GHRevealViewController.h */,
-				0431B56116AE022400DE73E6 /* GHRevealViewController.m */,
+				04C8960E16FBACB3007A2E09 /* GHMenuCell.h */,
+				04C8960F16FBACB3007A2E09 /* GHMenuCell.m */,
+				04C8961016FBACB3007A2E09 /* GHMenuViewController.h */,
+				04C8961116FBACB3007A2E09 /* GHMenuViewController.m */,
+				04C8961216FBACB3007A2E09 /* GHRevealViewController.h */,
+				04C8961316FBACB3007A2E09 /* GHRevealViewController.m */,
 			);
 			name = GHSideBarNav;
 			path = SensorContainer/GHSideBarNav;
@@ -471,8 +471,8 @@
 		044EF66C16B367A00099A862 /* MBProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				044EF66D16B367F80099A862 /* MBProgressHUD.h */,
-				044EF66E16B367F80099A862 /* MBProgressHUD.m */,
+				04C8960B16FBACA6007A2E09 /* MBProgressHUD.h */,
+				04C8960C16FBACA7007A2E09 /* MBProgressHUD.m */,
 			);
 			name = MBProgressHUD;
 			sourceTree = "<group>";
@@ -521,8 +521,8 @@
 		04E23E0C16E3006B002D50AD /* Wav2FLAC */ = {
 			isa = PBXGroup;
 			children = (
-				04E23E0D16E3008D002D50AD /* wav_to_flac.c */,
-				04E23E0E16E3008D002D50AD /* wav_to_flac.h */,
+				04C8961716FBAD28007A2E09 /* wav_to_flac.c */,
+				04C8961816FBAD28007A2E09 /* wav_to_flac.h */,
 			);
 			name = Wav2FLAC;
 			sourceTree = "<group>";
@@ -553,9 +553,9 @@
 		6BC36D32169EB51B00C0DBAB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04C8961A16FBAF04007A2E09 /* FLACiOS.framework */,
 				04201FE216F459CD0013DF7D /* CoreLocation.framework */,
 				04029B4F16F15327007F92C3 /* MediaPlayer.framework */,
-				04E23E0116E2F7C7002D50AD /* FLACiOS.framework */,
 				04ADBED016B5DC2E005C1E11 /* SystemConfiguration.framework */,
 				04ADBECE16B5DC23005C1E11 /* Security.framework */,
 				04ADBECC16B5DC1C005C1E11 /* MobileCoreServices.framework */,
@@ -821,21 +821,21 @@
 				0431B55516ADFF9700DE73E6 /* STCSensorConfig.m in Sources */,
 				0431B55616ADFF9700DE73E6 /* STCSensorCallModel.m in Sources */,
 				0431B55716ADFF9700DE73E6 /* STCSensorCallParser.m in Sources */,
-				0431B56516AE022400DE73E6 /* GHMenuCell.m in Sources */,
-				0431B56616AE022400DE73E6 /* GHMenuViewController.m in Sources */,
-				0431B56716AE022400DE73E6 /* GHRevealViewController.m in Sources */,
 				04F8D41616B0E00B006560CA /* AccelerometerSensor.m in Sources */,
-				044EF66F16B367F80099A862 /* MBProgressHUD.m in Sources */,
 				04ADBED516B5DE2C005C1E11 /* STThing.m in Sources */,
 				04ADBED716B5E61C005C1E11 /* SCRootViewController.mm in Sources */,
 				04AE8D7416DC6939002909AD /* MicrophoneSensor.m in Sources */,
 				046F821716DEC7980030D813 /* SCSettingViewController.m in Sources */,
-				04E23E0F16E3008D002D50AD /* wav_to_flac.c in Sources */,
 				04483A3E16E7F5D100B0EFBF /* MBProgressHUD+Utility.m in Sources */,
 				04CF774416EA61C30015B8AD /* SCQRViewController.mm in Sources */,
 				040BFC2E16F047A400C0FF5A /* MediaSensor.m in Sources */,
 				0434672816F28AF300B418D7 /* GPSSensor.m in Sources */,
 				0434672C16F28B5F00B418D7 /* MagnetometerSensor.m in Sources */,
+				04C8960D16FBACA7007A2E09 /* MBProgressHUD.m in Sources */,
+				04C8961416FBACB3007A2E09 /* GHMenuCell.m in Sources */,
+				04C8961516FBACB3007A2E09 /* GHMenuViewController.m in Sources */,
+				04C8961616FBACB3007A2E09 /* GHRevealViewController.m in Sources */,
+				04C8961916FBAD28007A2E09 /* wav_to_flac.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1003,6 +1003,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../..\"",
 					"\"$(SRCROOT)/RestKit/Tests/Vendor/OCHamcrest\"",
+					"\"$(SRCROOT)/SensorContainer/3rdPartyUtils\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
@@ -1038,6 +1039,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../..\"",
 					"\"$(SRCROOT)/RestKit/Tests/Vendor/OCHamcrest\"",
+					"\"$(SRCROOT)/SensorContainer/3rdPartyUtils\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SensorContainer/SensorContainer-Prefix.pch";
