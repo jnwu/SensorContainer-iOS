@@ -84,8 +84,7 @@
     self.connection = [[NSURLConnection alloc] initWithRequest:requestObj delegate:self];
     [self.connection start];
     
-	self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-    self.hud.labelText = @"Loading";
+    self.hud = [MBProgressHUD showLoadingWithHUD:self.hud AndText:@"Loading"];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -184,13 +183,10 @@
 
 #pragma mark NSURLConnectionDelegete
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
-{
-	self.hud.mode = MBProgressHUDModeIndeterminate;
-}
+{}
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	self.hud.mode = MBProgressHUDModeIndeterminate;
 	[self.hud hide:YES afterDelay:1.5];
 }
 
@@ -203,28 +199,16 @@
 #pragma mark STSensorDelegate
 -(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data
 {
-        
     // TODO: Takeout the following if statement, temp code
     if([sensor1 isKindOfClass: [MagnetometerSensor class]])
     {
-        /*
+/*
 
         id x = [data.data objectForKey:@"x"];
-         id y = [data.data objectForKey:@"y"];
-         id z = [data.data objectForKey:@"z"];
+        id y = [data.data objectForKey:@"y"];
+        id z = [data.data objectForKey:@"z"];
          
-         NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
-        
-
-        NSString *jqueryCDN = @"http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js";
-        NSData *jquery = [NSData dataWithContentsOfURL:[NSURL URLWithString:jqueryCDN]];
-        NSString *jqueryString = [[NSMutableString alloc] initWithData:jquery encoding:NSUTF8StringEncoding];
-        [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
-        
-        jqueryString = [NSString stringWithFormat:@"$('#table').append('<tr><td>%@</td><td>%@</td><td>%@</td></tr>');",
-                        (NSString *)x, (NSString *)y, (NSString *)z];
-        
-        [self.webView stringByEvaluatingJavaScriptFromString:jqueryString];
+        NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
 */ 
     }
     
