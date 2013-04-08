@@ -26,12 +26,15 @@
         RKURL *baseURL = [RKURL URLWithBaseURLString:[SCSettingViewController serverURL]];
         self.client = [RKClient clientWithBaseURL:baseURL];
         self.sensorCallModel = model;
+        self.content = [[NSMutableArray alloc] init];
+        self.sensorDict = [[NSMutableDictionary alloc] init];
+        self.eventDict = [[NSMutableDictionary alloc] init];
     }
     
     return self;
 }
 
-- (void)start
+- (void)start:(NSArray *)parameters
 {
     NSLog(@"you should not get here");
 }
@@ -49,6 +52,11 @@
 - (void)configure:(NSArray *)settings
 {
     NSLog(@"you should not get here");    
+}
+
+- (void)sendFileUrl:(NSString *)url
+{
+    
 }
 
 @end

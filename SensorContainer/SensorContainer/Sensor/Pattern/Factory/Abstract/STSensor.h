@@ -45,7 +45,7 @@
 /*
  Start sensing
  */
-- (void)start;
+- (void)start:(NSArray *)parameters;
 
 /*
  Cancel sensoring. This is required to call if the sensor is continuously sensing
@@ -65,5 +65,9 @@
 @property (weak, nonatomic) id<STSensorDelegate> delegate;
 @property (strong, nonatomic) STCSensorCallModel * sensorCallModel;
 @property (strong, nonatomic) RKClient *client;
-
+@property (strong, nonatomic) NSMutableArray *content;
+@property (strong, nonatomic) NSString *eventKey;
+@property (strong, nonatomic) NSString *sensorKey;
+@property (strong, nonatomic) NSMutableDictionary *sensorDict;
+@property (strong, nonatomic) NSMutableDictionary *eventDict;
 @end
