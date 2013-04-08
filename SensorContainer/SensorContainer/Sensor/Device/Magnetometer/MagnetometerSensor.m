@@ -30,11 +30,22 @@ static MagnetometerSensor* sensor = nil;
 }
 
 #pragma mark STSensor
-- (void)start
+- (void)start:(NSArray *)parameters
 {
     if(self.motionManager.magnetometerActive)
         return;
     
+    // set event and sensor keys
+    self.eventKey = (NSString *)[parameters objectAtIndex:0];
+    if([self.eventKey isEqualToString:@"native"])
+        self.sensorKey = (NSString *)[parameters objectAtIndex:1];
+    else
+    {
+        [MBProgressHUD showWarningWithText:@"jQuery API not supported"];
+        return;
+    }
+    
+    // start magnetometer
     self.motionManager.magnetometerUpdateInterval = 1;
     [self.motionManager startMagnetometerUpdates];
     
@@ -63,15 +74,18 @@ static MagnetometerSensor* sensor = nil;
     id z = [data.data objectForKey:@"z"];
     
     // Send text to thing broker
-    NSMutableDictionary *field = [[NSMutableDictionary alloc] init];
-    [field setObject: [NSString stringWithFormat:@"%@", (NSString *)x] forKey:@"x"];
-    [field setObject: [NSString stringWithFormat:@"%@", (NSString *)y] forKey:@"y"];
-    [field setObject: [NSString stringWithFormat:@"%@", (NSString *)z] forKey:@"z"];
+    [self.content removeAllObjects];
+    [self.content addObject:(NSString *)x];
+    [self.content addObject:(NSString *)y];
+    [self.content addObject:(NSString *)z];
     
-    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-    [dictRequest setObject:field forKey:@"data"];
+    // put in sensor hash
+    [self.sensorDict removeAllObjects];
+    [self.eventDict removeAllObjects];
+    [self.sensorDict setObject:self.content forKey:[NSString stringWithFormat:@"%@", self.sensorKey]];
+    [self.eventDict setObject:self.sensorDict forKey:self.eventKey];
     
-    NSString *jsonRequest =  [dictRequest JSONString];
+    NSString *jsonRequest =  [self.eventDict JSONString];
     RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
     [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
 }

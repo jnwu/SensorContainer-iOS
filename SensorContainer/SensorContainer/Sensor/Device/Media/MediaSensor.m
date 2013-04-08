@@ -12,6 +12,7 @@
 
 #import "MediaSensor.h"
 #import "SCAppDelegate.h"
+#import "STThing.h"
 
 @interface MediaSensor() <RKRequestDelegate, MPMediaPickerControllerDelegate>
 @property (strong, nonatomic) MPMediaPickerController *picker;
@@ -21,8 +22,19 @@
 
 @implementation MediaSensor
 
-- (void)start
+- (void)start:(NSArray *)parameters
 {
+    // set event and sensor keys
+    self.eventKey = (NSString *)[parameters objectAtIndex:0];
+    if([self.eventKey isEqualToString:@"native"])
+        self.sensorKey = (NSString *)[parameters objectAtIndex:1];
+    else
+    {
+        [MBProgressHUD showWarningWithText:@"jQuery API not supported"];
+        return;
+    }
+    
+    // start media picker
     self.picker =[[MPMediaPickerController alloc] initWithMediaTypes: MPMediaTypeAnyAudio];
     self.picker.delegate = self;
     self.picker.allowsPickingMultipleItems = NO;
@@ -93,11 +105,14 @@
             data.data = dict;
             
             [self.delegate STSensor:self withData: data];
-        }
+        } 
     }
 
     // get media song 
     NSString *songTitle = [selectedItem valueForProperty:MPMediaItemPropertyTitle];
+    [self.content removeAllObjects];
+    [self.content addObject:songTitle];
+
     NSURL *assetURL = [selectedItem valueForProperty: MPMediaItemPropertyAssetURL];
     AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL: assetURL options:nil];
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:songAsset presetName:AVAssetExportPresetPassthrough];
@@ -129,21 +144,21 @@
         exporter.shouldOptimizeForNetworkUse = YES;
         [exporter exportAsynchronouslyWithCompletionHandler:
          ^{
-            NSData *mediaData = [NSData dataWithContentsOfFile:[mp3DirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", songTitle, ex]]];
-     
+             NSData *mediaData = [NSData dataWithContentsOfFile:[mp3DirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", songTitle, ex]]];
+
+             if ([[NSFileManager defaultManager] fileExistsAtPath:exportFile])
+             {
+                 NSError *error = nil;
+                 if ([[NSFileManager defaultManager] removeItemAtPath:exportFile error:&error] == NO)
+                     NSLog(@"removeItemAtPath %@ error:%@", exportFile, error);
+             }
+
             NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
             [dict setObject:mediaData forKey:@"mediaData"];
             STSensorData *data = [[STSensorData alloc] init];
             data.data = dict;
      
-            //[self.delegate STSensor:self withData: data];
-     
-            if ([[NSFileManager defaultManager] fileExistsAtPath:exportFile])
-            {
-                NSError *error = nil;
-                if ([[NSFileManager defaultManager] removeItemAtPath:exportFile error:&error] == NO)
-                    NSLog(@"removeItemAtPath %@ error:%@", exportFile, error);
-            }
+            [self.delegate STSensor:self withData:data];
         }];
     }
 }
@@ -162,31 +177,26 @@
                                                                options: NSJSONReadingMutableContainers
                                                                  error: nil];
     NSArray *contentID = [jsonDict objectForKey:@"content"];
-
+    
     // Send text to thing broker
-    NSString *mediaURL = [NSString stringWithFormat:@"http://kimberly.magic.ubc.ca:8080/thingbroker/content/%@?mustAttach=false", [contentID objectAtIndex:0]];
-    NSMutableDictionary *media = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
- 
+    NSString *url = [NSString stringWithFormat:@"%@/content/%@?mustAttach=false", [STThing thingBrokerUrl], [contentID objectAtIndex:0]];
+    [self.sensorDict removeAllObjects];
+    [self.eventDict removeAllObjects];
+
     if(self.isMediaThumbnailSent)
     {
-        [media setObject:mediaURL  forKey:@"mediaThumbnail"];
-        [dictRequest setObject:media forKey:@"data"];
-        NSString *jsonRequest =  [dictRequest JSONString];
-        RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-        
-        [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
-
-        [MBProgressHUD showCompleteWithText:@"Uploaded Media Thumbnail"];
+        [self.content addObject:url];
         self.isMediaThumbnailSent = NO;
     }
     
     if(self.isMediaSent)
     {
-        NSLog(@"isMediaSent");
-        [media setObject:mediaURL  forKey:@"media"];
-        [dictRequest setObject:media forKey:@"data"];
-        NSString *jsonRequest =  [dictRequest JSONString];
+        [self.content addObject:url];
+        
+        [self.sensorDict setObject:self.content forKey:[NSString stringWithFormat:@"%@", self.sensorKey]];
+        [self.eventDict setObject:self.sensorDict forKey:self.eventKey];
+
+        NSString *jsonRequest =  [self.eventDict JSONString];
         RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
         
         [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];

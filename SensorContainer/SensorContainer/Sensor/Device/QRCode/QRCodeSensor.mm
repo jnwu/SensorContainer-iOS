@@ -25,7 +25,7 @@ static QRCodeSensor* sensor = nil;
 
 
 #pragma mark STSensor
-- (void)start
+- (void)start:(NSArray *)parameters
 {
     //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
     //Get current view controller, so we can present camera controls
