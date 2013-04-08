@@ -10,21 +10,20 @@
 #import "STCSensorCallParser.h"
 #import "STCSensorConfig.h"
 
-
 @implementation STCSensorFactory
 
-+ (STSensor *)getSensorWithCommand: (NSString *) sensorCall
++ (STSensor *)getSensorWithCommand:(NSString *)sensorCall
 {
-    STCSensorCallModel * model = [STCSensorCallParser parseSensorCallStr: sensorCall];
-    NSArray * sensorMapping = [STCSensorConfig getSensorConfig];
+    STCSensorCallModel *model = [STCSensorCallParser parseSensorCallStr: sensorCall];
+    NSArray *sensorMapping = [STCSensorConfig getSensorConfig];
     
-    for(NSDictionary * aSensorConfig in sensorMapping)
+    for(NSDictionary *aSensorConfig in sensorMapping)
     {
-        if([model.command isEqualToString: [aSensorConfig objectForKey: @"name"]])
+        if([model.command isEqualToString:[aSensorConfig objectForKey:@"name"]])
         {
             //create sensor
             NSString *className = [aSensorConfig objectForKey: @"class"];
-            STSensor * sensor = [[NSClassFromString( className ) alloc] initWithSensorCallModel:  model];
+            STSensor *sensor = [[NSClassFromString(className) alloc] initWithSensorCallModel:model];
             
             model           = nil;
             sensorMapping   = nil;
