@@ -34,6 +34,7 @@ static NSString *kContainerUrl = @"http://container.icd.magic.ubc.ca/api/apps";
     if(thing)
     {
         thing.thingId = thingId;
+        thing.displayId = @"";
         [thing setContainerUrl:kContainerUrl];
         [thing setThingBrokerUrl:kThingBrokerUrl];
     }
@@ -44,10 +45,8 @@ static NSString *kContainerUrl = @"http://container.icd.magic.ubc.ca/api/apps";
 + (void)setThingId:(NSString *)thingId
 {
     if(!thing)
-    {
         thing = [[STThing alloc] initWithThingId:thingId];
-        thing.displayId = @"";
-    }
+    
     thing.thingId = thingId;
 }
 
