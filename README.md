@@ -3,6 +3,7 @@ SensorContainer
 
 This repo contains the mobile container application for the Interactive Web Application framework.
 
+This application couples with the Android mobile application (https://github.com/murtadha/AndroidWebContainer)
 
 Significance
 ------------
