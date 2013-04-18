@@ -6,6 +6,12 @@
 	<array>
 		<dict>
 			<key>name</key>
+			<string>touch</string>
+			<key>class</key>
+			<string>TouchSensor</string>
+		</dict>
+		<dict>
+			<key>name</key>
 			<string>magnetometer</string>
 			<key>class</key>
 			<string>MagnetometerSensor</string>
