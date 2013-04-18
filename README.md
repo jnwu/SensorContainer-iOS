@@ -5,7 +5,7 @@ This repo contains the mobile container application for the Interactive Web Appl
 
 
 Third-Party Depedencies
-=======================
+===============
 
 The following third-party libraries have been integrated
 * df
