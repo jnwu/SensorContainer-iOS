@@ -8,11 +8,13 @@
 
 #import "CameraSensor.h"
 #import "SCAppDelegate.h"
+#import "STThing.h"
 
 
 @interface CameraSensor ()  <UIImagePickerControllerDelegate, UINavigationControllerDelegate, RKRequestDelegate>
 @property (nonatomic, strong) UIImagePickerController *picker;
 @property (nonatomic, assign) BOOL isTaken;
+@property (nonatomic, strong) NSString *colorEffect;
 @end
 
 @implementation CameraSensor
@@ -61,10 +63,15 @@ static CameraSensor* sensor = nil;
 
 
 #pragma mark STSensor
-- (void)start
+- (void)start:(NSArray *)parameters
 {
     SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController *vc = (UIViewController *) appDelegate.revealController;
+    
+    // set event and sensor keys
+    self.eventKey = (NSString *)[parameters objectAtIndex:0];
+    if([self.eventKey isEqualToString:@"native"])
+        self.sensorKey = (NSString *)[parameters objectAtIndex:1];
     
     //present image picker
     [vc presentViewController:self.picker animated:YES completion: nil];
@@ -83,24 +90,75 @@ static CameraSensor* sensor = nil;
 
 	CGSize size = [image size];
 	UIGraphicsBeginImageContext(size);
-	CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextTranslateCTM(context, 0.0, 0.0);
-    CGContextRotateCTM(context, 0);
+	CGContextRef cgContext = UIGraphicsGetCurrentContext();
+    CGContextTranslateCTM(cgContext, 0.0, 0.0);
+    CGContextRotateCTM(cgContext, 0);
     
 	[image drawInRect:CGRectMake(0, 0, size.width, size.height)];
 	image = UIGraphicsGetImageFromCurrentImageContext();
     
     // send image file to thing broker
-    RKParams* params = [RKParams params];
     NSData* imageData = UIImageJPEGRepresentation(image, 0.0);
-    [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
+    
+    // apply image filter
+    if(self.colorEffect)
+    {
+        CIImage *sepiaImage = [CIImage imageWithData:imageData];
+        CIContext *ciContext = [CIContext contextWithOptions:nil];
+        
+        CIFilter *filter = [CIFilter filterWithName:self.colorEffect
+                                      keysAndValues:kCIInputImageKey, sepiaImage, @"inputIntensity", [NSNumber numberWithFloat:0.8], nil];
+        sepiaImage = [filter outputImage];
+        
+        CGImageRef cgImage = [ciContext createCGImage:sepiaImage fromRect:[sepiaImage extent]];
+        image = [UIImage imageWithCGImage:cgImage];
+        imageData = UIImageJPEGRepresentation(image, 0.0);
+        CGImageRelease(cgImage);
+    }
     
     // send image file
+    RKParams* params = [RKParams params];
+    [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
     [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
     
     // set camera state
     self.isTaken = YES;
 }
+
+-(void) configure:(NSArray *)settings
+{
+    NSString *mode = [settings objectAtIndex:0];
+    
+    if([mode isEqualToString:@"toggleVignette"])
+    {
+        if([self.colorEffect isEqualToString:@"CIVignette"])
+            self.colorEffect = nil;
+        else
+            self.colorEffect = @"CIVignette";
+    }
+    else if([mode isEqualToString:@"toggleMonochrome"])
+    {
+        if([self.colorEffect isEqualToString:@"CIColorMonochrome"])
+            self.colorEffect = nil;
+        else
+            self.colorEffect = @"CIColorMonochrome";
+    }
+    else if([mode isEqualToString:@"toggleSepia"])
+    {
+        if([self.colorEffect isEqualToString:@"CISepiaTone"])
+            self.colorEffect = nil;
+        else
+            self.colorEffect = @"CISepiaTone";
+    }
+    else
+        self.colorEffect = nil;
+    
+    if(self.colorEffect)
+        [MBProgressHUD showText:[NSString stringWithFormat:@"%@ On", self.colorEffect]];
+    else
+        [MBProgressHUD showText:@"Filter Off"];
+}
+
 
 #pragma UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -139,13 +197,26 @@ static CameraSensor* sensor = nil;
             NSArray *contentID = [jsonDict objectForKey:@"content"];
             
             // set append image src url
-            NSString *post = [NSString stringWithFormat:@"<img src='http://kimberly.magic.ubc.ca:8080/thingbroker/content/%@?mustAttach=false' height='250' width='250'>", [contentID objectAtIndex:0]];
+            NSString *url = [NSString stringWithFormat:@"%@/content/%@?mustAttach=false", [STThing thingBrokerUrl], [contentID objectAtIndex:0]];
             
-            // post image src
-            NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-            [dictRequest setObject:post forKey:@"append"];
+            // put in sensor hash
+            [self.sensorDict removeAllObjects];
+            [self.eventDict removeAllObjects];
+            if([self.eventKey isEqualToString:@"native"])
+            {
+                [self.content removeAllObjects];
+                [self.content addObject:url];
+                [self.sensorDict setObject:self.content forKey:[NSString stringWithFormat:@"%@", self.sensorKey]];
+                [self.eventDict setObject:self.sensorDict forKey:self.eventKey];
+            }
+            else
+            {
+                [self.sensorDict setObject:url forKey:@"photo"];
+                [self.eventDict setObject:self.sensorDict forKey:self.eventKey];
+            }
             
-            NSString *jsonRequest =  [dictRequest JSONString];
+            // send image url to thingbroker
+            NSString *jsonRequest =  [self.eventDict JSONString];
             RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
             [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
             
