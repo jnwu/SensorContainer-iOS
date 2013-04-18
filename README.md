@@ -29,9 +29,8 @@ The following resources are shared and supported via the iOS application,
 * QR Scanner
 
 
-Third-Party Depedencies
+Third-Party Dependencies
 -----------------------
-
 The following third-party libraries have been integrated,
 * RestKit: http://restkit.org/        
 * FLACiOS: https://github.com/jhurt/FLACiOS
