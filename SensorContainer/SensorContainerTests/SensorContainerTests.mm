@@ -32,17 +32,12 @@
 
 - (void)testInitSTThingSuccess
 {
-    STThing *thing = [[STThing alloc] initWithThingId:@"unit test"];
-    STAssertNotNil(thing, @"nil STThing returned");
-
-    thing = [[STThing alloc] initWithThingId:nil];
-    STAssertNotNil(thing, @"nil STThing returned");
+    [STThing setThingId:@""];
+    STAssertNotNil([STThing thing], @"nil STThing returned");
 }
 
 - (void)testSetThingIdDisplayIdForSTThingSuccess
 {
-    STThing *thing = [[STThing alloc] initWithThingId:nil];
- 
     [STThing setThingId:@"unit test"];
     STAssertEqualObjects([STThing thingId], @"unit test", @"thing id is not 'unit test'");
     
@@ -63,26 +58,46 @@
         
         switch(i) {
             case 0:
+                STAssertEqualObjects([dict objectForKey:@"class"], @"TouchSensor", @"element not 'TouchSensor' in sensor configs");
+                STAssertEqualObjects([dict objectForKey:@"name"], @"touch", @"element not 'touch' in sensor configs");
+                break;
+
+            case 1:
+                STAssertEqualObjects([dict objectForKey:@"class"], @"MagnetometerSensor", @"element not 'MagnetometerSensor' in sensor configs");
+                STAssertEqualObjects([dict objectForKey:@"name"], @"magnetometer", @"element not 'microphone' in sensor configs");
+                break;
+
+            case 2:
+                STAssertEqualObjects([dict objectForKey:@"class"], @"GPSSensor", @"element not 'GPSSensor' in sensor configs");
+                STAssertEqualObjects([dict objectForKey:@"name"], @"gps", @"element not 'gps' in sensor configs");
+                break;
+        
+            case 3:
+                STAssertEqualObjects([dict objectForKey:@"class"], @"MediaSensor", @"element not 'MediaSensor' in sensor configs");
+                STAssertEqualObjects([dict objectForKey:@"name"], @"media", @"element not 'media' in sensor configs");
+                break;
+
+            case 4:
                 STAssertEqualObjects([dict objectForKey:@"class"], @"MicrophoneSensor", @"element not 'MicrophoneSensor' in sensor configs");
                 STAssertEqualObjects([dict objectForKey:@"name"], @"microphone", @"element not 'microphone' in sensor configs");
                 break;
-        
-            case 1:
+
+            case 5:
                 STAssertEqualObjects([dict objectForKey:@"class"], @"AccelerometerSensor", @"element not 'AccelerometerSensor' in sensor configs");
                 STAssertEqualObjects([dict objectForKey:@"name"], @"accelerometer", @"element not 'accelerometer' in sensor configs");
                 break;
 
-            case 2:
+            case 6:
                 STAssertEqualObjects([dict objectForKey:@"class"], @"QRCodeSensor", @"element not 'QRCodeSensor' in sensor configs");
                 STAssertEqualObjects([dict objectForKey:@"name"], @"qrcode", @"element not 'qrcode' in sensor configs");
                 break;
                 
-            case 3:
+            case 7:
                 STAssertEqualObjects([dict objectForKey:@"class"], @"CameraSensor", @"element not 'CameraSensor' in sensor configs");
                 STAssertEqualObjects([dict objectForKey:@"name"], @"camera", @"element not 'camera' in sensor configs");
                 break;
                 
-            case 4:
+            case 8:
                 STAssertEqualObjects([dict objectForKey:@"class"], @"CameraSensor", @"element not 'CameraSensor' in sensor configs");
                 STAssertEqualObjects([dict objectForKey:@"name"], @"gallery", @"element not 'gallery' in sensor configs");
                 break;

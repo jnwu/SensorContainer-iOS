@@ -177,7 +177,6 @@
 #pragma mark STSensorDelegate
 - (void)STSensor:(STSensor *)sensor withData:(STSensorData *)data
 {
-    // TODO: Takeout the following if statement, temp code
     if([sensor isKindOfClass: [AccelerometerSensor class]])
     {
 /*
