@@ -14,7 +14,6 @@ Main Functionalities
 -------------------
 The following functionalities are provided in this iOS application,
 * Provides mobile web applications direct access supported mobile resources
-** df
 * Dynamic loading of mobile web application list from web application container
 * Allow session-based interaction via QR codes
 
@@ -23,8 +22,8 @@ Supported Mobile Resources
 --------------------------
 The following resources are shared and supported via the iOS application,
 * Accelerometer
-* Camera
-* Microphone
+* Camera (with camera filters)
+* Microphone (with voice-to-text feature)
 * MP3 Songs
 * Magnetometer
 * GPS
