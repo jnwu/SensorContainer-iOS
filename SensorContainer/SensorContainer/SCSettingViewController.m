@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "SCSettingViewController.h"
+#import "SCAppDelegate.h"
 #import "STThing.h"
 
 @interface SCSettingViewController () <UITextFieldDelegate>
@@ -17,6 +18,8 @@
 @end
 
 static SCSettingViewController *viewController = nil;
+static NSString *kThingBrokerTextFieldPlaceholder = @"ThingBroker URL";
+static NSString *kContainerTextFieldPlaceholder = @"Container URL";
 
 @implementation SCSettingViewController
 
@@ -27,12 +30,12 @@ static SCSettingViewController *viewController = nil;
     {
         viewController.thingBrokerUrlTextField = [[UITextField alloc] init];
         viewController.thingBrokerUrlTextField.delegate = self;
-        viewController.thingBrokerUrlTextField.placeholder = @"Server URL";
+        viewController.thingBrokerUrlTextField.placeholder = kThingBrokerTextFieldPlaceholder;
         viewController.thingBrokerUrlTextField.text = [STThing thingBrokerUrl];
         
         viewController.containerUrlTextField = [[UITextField alloc] init];
         viewController.containerUrlTextField.delegate = self;
-        viewController.containerUrlTextField.placeholder = @"Client URL";
+        viewController.containerUrlTextField.placeholder = kContainerTextFieldPlaceholder;
         viewController.containerUrlTextField.text = [STThing containerUrl];
     }
     return viewController;
@@ -134,6 +137,21 @@ static SCSettingViewController *viewController = nil;
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    if([textField.placeholder isEqualToString:kThingBrokerTextFieldPlaceholder])
+    {
+        [STThing setThingBrokerUrl:textField.text];
+    }
+    else if([textField.placeholder isEqualToString:kContainerTextFieldPlaceholder])
+    {
+        [STThing setContainerUrl:textField.text];
+        
+        // Update application list
+        SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        [appDelegate applicationList];
+        [appDelegate setupSidbarAndViewControllers];
+    }
+    
     [textField resignFirstResponder];
     return YES;
 }
