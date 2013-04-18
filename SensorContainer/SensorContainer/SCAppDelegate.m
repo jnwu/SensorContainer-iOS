@@ -28,13 +28,11 @@
 @property (nonatomic, strong) UIAlertView *alert;
 @end
 
-
 #pragma mark -
 #pragma mark Implementation
 @implementation SCAppDelegate
 
 #pragma mark Properties
-
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -43,21 +41,19 @@
     // disable restkit logging
     RKLogConfigureByName("*", RKLogLevelOff);
 
+    [self applicationList];
+    [self setupSidbarAndViewControllers];
+    
+    return YES;
+}
+
+- (void)applicationList
+{
     // get app list
     RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:[STThing containerUrl]]];
     RKRequest *request = [client get:@"/" queryParameters:nil delegate:self];
     [request sendSynchronously];
     
-    [self setupSidbarAndViewControllers];
-    
-    client = nil;
-    request = nil;
-    
-    // show alert for no apps found
-    if(self.alert)
-        [self.alert show];
-    
-    return YES;
 }
 
 - (void)setupSidbarAndViewControllers
@@ -92,6 +88,7 @@
                                                delegate:self
                                       cancelButtonTitle:@"Ok"
                                       otherButtonTitles:nil, nil];
+        [self.alert show];
     }
     else
     {
@@ -111,7 +108,7 @@
         controllers = @[cellNavs, @[settingController, qrController]];
         cellInfos = @[cells,
                       @[
-                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Broker URL", @"")},
+                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"URL", @"")},
                         @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
                     ];
     }
@@ -186,15 +183,7 @@
 }
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
-{
-    NSLog(@"didFailLoadWithError");
-}
-
-- (void)requestDidTimeout:(RKRequest *)request
-{
-    NSLog(@"requestDidTimeout");
-}
-
+{}
 
 #pragma mark UIAlertViewDelegate
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
