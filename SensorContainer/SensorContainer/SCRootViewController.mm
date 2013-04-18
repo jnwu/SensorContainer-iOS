@@ -17,6 +17,7 @@
 #import "MagnetometerSensor.h"
 #import "GPSSensor.h"
 #import "MediaSensor.h"
+#import "TouchSensor.h"
 #import "MBProgressHUD.h"
 #import "STThing.h"
 
@@ -50,6 +51,11 @@
     return self;
 }
 
+- (void)dealloc
+{
+    self.webView.delegate = nil;
+}
+
 #pragma mark UIViewController
 - (void)viewWillLayoutSubviews
 {
@@ -61,13 +67,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
     self.isSensorActive = NO;
     
     // init restkit client
-    RKURL *baseURL = [RKURL URLWithBaseURLString:[SCSettingViewController serverURL]];
+    RKURL *baseURL = [RKURL URLWithBaseURLString:[STThing thingBrokerUrl]];
     self.client = [RKClient clientWithBaseURL:baseURL];
     
     // add webview
@@ -87,78 +92,51 @@
     self.hud = [MBProgressHUD showLoadingWithHUD:self.hud AndText:@"Loading"];
 }
 
--(void)viewDidAppear:(BOOL)animated
-{
-/*
-    NSString *currentURL = self.webView.request.URL.absoluteString;
-
-    // load new page if client url has been changed
-//    if(currentURL != nil && ![currentURL isEqualToString:@""] && ![currentURL isEqualToString:[SCSettingViewController clientURL]]) {
-//        NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:[SCSettingViewController clientURL]]];
-    if(currentURL != nil && ![currentURL isEqualToString:@""] && ![currentURL isEqualToString:@"http://jnwutest.appspot.com"]) {
-        NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://jnwutest.appspot.com"]];
-        [self.webView loadRequest:requestObj];
-
-        // set up progress for initial loading
-        self.connection = [[NSURLConnection alloc] initWithRequest:requestObj delegate:self];
-        [self.connection start];
-        
-        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        self.hud.labelText = @"Loading";
-    }
-*/ 
-}
-
 
 #pragma mark UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
     // retrieve parameters from url
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
-    NSRange range = {4, [parts count]-4};
     
-    if([parts count] < 6)
+    if([parts count] <= 4)
         return YES;
-    
-    [STThing setThingId:(NSString *)[parts objectAtIndex:3]];    
+    else
+    {
+        if([parts count] <= 6 && [parts objectAtIndex:5] && ![(NSString *)[parts objectAtIndex:5] isEqualToString:@"cancel"])
+            return YES;        
+    }
+
+
+    [STThing setThingId:(NSString *)[parts objectAtIndex:3]];
+    NSRange range = {4, [parts count]-4};
     parts = [parts subarrayWithRange:range];
     if([(NSString *)[parts objectAtIndex:0] length] > 0)
     {
-        // slide presentation specific controls
-        if([(NSString *)[parts objectAtIndex:0] isEqualToString:@"touch"])
-        {
-            NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-            
-            if([(NSString *)[parts objectAtIndex:1] isEqualToString:@"next"])
-                [dictRequest setObject:@"next" forKey:@"data"];
-            
-            if([(NSString *)[parts objectAtIndex:1] isEqualToString:@"prev"])
-                [dictRequest setObject:@"previous" forKey:@"data"];
-
-            NSString *jsonRequest =  [dictRequest JSONString];
-            RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
-            
-            [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
-            
-            return NO;
-        }
-        
         self.sensor = [STCSensorFactory getSensorWithCommand:[parts objectAtIndex:0]];
         if(!self.sensor)
             return NO;
-                
+        
         // if a sensor is running, stop it, and start new sensor
         NSString *selector = [parts objectAtIndex:1];
-        if([selector isEqualToString:@"start"] && self.isSensorActive)
-            [self.sensor cancel];
+        if([selector isEqualToString:@"start"])
+        {
+            if([(NSString *) [parts objectAtIndex:2] isEqualToString:@"native"] && [parts count] < 4)
+            {
+                [MBProgressHUD showWarningWithText:@"Invalid URL Specified"];
+                return NO;
+            }
+            
+            if(self.isSensorActive)
+                [self.sensor cancel];
+        }
         
         // check for function parameters
         if([parts count] > 2)
         {
             NSRange range = {2, [parts count]-2};
-            
             selector = [NSString stringWithFormat:@"%@:", selector];
-            parts = [parts subarrayWithRange:range];            
+            parts = [parts subarrayWithRange:range];
         }
         else
             parts = nil;
@@ -187,7 +165,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-	[self.hud hide:YES afterDelay:1.5];
+	[self.hud hide:YES afterDelay:2];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -197,13 +175,12 @@
 
 
 #pragma mark STSensorDelegate
--(void) STSensor: (STSensor *) sensor1 withData: (STSensorData *) data
+- (void)STSensor:(STSensor *)sensor withData:(STSensorData *)data
 {
     // TODO: Takeout the following if statement, temp code
-    if([sensor1 isKindOfClass: [MagnetometerSensor class]])
+    if([sensor isKindOfClass: [AccelerometerSensor class]])
     {
 /*
-
         id x = [data.data objectForKey:@"x"];
         id y = [data.data objectForKey:@"y"];
         id z = [data.data objectForKey:@"z"];
@@ -213,10 +190,10 @@
     }
     
     if([STThing thing])
-        [sensor1 uploadData:data];
+        [sensor uploadData:data];
 }
 
--(void) STSensor: (STSensor *) sensor withError: (STError *) error
+- (void)STSensor:(STSensor *)sensor withError:(STError *)error
 {}
 
 -(void) STSensorCancelled: (STSensor *) sensor

@@ -24,7 +24,7 @@
 {
     self.sensor = [STCSensorFactory getSensorWithCommand:@"qrcode"];
     self.sensor.delegate = self;
-    [self.sensor start];
+    [self.sensor start:nil];
 }
 
 #pragma mark STSensorDelegate
