@@ -20,7 +20,9 @@
 @property (strong, nonatomic) AVAudioSession *audioSession;
 @property (strong, nonatomic) NSString *url;
 @property (strong, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) NSString *speechText;
 @property (assign, nonatomic) BOOL isSpeechRecognition;
+@property (assign, nonatomic) BOOL isAudioSent;
 @end
 
 static MicrophoneSensor* sensor = nil;
@@ -33,6 +35,7 @@ static MicrophoneSensor* sensor = nil;
     {
         sensor = [super initWithSensorCallModel: model];
         sensor.isSpeechRecognition = NO;
+        self.isAudioSent = NO;
         
         // init recorder
         NSDictionary* recorderSettings = [[NSMutableDictionary alloc] init];        
@@ -96,10 +99,21 @@ static MicrophoneSensor* sensor = nil;
 
 
 #pragma mark STSensor
-- (void)start
+- (void)start:(NSArray *)parameters
 {
     if(self.audioSession.inputAvailable)
     {
+        // set event and sensor keys
+        self.eventKey = (NSString *)[parameters objectAtIndex:0];
+        if([self.eventKey isEqualToString:@"native"])
+            self.sensorKey = (NSString *)[parameters objectAtIndex:1];
+        else
+        {
+            [MBProgressHUD showWarningWithText:@"jQuery API not supported"];
+            return;
+        }
+
+        // start recording
         [self.recorder record];
         self.hud = [MBProgressHUD showLoadingWithHUD:self.hud AndText:@"Listening"];
     }
@@ -138,27 +152,30 @@ static MicrophoneSensor* sensor = nil;
 - (void)uploadData:(STSensorData *)data
 {
     id audioData = [data.data objectForKey:@"audioData"];
+
+/*
     id stringData = [data.data objectForKey:@"stringData"];
-    
-    if(audioData)
-    {
-        RKParams* params = [RKParams params];
-        [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
-        [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
-    }
     
     if(stringData)
     {
-        // Send text to thing broker
-        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
-        [dict setObject: [NSString stringWithFormat:@"%@", (NSString *)stringData] forKey:@"stringData"];
+        // put in sensor hash
+        NSMutableDictionary *sensorDict = [[NSMutableDictionary alloc] init];
+        NSMutableDictionary *eventDict = [[NSMutableDictionary alloc] init];
         
-        NSMutableDictionary *dictRequest = [[NSMutableDictionary alloc] init];
-        [dictRequest setObject:dict forKey:@"data"];
+        [sensorDict setObject:stringData forKey:[NSString stringWithFormat:@"%@1", self.sensorKey]];
+        [eventDict setObject:sensorDict forKey:self.eventKey];
         
-        NSString *jsonRequest =  [dictRequest JSONString];
+        NSString *jsonRequest =  [eventDict JSONString];
         RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
         [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
+    }
+*/
+    if(audioData)
+    {        
+        RKParams* params = [RKParams params];
+        [params setData:(NSData *)audioData MIMEType:@"multipart/form-data" forParam:@"audio"];
+        [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
+        self.isAudioSent = YES;
     }
 }
 
@@ -172,18 +189,6 @@ static MicrophoneSensor* sensor = nil;
         NSString *wavFile = [NSString stringWithFormat:@"%@/Test.wav", soundsDirectoryPath];
         NSData *audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@", wavFile]];
         
-        // send wav file to thingbroker
-        if(audioData)
-        {
-            NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-            [dict setObject:audioData forKey:@"audioData"];
-            
-            STSensorData * data = [[STSensorData alloc] init];
-            data.data = dict;
-            
-            [self.delegate STSensor:self withData: data];
-        }
-        
         // convert recorded audio to string
         if(self.isSpeechRecognition)
         {
@@ -196,11 +201,6 @@ static MicrophoneSensor* sensor = nil;
             audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/Test.flac", soundsDirectoryPath]];
             if(audioData)
             {
-                // send flac file to google speech api
-                NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-                
-                // TODO: Validate google speech api server
-                
                 NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
                                                 initWithURL:[NSURL URLWithString:@"https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"]];
                 
@@ -208,42 +208,36 @@ static MicrophoneSensor* sensor = nil;
                 [request addValue:@"audio/x-flac; rate=44100" forHTTPHeaderField:@"Content-Type"];
                 [request setHTTPBody:audioData];
                 
-                NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-                [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
-                {
-                    if ([data length] > 0 && error == nil)
-                    {
-                        NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-                        
-                        // extract recognition string
-                        int index = [result rangeOfString:@"utterance"].location;
-                        int length = [result rangeOfString:@"utterance"].length;
-                        
-                        if(!length)
-                            return;
-                        
-                        NSString *subStr = [result substringFromIndex:index+length+3];
-                        index = [subStr rangeOfString:@"\""].location;
-                        subStr = [subStr substringToIndex:index];
-                        
-                        // send recognition string to thingbroker
-                        [dict setObject:subStr forKey:@"stringData"];
-                        STSensorData *data = [[STSensorData alloc] init];
-                        data.data = dict;
-                        
-                        [self.delegate STSensor:self withData: data];
-                    }
-                    else if (error != nil && error.code == NSURLErrorTimedOut)
-                    {
-                        // Time out error
-                    }
-                    else if (error != nil)
-                    {
-                        // Error!
-                    }
-                }];
+                NSURLResponse *response = nil;
+                NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
+                
+                NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                // extract recognition string
+                int index = [result rangeOfString:@"utterance"].location;
+                int length = [result rangeOfString:@"utterance"].length;
+                
+                if(!length)
+                    return;
+                
+                // extract text from returned data
+                self.speechText = [result substringFromIndex:index+length+3];
+                index = [self.speechText rangeOfString:@"\""].location;
+                self.speechText = [self.speechText substringToIndex:index];
             }
         }
+        
+        // send wav file to thingbroker
+        if(audioData)
+        {
+            NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+            [dict setObject:audioData forKey:@"audioData"];
+            
+            STSensorData * data = [[STSensorData alloc] init];
+            data.data = dict;
+            
+            [self.delegate STSensor:self withData: data];
+        }
+
     }
 }
 
@@ -251,8 +245,45 @@ static MicrophoneSensor* sensor = nil;
 #pragma mark RKRequestDelegate
 - (void)request:(RKRequest *)request didLoadResponse:(RKResponse *)response
 {
-    // display hud
-    [MBProgressHUD showCompleteWithText:@"Uploaded Audio"];
+    NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"?"];
+    if([parts count] == 2)
+    {
+        parts = [[parts objectAtIndex:1] componentsSeparatedByString:@"="];
+        
+        // after the file has been sent to thing broker, sent request to get content id
+        if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isAudioSent)
+        {
+            NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [[response bodyAsString] dataUsingEncoding:NSUTF8StringEncoding]
+                                                                       options: NSJSONReadingMutableContainers
+                                                                         error: nil];
+            NSArray *contentID = [jsonDict objectForKey:@"content"];
+            
+            // set append image src url
+            NSString *url = [NSString stringWithFormat:@"%@/content/%@?mustAttach=false", [STThing thingBrokerUrl], [contentID objectAtIndex:0]];
+            [self.content removeAllObjects];
+            [self.content addObject:url];
+            
+            if(self.isSpeechRecognition && self.speechText)
+                [self.content addObject:self.speechText];
+
+            // put in sensor hash
+            [self.sensorDict removeAllObjects];
+            [self.eventDict removeAllObjects];
+            [self.sensorDict setObject:self.content forKey:[NSString stringWithFormat:@"%@", self.sensorKey]];
+            [self.eventDict setObject:self.sensorDict forKey:self.eventKey];
+
+            // send image url to thingbroker
+            NSString *jsonRequest =  [self.eventDict JSONString];
+            RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
+            [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STThing thingId], [STThing displayId]] params:params delegate:self];
+            
+            // turn off camera state, to avoid repeatedly sends
+            self.isAudioSent = NO;
+            
+            // display hud
+            [MBProgressHUD showCompleteWithText:@"Uploaded Audio"];
+        }
+    }
 }
 
 @end
