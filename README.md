@@ -13,7 +13,7 @@ The iOS mobile application triggers mobile resources based on URL interception f
 Main Functionalities
 -------------------
 The following functionalities are provided in this iOS application,
-* Provides mobile web applications direct access supported mobile resources
+* Provides mobile web applications direct access to supported mobile resources
 * Dynamic loading of mobile web application list from web application container
 * Allow session-based interaction via QR codes
 
