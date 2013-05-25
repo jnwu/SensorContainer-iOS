@@ -8,23 +8,8 @@
 
 #import "SCRootViewController.h"
 #import "STCSensorFactory.h"
-#import "STCSensorConfig.h"
-#import "CameraSensor.h"
-#import "QRCodeSensor.h"
-#import "AccelerometerSensor.h"
-#import "MicrophoneSensor.h"
-#import "SCSettingViewController.h"
-#import "MagnetometerSensor.h"
-#import "GPSSensor.h"
-#import "MediaSensor.h"
-#import "TouchSensor.h"
 #import "MBProgressHUD.h"
-#import "STThing.h"
-
-#import <RestKit/RestKit.h>
-#import <Restkit/JSONKit.h>
-#import <Restkit/RKRequestSerialization.h>
-#import <RestKit/RKMIMETypes.h>
+#import "STSetting.h"
 
 
 @interface SCRootViewController () <UIWebViewDelegate, STSensorDelegate, RKRequestDelegate>
@@ -32,7 +17,6 @@
 @property (strong, nonatomic) NSURLConnection *connection;
 @property (strong, nonatomic) STSensor *sensor;
 @property (strong, nonatomic) MBProgressHUD *hud;
-@property (strong, nonatomic) RKClient *client;
 @property (assign, nonatomic) BOOL isSensorActive;
 @property (strong, nonatomic) NSString *thing;
 @property (strong, nonatomic) NSString *url;
@@ -56,6 +40,7 @@
     self.webView.delegate = nil;
 }
 
+
 #pragma mark UIViewController
 - (void)viewWillLayoutSubviews
 {
@@ -70,10 +55,6 @@
     self.view.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 	self.view.backgroundColor = [UIColor whiteColor];
     self.isSensorActive = NO;
-    
-    // init restkit client
-    RKURL *baseURL = [RKURL URLWithBaseURLString:[STThing thingBrokerUrl]];
-    self.client = [RKClient clientWithBaseURL:baseURL];
     
     // add webview
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
@@ -108,7 +89,7 @@
     }
 
 
-    [STThing setThingId:(NSString *)[parts objectAtIndex:3]];
+    [STSetting setThingId:(NSString *)[parts objectAtIndex:3]];
     NSRange range = {4, [parts count]-4};
     parts = [parts subarrayWithRange:range];
     if([(NSString *)[parts objectAtIndex:0] length] > 0)
@@ -177,22 +158,11 @@
 #pragma mark STSensorDelegate
 - (void)STSensor:(STSensor *)sensor withData:(STSensorData *)data
 {
-    if([sensor isKindOfClass: [AccelerometerSensor class]])
-    {
-/*
-        id x = [data.data objectForKey:@"x"];
-        id y = [data.data objectForKey:@"y"];
-        id z = [data.data objectForKey:@"z"];
-         
-        NSLog(@"x: %@   y: %@   z: %@", (NSString *)x, (NSString *)y, (NSString *)z);
-*/ 
-    }
-    
-    if([STThing thing])
+    if([STSetting thing])
         [sensor uploadData:data];
 }
 
-- (void)STSensor:(STSensor *)sensor withError:(STError *)error
+- (void)STSensor:(STSensor *)sensor withError:(NSError *)error
 {}
 
 -(void) STSensorCancelled: (STSensor *) sensor
