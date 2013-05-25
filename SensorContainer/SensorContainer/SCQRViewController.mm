@@ -8,7 +8,7 @@
 
 #import "SCQRViewController.h"
 #import "QRCodeSensor.h"
-#import "STThing.h"
+#import "STSetting.h"
 #import "STSensor.h"
 #import "STCSensorFactory.h"
 #import "GHMenuViewController.h"
@@ -35,12 +35,12 @@
 
     if([parts count] == 5)
     {
-        [STThing setDisplayId:[parts objectAtIndex:4]];
+        [STSetting setDisplayId:[parts objectAtIndex:4]];
         [MBProgressHUD showCompleteWithText:@"Updated Display ID"];
     }
 }
 
--(void) STSensor: (STSensor *) sensor withError: (STError *) error
+-(void) STSensor: (STSensor *) sensor withError: (NSError *) error
 {}
 
 -(void) STSensorCancelled: (STSensor *) sensor

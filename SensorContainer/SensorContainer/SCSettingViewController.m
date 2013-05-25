@@ -10,7 +10,7 @@
 
 #import "SCSettingViewController.h"
 #import "SCAppDelegate.h"
-#import "STThing.h"
+#import "STSetting.h"
 
 @interface SCSettingViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *thingBrokerUrlTextField;
@@ -31,12 +31,12 @@ static NSString *kContainerTextFieldPlaceholder = @"Container URL";
         viewController.thingBrokerUrlTextField = [[UITextField alloc] init];
         viewController.thingBrokerUrlTextField.delegate = self;
         viewController.thingBrokerUrlTextField.placeholder = kThingBrokerTextFieldPlaceholder;
-        viewController.thingBrokerUrlTextField.text = [STThing thingBrokerUrl];
+        viewController.thingBrokerUrlTextField.text = [STSetting thingBrokerUrl];
         
         viewController.containerUrlTextField = [[UITextField alloc] init];
         viewController.containerUrlTextField.delegate = self;
         viewController.containerUrlTextField.placeholder = kContainerTextFieldPlaceholder;
-        viewController.containerUrlTextField.text = [STThing containerUrl];
+        viewController.containerUrlTextField.text = [STSetting containerUrl];
     }
     return viewController;
 }
@@ -139,11 +139,11 @@ static NSString *kContainerTextFieldPlaceholder = @"Container URL";
 {
     if([textField.placeholder isEqualToString:kThingBrokerTextFieldPlaceholder])
     {
-        [STThing setThingBrokerUrl:textField.text];
+        [STSetting setThingBrokerUrl:textField.text];
     }
     else if([textField.placeholder isEqualToString:kContainerTextFieldPlaceholder])
     {
-        [STThing setContainerUrl:textField.text];
+        [STSetting setContainerUrl:textField.text];
         
         // Update application list
         SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
