@@ -54,7 +54,7 @@
 		</dict>
 		<dict>
 			<key>class</key>
-			<string>CameraSensor</string>
+			<string>GallerySensor</string>
 			<key>name</key>
 			<string>gallery</string>
 		</dict>
