@@ -20,12 +20,14 @@ Data from the mobile app is stored in the thingbroker, where a web app with the 
   <img src="/Screenshot/diagram_a.png" />
 </p>
 
+
 Interface
 ---------
 The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
-<p align="center">
-  <img src="/Screenshot/side_panel.png" />
-</p>
+  
+<img src="/Screenshot/side_panel.png" />
+.
+<img src="/Screenshot/mobile_web_interface.png" />
 
 
 Hyperlink Format
