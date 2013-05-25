@@ -12,7 +12,7 @@
 #import "SCRootViewController.h"
 #import "SCSettingViewController.h"
 #import "SCQRViewController.h"
-#import "STThing.h"
+#import "STSetting.h"
 
 #import <RestKit/RestKit.h>
 #import <Restkit/JSONKit.h>
@@ -50,7 +50,7 @@
 - (void)applicationList
 {
     // get app list
-    RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:[STThing containerUrl]]];
+    RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:[STSetting containerUrl]]];
     RKRequest *request = [client get:@"/" queryParameters:nil delegate:self];
     [request sendSynchronously];
     
@@ -79,8 +79,8 @@
         headers = @[@"SETTINGS"];
         controllers = @[@[settingController, qrController]];
         cellInfos = @[@[
-                          @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Broker URL", @"")},
-                          @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
+                          @{kSidebarCellImageKey:[UIImage imageNamed:@"33-settings.png"], kSidebarCellTextKey:NSLocalizedString(@"URL", @"")},
+                          @{kSidebarCellImageKey:[UIImage imageNamed:@"54-lock.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
                     ];
         
         self.alert = [[UIAlertView alloc] initWithTitle:nil
@@ -94,10 +94,10 @@
     {
         headers = @[@"APPS", @"SETTINGS"];
 
-        // add apps and links for menu sidebar
+        // add apps and links for ghsidebarnav
         for(int i=0 ; i<[self.apps count] ; i++)
         {
-            [cells addObject:@{kSidebarCellImageKey: [UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey: NSLocalizedString([self.apps objectAtIndex:i], @"")}];
+            [cells addObject:@{kSidebarCellImageKey: [UIImage imageNamed:@"27-cloud.png"], kSidebarCellTextKey: NSLocalizedString([self.apps objectAtIndex:i], @"")}];
         }
         
         for(int i=0 ; i<[self.links count] ; i++)
@@ -108,8 +108,8 @@
         controllers = @[cellNavs, @[settingController, qrController]];
         cellInfos = @[cells,
                       @[
-                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"URL", @"")},
-                        @{kSidebarCellImageKey:[UIImage imageNamed:@"32-iphone.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
+                        @{kSidebarCellImageKey:[UIImage imageNamed:@"33-settings.png"], kSidebarCellTextKey:NSLocalizedString(@"URL", @"")},
+                        @{kSidebarCellImageKey:[UIImage imageNamed:@"54-lock.png"], kSidebarCellTextKey:NSLocalizedString(@"Scan Display", @"")}]
                     ];
     }
     
