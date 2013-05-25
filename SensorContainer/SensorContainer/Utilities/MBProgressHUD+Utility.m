@@ -54,7 +54,6 @@
     
 	[vc.view addSubview:hud];
     
-//	hud.customView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"37x-Checkmark.png"]];
 	hud.mode = MBProgressHUDModeCustomView;
 	hud.labelText = text;
     hud.userInteractionEnabled = NO;
