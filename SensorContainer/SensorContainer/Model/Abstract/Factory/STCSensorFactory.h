@@ -6,10 +6,13 @@
 //  Copyright (c) 2012 Daniel Yuen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "STSensor.h"
 
 @interface STCSensorFactory : NSObject
+
+/*
+        creates the sensor object based on the parsed url from mobile web apps
+ */
 + (STSensor *)getSensorWithCommand: (NSString *) sensorCall;
 + (id)getSensorConfigWithKey: (NSString *)key;
 @end

@@ -48,8 +48,8 @@
 }
 
 - (void)uploadData:(STSensorData *)data
-{    
-    // rotate uiimage by 90 cw
+{
+    // images from the camera/gallery are skewed 90 ccw, hence the uiimage is rotated 90 cw
     UIImage *image = [data.data objectForKey:UIImagePickerControllerOriginalImage];
 
 	CGSize size = [image size];
@@ -152,7 +152,7 @@
     {
         parts = [[parts objectAtIndex:1] componentsSeparatedByString:@"="];
                 
-        // after the file has been sent to thing broker, sent request to get content id
+        // after the file has been sent to thing broker, the thingbroker replies with the content_id
         if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isTaken)
         {
             NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [[response bodyAsString] dataUsingEncoding:NSUTF8StringEncoding]
@@ -184,7 +184,7 @@
             RKParams *params = [RKRequestSerialization serializationWithData:[jsonRequest dataUsingEncoding:NSUTF8StringEncoding] MIMEType:RKMIMETypeJSON];
             [self.client post:[NSString stringWithFormat:@"/things/%@%@/events?keep-stored=true", [STSetting thingId], [STSetting displayId]] params:params delegate:self];
             
-            // turn off camera state, to avoid repeatedly sends
+            // turn off camera state, to avoid repetitive sends
             self.isTaken = NO;
             
             // display hud

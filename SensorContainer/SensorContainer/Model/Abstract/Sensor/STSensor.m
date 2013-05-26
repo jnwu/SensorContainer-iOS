@@ -34,28 +34,15 @@
 }
 
 - (void)start:(NSArray *)parameters
-{
-    NSLog(@"you should not get here");
-}
+{}
 
 - (void)cancel
-{
-    NSLog(@"you should not get here");
-}
+{}
 
 - (void)uploadData:(STSensorData *)data
-{
-    NSLog(@"you should not get here");
-}
+{}
 
 - (void)configure:(NSArray *)settings
-{
-    NSLog(@"you should not get here");    
-}
-
-- (void)sendFileUrl:(NSString *)url
-{
-    
-}
+{}
 
 @end

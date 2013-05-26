@@ -6,7 +6,11 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+
+/*
+    The SCQRViewController is used to trigger the QR code scanner (zxing), where it will extract the display_id embedded in the code
+    The string scanned from the code is expected to be in the format, http://base_url/mobile/display_id
+ */
 
 @interface SCQRViewController : UIViewController
 @end

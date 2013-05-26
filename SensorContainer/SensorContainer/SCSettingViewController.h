@@ -7,6 +7,10 @@
 //
 
 
+/*
+        The SCSettingViewController shows the currently set url for the thingbroker and web application container.
+ */
+
 @interface SCSettingViewController : UITableViewController
 + (NSString *)serverURL;
 + (NSString *)clientURL;

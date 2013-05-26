@@ -44,9 +44,7 @@ static NSString *kContainerTextFieldPlaceholder = @"Container URL";
 +(NSString *) serverURL
 {
     if(!viewController.thingBrokerUrlTextField)
-    {
         return nil;
-    }
     
     return viewController.thingBrokerUrlTextField.text;
 }
@@ -54,9 +52,7 @@ static NSString *kContainerTextFieldPlaceholder = @"Container URL";
 +(NSString *) clientURL
 {
     if(!viewController.containerUrlTextField)
-    {
         return nil;
-    }
     
     return viewController.containerUrlTextField.text;
 }
@@ -137,15 +133,14 @@ static NSString *kContainerTextFieldPlaceholder = @"Container URL";
 #pragma mark UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    // update the thingbroker url
     if([textField.placeholder isEqualToString:kThingBrokerTextFieldPlaceholder])
-    {
         [STSetting setThingBrokerUrl:textField.text];
-    }
     else if([textField.placeholder isEqualToString:kContainerTextFieldPlaceholder])
     {
         [STSetting setContainerUrl:textField.text];
         
-        // Update application list
+        // update application list based on the new application container url
         SCAppDelegate *appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         [appDelegate applicationList];

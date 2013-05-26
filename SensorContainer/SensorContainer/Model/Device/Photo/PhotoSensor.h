@@ -5,8 +5,12 @@
 //  Created by Daniel Yuen on 12-12-18.
 //  Copyright (c) 2012 Daniel Yuen. All rights reserved.
 //
-#import <UIKit/UIKit.h>
+
 #import "STSensor.h"
+
+/*
+        The mobile resource for photo, which includes both the camera and gallery resources
+ */
 
 @interface PhotoSensor : STSensor
 @property (nonatomic, strong) UIImagePickerController *picker;

@@ -172,7 +172,11 @@ static MicrophoneSensor* sensor = nil;
         NSString *wavFile = [NSString stringWithFormat:@"%@/Test.wav", soundsDirectoryPath];
         NSData *audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@", wavFile]];
         
-        // convert recorded audio to string
+        /*
+            convert recorded audio to string
+         
+            the google speech service is used for audio translation, where it requires the audio file must be in .flac format in order to be translated
+         */
         if(self.isSpeechRecognition)
         {
             // convert file from wav to flac format
@@ -233,7 +237,11 @@ static MicrophoneSensor* sensor = nil;
     {
         parts = [[parts objectAtIndex:1] componentsSeparatedByString:@"="];
         
-        // after the file has been sent to thing broker, sent request to get content id
+        /*  after the file has been sent to thing broker, the thingbroker replies with the content_id, where a url can be constructed to
+            access the uploaded microphone audio directly
+         
+            a second post is sent to the thingbroker with the constructed url
+         */
         if([parts count] == 2 && [[parts objectAtIndex:0] isEqualToString:@"keep-stored"] && self.isAudioSent)
         {
             NSDictionary *jsonDict = [NSJSONSerialization   JSONObjectWithData: [[response bodyAsString] dataUsingEncoding:NSUTF8StringEncoding]

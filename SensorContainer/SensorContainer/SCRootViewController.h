@@ -7,6 +7,10 @@
 //
 
 
+/*
+        The SCRootViewController controls the webview that is displaying the mobile web applications
+ */
+
 @interface SCRootViewController : UIViewController
 - (id)initWithURL:(NSString *)url;
 @end

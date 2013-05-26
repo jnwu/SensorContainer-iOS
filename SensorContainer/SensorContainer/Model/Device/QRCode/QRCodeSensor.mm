@@ -13,7 +13,6 @@
 
 static QRCodeSensor* sensor = nil;
 
-//- (id)initWithSensorCallModel:(STCSensorCallModel *)model
 - (id)init
 {
     if(!sensor)
@@ -28,16 +27,12 @@ static QRCodeSensor* sensor = nil;
 #pragma mark STSensor
 - (void)start:(NSArray *)parameters
 {
-    //TODO: Need to eliminate this dependency ... maybe parse in the viewController?
-    //Get current view controller, so we can present camera controls
     SCAppDelegate * appDelegate = (SCAppDelegate *)[[UIApplication sharedApplication] delegate];
     UIViewController * vc = appDelegate.revealController;
-    
     ZXingWidgetController *widController = [[ZXingWidgetController alloc] initWithDelegate:self showCancel:YES OneDMode:NO];
-    
     NSMutableSet *readers = [[NSMutableSet alloc ] init];
-    
     QRCodeReader* qrcodeReader = [[QRCodeReader alloc] init];
+
     [readers addObject:qrcodeReader];
     widController.readers = readers;
     

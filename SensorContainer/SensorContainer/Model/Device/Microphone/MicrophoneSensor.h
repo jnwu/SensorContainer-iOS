@@ -8,5 +8,11 @@
 
 #import "STSensor.h"
 
+/*
+        The mobile resource for the microphone
+ 
+        Voice-to-text feature has been added, where a recoded audio is translated to text via Google Speech
+ */
+
 @interface MicrophoneSensor : STSensor
 @end

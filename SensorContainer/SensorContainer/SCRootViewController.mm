@@ -80,10 +80,13 @@
     // retrieve parameters from url
     NSArray *parts = [[[request URL] absoluteString] componentsSeparatedByString:@"/"];
     
+    // expects the url to be in the format of http://base_url/data_id/resource/method/param
+    // otherwise, navigate to the link
     if([parts count] <= 4)
         return YES;
     else
     {
+        // if there are 6 parts in the url, then the resource is expected to be cancelled
         if([parts count] <= 6 && [parts objectAtIndex:5] && ![(NSString *)[parts objectAtIndex:5] isEqualToString:@"cancel"])
             return YES;        
     }

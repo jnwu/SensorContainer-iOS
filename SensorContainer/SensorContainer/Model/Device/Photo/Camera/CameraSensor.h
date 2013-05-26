@@ -6,9 +6,7 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PhotoSensor.h"
 
 @interface CameraSensor : PhotoSensor
-
 @end

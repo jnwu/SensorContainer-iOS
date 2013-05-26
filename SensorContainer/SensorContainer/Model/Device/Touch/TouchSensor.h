@@ -8,5 +8,10 @@
 
 #import "STSensor.h"
 
+
+/*
+    The mobile resource for sending (to the thingbroker) string embedded in the hyperlink link based on touch interaction
+ */
+
 @interface TouchSensor : STSensor
 @end

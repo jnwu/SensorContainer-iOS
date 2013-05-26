@@ -6,7 +6,10 @@
 //  Copyright (c) 2013 Daniel Yuen. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+
+/*
+        The STSetting holds the thingbroker url, web container url, thing id, and display id that are used in transferring data to the thingbroker
+ */
 
 @interface STSetting : NSObject
 + (STSetting *)thing;

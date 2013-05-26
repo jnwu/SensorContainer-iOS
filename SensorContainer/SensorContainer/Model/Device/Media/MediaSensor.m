@@ -57,7 +57,7 @@
 
     if(mediaThumbnailData)
     {
-        // send image file to thing broker
+        // send image file to thing brokerr
         RKParams* params = [RKParams params];
         NSData* imageData = UIImageJPEGRepresentation((UIImage *)mediaThumbnailData, 0.0);
         [params setData:imageData MIMEType:@"multipart/form-data" forParam:@"photo"];
@@ -113,6 +113,9 @@
     [self.content removeAllObjects];
     [self.content addObject:songTitle];
 
+    /*
+        a NSMutableAsset object is created based on the metadata from the nsmediaitem, where the AVAssetExportSession object copies the data to a specified location, allowing the data to be sent
+     */
     NSURL *assetURL = [selectedItem valueForProperty: MPMediaItemPropertyAssetURL];
     AVURLAsset *songAsset = [AVURLAsset URLAssetWithURL: assetURL options:nil];
     AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:songAsset presetName:AVAssetExportPresetPassthrough];
@@ -124,14 +127,15 @@
     NSString *fileType = nil;
     NSString *ex = nil;
      
-     
+    // at this time, only mp3 song files are enabled to be sent
     if(formatID == kAudioFormatMPEGLayer3)
     {
         fileType = @"com.apple.quicktime-movie";
         ex = @"mov";
      
         exporter.outputFileType = fileType;
-     
+        
+        // exports the mp3 file
         NSError *error = nil;
         NSString *mp3DirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"MP3"];
         [[NSFileManager defaultManager] createDirectoryAtPath:mp3DirectoryPath withIntermediateDirectories:YES attributes:nil error:&error];
@@ -146,6 +150,7 @@
          ^{
              NSData *mediaData = [NSData dataWithContentsOfFile:[mp3DirectoryPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", songTitle, ex]]];
 
+             // file cleanup after exporting
              if ([[NSFileManager defaultManager] fileExistsAtPath:exportFile])
              {
                  NSError *error = nil;
@@ -178,17 +183,23 @@
                                                                  error: nil];
     NSArray *contentID = [jsonDict objectForKey:@"content"];
     
-    // Send text to thing broker
+    // get content id from the thingbroker response
     NSString *url = [NSString stringWithFormat:@"%@/content/%@?mustAttach=false", [STSetting thingBrokerUrl], [contentID objectAtIndex:0]];
     [self.sensorDict removeAllObjects];
     [self.eventDict removeAllObjects];
 
+    // reset isMediaThumbnailSent after a response has been received
     if(self.isMediaThumbnailSent)
     {
         [self.content addObject:url];
         self.isMediaThumbnailSent = NO;
     }
     
+    /*
+        the thingbroker replies with a content_id when a file is sent to the server, where a url can be constructed to have direct access to the uploaded file
+     
+        a second post is sent to the thingbroker with the constructed url that points to this file data
+     */
     if(self.isMediaSent)
     {
         [self.content addObject:url];
@@ -208,12 +219,16 @@
 
 - (void)request:(RKRequest *)request didFailLoadWithError:(NSError *)error
 {
-    NSLog(@"didFailLoadWithError: %@", error);
+    // aborts the transfer on error
+    self.isMediaSent = NO;
+    self.isMediaThumbnailSent = NO;
 }
 
 - (void)requestDidTimeout:(RKRequest *)request
 {
-    NSLog(@"requestDidTimeout");    
+    // aborts the transfer on timeout
+    self.isMediaSent = NO;
+    self.isMediaThumbnailSent = NO;
 }
 
 @end

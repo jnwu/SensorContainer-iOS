@@ -10,5 +10,9 @@
 #import <QRCodeReader.h>
 #import "STSensor.h"
 
+/*
+    The mobile resource QRCodeScanner is a modified camera resource, where it is used to scan for the display_id for apps in the web container
+ */
+
 @interface QRCodeSensor : STSensor <ZXingDelegate>
 @end

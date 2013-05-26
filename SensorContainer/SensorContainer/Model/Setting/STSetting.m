@@ -21,7 +21,7 @@ static NSString *kContainerUrl = @"http://container.icd.magic.ubc.ca/api/apps";
 
 @implementation STSetting
 
-// the app can only interact with one thing at any time
+// the app can only interact with one data thing at any time
 + (STSetting *)thing
 {
     return thing;

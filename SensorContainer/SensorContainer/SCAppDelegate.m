@@ -36,8 +36,6 @@
 #pragma mark UIApplicationDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.alert = nil;
-    
     // disable restkit logging
     RKLogConfigureByName("*", RKLogLevelOff);
 
@@ -49,11 +47,10 @@
 
 - (void)applicationList
 {
-    // get app list
+    // get app list from the web container
     RKClient *client = [RKClient clientWithBaseURL:[RKURL URLWithBaseURLString:[STSetting containerUrl]]];
     RKRequest *request = [client get:@"/" queryParameters:nil delegate:self];
     [request sendSynchronously];
-    
 }
 
 - (void)setupSidbarAndViewControllers
@@ -73,7 +70,7 @@
 	self.revealController = [[GHRevealViewController alloc] initWithNibName:nil bundle:nil];
 	self.revealController.view.backgroundColor = bgColor;
 
-    // only show settings if no apps found in large container
+    // only show settings if no apps found in web container
     if((!self.apps || [self.apps count] == 0) || (!self.links || [self.links count] == 0))
     {
         headers = @[@"SETTINGS"];
@@ -113,14 +110,14 @@
                     ];
     }
     
-    // Hide navigation bar
+    // hide navigation bar
 	[controllers enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop){
 		[((NSArray *)obj) enumerateObjectsUsingBlock:^(id obj2, NSUInteger idx2, BOOL *stop2){
 			[((UINavigationController *)obj2).navigationBar setHidden:YES];
         }];
 	}];
     
-    // Add pan gesture to webview
+    // add pan gesture to webview
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self.revealController
                                                                                  action:@selector(dragContentView:)];
     panGesture.cancelsTouchesInView = NO;
@@ -169,6 +166,7 @@
                                                                    options:NSJSONReadingMutableContainers
                                                                      error:nil];
 
+        // in the returned json string, the mobile_url key may not be present, in which case the non-mobile web app url is loaded into the webview
         if([[jsonDict objectForKey:@"mobile_url"] length] == 0)
             [self.links addObject:[jsonDict objectForKey:@"url"]];
         else
