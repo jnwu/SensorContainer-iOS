@@ -60,7 +60,7 @@ Code Structure
   </tr>
   <tr>
     <td width="25%">Third Party</td>
-    <td width="75%">/SensorContainer/SensorContainer/Model/3rdPartyUtils/</td>
+    <td width="75%">/SensorContainer/SensorContainer/3rdPartyUtils/</td>
   </tr>
 </table>
 </p>
