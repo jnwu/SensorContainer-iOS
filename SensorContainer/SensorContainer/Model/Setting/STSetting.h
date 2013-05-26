@@ -15,7 +15,15 @@
 + (STSetting *)thing;
 + (void)setThingBrokerUrl:(NSString *)url;
 + (void)setContainerUrl:(NSString *)url;
+
+/*
+        sets the data id portion of the data object that the mobile resource data will be associated with in the thingbroker
+ */
 + (void)setThingId:(NSString *)thingId;
+
+/*
+        sets the display id portion of the data object that the mobile resource data will be associate with in the thingbroker
+ */
 + (void)setDisplayId:(NSString *)displayId;
 
 + (NSString *)thingId;
