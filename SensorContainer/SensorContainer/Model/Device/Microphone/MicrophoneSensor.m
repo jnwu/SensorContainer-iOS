@@ -26,6 +26,8 @@
 @end
 
 static MicrophoneSensor* sensor = nil;
+static NSString *kGoogleSpeechAPIServer = @"https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US";
+static NSString *kFlacRate = @"audio/x-flac; rate=44100";
 
 @implementation MicrophoneSensor
 
@@ -77,6 +79,7 @@ static MicrophoneSensor* sensor = nil;
         error = nil;
         if(sensor.audioSession.inputAvailable && !sensor.recorder)
         {
+            // set microphone audio file path
             NSString *soundsDirectoryPath = [[NSHomeDirectory() stringByAppendingPathComponent:@"Documents"] stringByAppendingPathComponent:@"Sounds"];
             [[NSFileManager defaultManager] createDirectoryAtPath:soundsDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL];
             NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/Test.wav", soundsDirectoryPath]];
@@ -133,6 +136,7 @@ static MicrophoneSensor* sensor = nil;
 {
     NSString *setting = [settings objectAtIndex:0];
     
+    // toggle speech-to-text feature
     if([setting isEqualToString:@"toggleSpeechRecognition"])
     {
         if(self.isSpeechRecognition)
@@ -188,17 +192,18 @@ static MicrophoneSensor* sensor = nil;
             audioData = [NSData dataWithContentsOfFile: [NSString stringWithFormat:@"%@/Test.flac", soundsDirectoryPath]];
             if(audioData)
             {
+                // send to google for translation
                 NSMutableURLRequest *request = [[NSMutableURLRequest alloc]
-                                                initWithURL:[NSURL URLWithString:@"https://www.google.com/speech-api/v1/recognize?xjerr=1&client=chromium&lang=en-US"]];
+                                                initWithURL:[NSURL URLWithString:kGoogleSpeechAPIServer]];
                 
                 [request setHTTPMethod:@"POST"];
-                [request addValue:@"audio/x-flac; rate=44100" forHTTPHeaderField:@"Content-Type"];
+                [request addValue:kFlacRate forHTTPHeaderField:@"Content-Type"];
                 [request setHTTPBody:audioData];
                 
                 NSURLResponse *response = nil;
                 NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:nil];
-                
                 NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
                 // extract recognition string
                 int index = [result rangeOfString:@"utterance"].location;
                 int length = [result rangeOfString:@"utterance"].length;
@@ -254,6 +259,7 @@ static MicrophoneSensor* sensor = nil;
             [self.content removeAllObjects];
             [self.content addObject:url];
             
+            // adds the translated audio-to-text if the feature is enabled
             if(self.isSpeechRecognition && self.speechText)
                 [self.content addObject:self.speechText];
 

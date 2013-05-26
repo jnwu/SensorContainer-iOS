@@ -131,6 +131,7 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
+        // the function called is based on the method specified in the parsed hyperlink
         if ([self.sensor respondsToSelector:NSSelectorFromString(selector)])
             [self.sensor performSelector:NSSelectorFromString(selector) withObject:parts afterDelay:0];
 
