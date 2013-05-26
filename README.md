@@ -29,10 +29,14 @@ Data from the mobile app is stored in the thingbroker, where a web app with the 
 Interface
 ---------
 The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
-  
-<img src="/Screenshot/side_panel.png" />
-.
-<img src="/Screenshot/mobile_web_interface.png" />
+
+<p align="center">  
+  <img src="/Screenshot/side_panel.png" />
+</p>
+
+<p align="center">
+  <img src="/Screenshot/mobile_web_interface.png" />
+</p>
 
 
 Supported Mobile Resources
@@ -50,6 +54,29 @@ The following resources are shared and supported via the iOS application,
 * GPS
 * QR Scanner
 
+
+Code Structure
+--------------
+<p style="margin-left: auto; margin-right: auto;">
+<table border="1" >
+  <tr>
+    <th width="25%" align="center">Component</th>
+    <th width="75%" align="center">Directory</th>
+  </tr>
+  <tr>
+    <td width="25%">View Controllers</td>
+    <td width="75%">/SensorContainer/SensorContainer/</td>
+  </tr>
+  <tr>
+    <td width="25%">Models</td>
+    <td width="75%">/SensorContainer/SensorContainer/Model/</td>
+  </tr>
+  <tr>
+    <td width="25%">Third Party</td>
+    <td width="75%">/SensorContainer/SensorContainer/Model/3rdPartyUtils/</td>
+  </tr>
+</table>
+</p>
 
 Demo Web Apps
 -------------
