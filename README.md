@@ -3,12 +3,17 @@ SensorContainer
 This repo contains the iOS container app for the <b>Interactive Web Application Framework</b> (https://github.com/ubc-magic/container).
 This app couples with the jQuery plugin (https://github.com/jnwu/thingbroker-jquery-plugin) in the framework.
 
+An Android app has also been created for the framework (https://github.com/murtadha/AndroidWebContainer).
+
 Main Functionalities
 --------------------
 The following functionalities are provided in this iOS application,
 * Provides mobile web applications direct access to supported mobile resources
 * Dynamic loading of mobile web application list from web application container
 * Allow session-based interaction via QR codes
+
+Furthermore, a hyperlink format has been defined to enable mobile web apps to trigger resources regardless of the mobile platforms.
+
 
 Significance
 ------------
@@ -28,17 +33,6 @@ The app uses GHSideBarNav for listing all the supported apps in the framework, w
 <img src="/Screenshot/side_panel.png" />
 .
 <img src="/Screenshot/mobile_web_interface.png" />
-
-
-Hyperlink Format
-----------------
-As stated, mobile resources are triggered via HTML links in mobile web applications.
-
-<p align="center">
-  <code>
-    http://base_url/resource/data_id/method/param
-  </code>
-</p>
 
 
 Supported Mobile Resources
