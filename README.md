@@ -26,19 +26,6 @@ Data from the mobile app is stored in the thingbroker, where a web app with the 
 </p>
 
 
-Interface
----------
-The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
-
-<p align="center">  
-  <img src="/Screenshot/side_panel.png" />
-</p>
-
-<p align="center">
-  <img src="/Screenshot/mobile_web_interface.png" />
-</p>
-
-
 Supported Mobile Resources
 --------------------------
 <p align="center">
@@ -77,6 +64,21 @@ Code Structure
   </tr>
 </table>
 </p>
+
+
+
+Interface
+---------
+The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
+
+<p align="center">  
+  <img src="/Screenshot/side_panel.png" />
+</p>
+
+<p align="center">
+  <img src="/Screenshot/mobile_web_interface.png" />
+</p>
+
 
 Demo Web Apps
 -------------
