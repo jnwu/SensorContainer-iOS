@@ -3,12 +3,17 @@ SensorContainer
 This repo contains the iOS container app for the <b>Interactive Web Application Framework</b> (https://github.com/ubc-magic/container).
 This app couples with the jQuery plugin (https://github.com/jnwu/thingbroker-jquery-plugin) in the framework.
 
+An Android app has also been created for the framework (https://github.com/murtadha/AndroidWebContainer).
+
 Main Functionalities
 --------------------
 The following functionalities are provided in this iOS application,
 * Provides mobile web applications direct access to supported mobile resources
 * Dynamic loading of mobile web application list from web application container
 * Allow session-based interaction via QR codes
+
+Furthermore, a hyperlink format has been defined to enable mobile web apps to trigger resources regardless of the mobile platforms.
+
 
 Significance
 ------------
@@ -18,26 +23,6 @@ Data from the mobile app is stored in the thingbroker, where a web app with the 
 
 <p align="center">
   <img src="/Screenshot/diagram_a.png" />
-</p>
-
-
-Interface
----------
-The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
-  
-<img src="/Screenshot/side_panel.png" />
-.
-<img src="/Screenshot/mobile_web_interface.png" />
-
-
-Hyperlink Format
-----------------
-As stated, mobile resources are triggered via HTML links in mobile web applications.
-
-<p align="center">
-  <code>
-    http://base_url/resource/data_id/method/param
-  </code>
 </p>
 
 
@@ -55,6 +40,44 @@ The following resources are shared and supported via the iOS application,
 * Magnetometer
 * GPS
 * QR Scanner
+
+
+Code Structure
+--------------
+<p style="margin-left: auto; margin-right: auto;">
+<table border="1" >
+  <tr>
+    <th width="25%" align="center">Component</th>
+    <th width="75%" align="center">Directory</th>
+  </tr>
+  <tr>
+    <td width="25%">View Controllers</td>
+    <td width="75%">/SensorContainer/SensorContainer/</td>
+  </tr>
+  <tr>
+    <td width="25%">Models</td>
+    <td width="75%">/SensorContainer/SensorContainer/Model/</td>
+  </tr>
+  <tr>
+    <td width="25%">Third Party</td>
+    <td width="75%">/SensorContainer/SensorContainer/Model/3rdPartyUtils/</td>
+  </tr>
+</table>
+</p>
+
+
+
+Interface
+---------
+The app uses GHSideBarNav for listing all the supported apps in the framework, while the main viewing space is used for displaying the mobile web application.
+
+<p align="center">  
+  <img src="/Screenshot/side_panel.png" />
+</p>
+
+<p align="center">
+  <img src="/Screenshot/mobile_web_interface.png" />
+</p>
 
 
 Demo Web Apps
