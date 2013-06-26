@@ -18,6 +18,7 @@ Furthermore, a hyperlink format has been defined to enable mobile web apps to tr
 Significance
 ------------
 The SensorContainer is a modified browser, where mobile resources are exposed via a specified URL format for event triggers.
+In other words, the iOS app is an alternative to mobile development frameworks such as PhoneGap, Corona, and Titanium, where it allows mobile web apps access to mobile resources, while it contains the mobile web apps in the native app.
 
 Data from the mobile app is stored in the thingbroker, where a web app with the jQuery plugin attached can pull the data and engage in processing.
 
