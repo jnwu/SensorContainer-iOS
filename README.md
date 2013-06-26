@@ -5,15 +5,6 @@ This app couples with the jQuery plugin (https://github.com/jnwu/jquery.thingbro
 
 An Android app has also been created for the framework (https://github.com/murtadha/AndroidWebContainer).
 
-Main Functionalities
---------------------
-The following functionalities are provided in this iOS application,
-* Provides mobile web applications direct access to supported mobile resources
-* Dynamic loading of mobile web application list from web application container
-* Allow session-based interaction via QR codes
-
-Furthermore, a hyperlink format has been defined to enable mobile web apps to trigger resources regardless of the mobile platforms.
-
 
 Significance
 ------------
@@ -25,6 +16,16 @@ Data from the mobile app is stored in the thingbroker, where a web app with the 
 <p align="center">
   <img src="/Screenshot/diagram_a.png" />
 </p>
+
+
+Main Functionalities
+--------------------
+The following functionalities are provided in this iOS application,
+* Provides mobile web applications direct access to supported mobile resources
+* Dynamic loading of mobile web application list from web application container
+* Allow session-based interaction via QR codes
+
+Furthermore, a hyperlink format has been defined to enable mobile web apps to trigger resources regardless of the mobile platforms.
 
 
 Supported Mobile Resources
