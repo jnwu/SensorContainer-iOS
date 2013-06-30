@@ -84,7 +84,7 @@ The app uses GHSideBarNav for listing all the supported apps in the framework, w
 
 Demo Web Apps
 -------------
-Three demo web apps (https://github.com/jnwu/SensorContainerApplications) have been created for this framework.
+Three demo web apps (https://github.com/jnwu/SensorContainer-App) have been created for this framework.
 
 * <b>Slide Presentation</b>: Mobile users are able to view slides via touch and voice commands
 <p align="center">
@@ -107,9 +107,9 @@ Three demo web apps (https://github.com/jnwu/SensorContainerApplications) have b
 Third-Party Dependencies
 -----------------------
 The following third-party libraries have been integrated,
-* RestKit: http://restkit.org/        
-* FLACiOS: https://github.com/jhurt/FLACiOS
-* zxing: https://github.com/zxing/zxing
-* GHSideBarNav: https://github.com/gresrun/GHSidebarNav
-* wav_to_flac: https://github.com/jhurt/wav_to_flac
-* MBProgressHUD: https://github.com/jdg/MBProgressHUD
+* RestKit:        http://restkit.org/        
+* FLACiOS:        https://github.com/jhurt/FLACiOS
+* zxing:          https://github.com/zxing/zxing
+* GHSideBarNav:   https://github.com/gresrun/GHSidebarNav
+* wav_to_flac:    https://github.com/jhurt/wav_to_flac
+* MBProgressHUD:  https://github.com/jdg/MBProgressHUD
