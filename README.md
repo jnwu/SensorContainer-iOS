@@ -1,9 +1,9 @@
 SensorContainer
 ===============
 This repo contains the iOS app for the <b>Interactive Web Application Framework</b> (https://github.com/ubc-magic/container).
-This app couples with the jQuery plugin (https://github.com/jnwu/jquery.thingbroker.js) in the framework.
+This app couples with the jQuery plugin (https://github.com/jnwu/thingbroker.js) in the framework.
 
-An Android app has also been created for the framework (https://github.com/murtadha/AndroidWebContainer).
+An Android app has also been created for the framework (https://github.com/jnwu/android-sensorcontainer).
 
 
 Significance
@@ -84,7 +84,7 @@ The app uses GHSideBarNav for listing all the supported apps in the framework, w
 
 Demo Web Apps
 -------------
-Three demo web apps (https://github.com/jnwu/SensorContainer-App) have been created for this framework.
+Three demo web apps (https://github.com/jnwu/sensorcontainer) have been created for this framework.
 
 * <b>Slide Presentation</b>: Mobile users are able to view slides via touch and voice commands
 <p align="center">
